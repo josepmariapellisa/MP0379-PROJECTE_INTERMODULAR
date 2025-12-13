@@ -1,0 +1,434 @@
+#!/usr/bin/env python3
+"""
+Eina d'auditoria simple amb GUI (Tkinter) - Edició PRO / Dark Mode v2.1
+Ara inclou Escaneig de Vulnerabilitats (NSE).
+"""
+
+import threading
+import subprocess
+import sys
+import os
+import time
+import re
+from tkinter import (
+    Tk, Frame, Label, Button, Entry, Text, Scrollbar, END, messagebox, 
+    ttk, StringVar, FLAT, LEFT, RIGHT, BOTTOM, TOP, BOTH, X, Y
+)
+
+# ---------- CONFIGURACIÓ DE COLORS I ESTIL ----------
+COLOR_BG_MAIN = "#1e1e1e"
+COLOR_BG_SIDEBAR = "#252526"
+COLOR_ACCENT = "#007acc"
+COLOR_ACCENT_HOVER = "#0098ff"
+COLOR_DANGER = "#d32f2f"
+COLOR_TEXT_MAIN = "#d4d4d4"
+COLOR_TEXT_DIM = "#858585"
+COLOR_TERM_BG = "#121212"
+COLOR_TERM_FG = "#cccccc"
+
+# ---------- UTILS ----------
+ANSI_RE = re.compile(r'\x1b\[[0-9;]*m')
+
+def strip_ansi(s: str) -> str:
+    return ANSI_RE.sub("", s)
+
+def prettify_ssh_audit(raw: str) -> str:
+    lines = raw.splitlines()
+    out_lines = []
+    for raw_line in lines:
+        line = strip_ansi(raw_line).rstrip()
+        if not line:
+            if out_lines and out_lines[-1] != "": out_lines.append("")
+            continue
+        if line.startswith("#"):
+            sec = line.lstrip("# ").upper()
+            out_lines.append(f"SECTION_HEADER::{sec}")
+            continue
+        low = line.lower()
+        if "[fail]" in low or " -- [fail]" in line.lower():
+            out_lines.append(f"TAG_FAIL::‼ FAIL: {line}")
+        elif "[warn]" in low or " -- [warn]" in line.lower():
+            out_lines.append(f"TAG_WARN::⚠ WARN: {line}")
+        elif "(rec)" in low or "recommend" in low:
+            cleaned = line.lstrip(" -")
+            out_lines.append(f"TAG_REC::→ RECOMANACIÓ: {cleaned}")
+        else:
+            out_lines.append(f"  {line}")
+    return "\n".join(out_lines).strip() + "\n"
+
+def prettify_enum4linux(raw: str) -> str:
+    lines = raw.splitlines()
+    out_lines = []
+    for raw_line in lines:
+        line = strip_ansi(raw_line).rstrip()
+        if not line:
+            if out_lines and out_lines[-1] != "": out_lines.append("")
+            continue
+        if line.startswith("===") and line.endswith("==="):
+            sec = line.strip("= ").upper()
+            out_lines.append(f"SECTION_HEADER::{sec}")
+            continue
+        if line.startswith("[+]"):
+            out_lines.append(f"TAG_SUCCESS::✔ INFO: {line.lstrip('[+] ')}")
+        elif line.startswith("[-]"):
+            out_lines.append(f"TAG_FAIL::✘ {line.lstrip('[-] ')}")
+        else:
+            out_lines.append(f"    {line}")
+    return "\n".join(out_lines).strip() + "\n"
+
+def prettify_vuln(raw: str) -> str:
+    """Neteja bàsica per a l'escaneig de vulns"""
+    lines = raw.splitlines()
+    out_lines = []
+    for raw_line in lines:
+        line = strip_ansi(raw_line).rstrip()
+        # Destaquem línies clau manualment si cal, però el parser GUI ho farà millor
+        if "|_ssl-ccs-injection: VULNERABLE" in line:
+             out_lines.append(f"TAG_FAIL::{line}")
+        else:
+             out_lines.append(line)
+    return "\n".join(out_lines)
+
+# ---------- FUNCIONS D'EXECUCIÓ ----------
+current_process = None
+def run_stoppable_command(cmd_list, stop_event):
+    global current_process
+    cmd = cmd_list
+    try:
+        startupinfo = None
+        if os.name == 'nt':
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+
+        current_process = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, 
+            text=True, startupinfo=startupinfo
+        )
+        
+        while True:
+            if stop_event.is_set():
+                current_process.terminate()
+                current_process.wait()
+                return "", "Escaneig aturat per l'usuari", -1
+
+            returncode = current_process.poll()
+            if returncode is not None:
+                stdout, stderr = current_process.communicate()
+                return stdout, stderr, returncode
+            time.sleep(0.1)
+    except FileNotFoundError:
+        return "", f"Error: Comanda no trobada '{cmd[0]}'.", 1
+    except Exception as e:
+        return "", f"Error genèric: {e}", 1
+    finally:
+        current_process = None
+
+def ping_scan(target, stop_event=None):
+    if stop_event:
+        # Auto-correcció xarxa
+        if target.strip().endswith(".0") and "/" not in target: target += "/24"
+        cmd = ["nmap", target, "-sn"]
+        stdout, stderr, rc = run_stoppable_command(cmd, stop_event)
+    else: return "Error intern"
+    return stdout or stderr
+
+def port_scan(target, stop_event=None):
+    if stop_event:
+        cmd = ["nmap", target, "-sT", "--top-ports", "100"]
+        stdout, stderr, rc = run_stoppable_command(cmd, stop_event)
+    else: return "Error intern"
+    return stdout or stderr
+
+def version_scan(target, stop_event=None):
+    if stop_event:
+        cmd = ["nmap", target, "-sV", "--top-ports", "100"]
+        stdout, stderr, rc = run_stoppable_command(cmd, stop_event)
+    else: return "Error intern"
+    return stdout or stderr
+
+# --- NOVA FUNCIÓ DE VULNERABILITATS ---
+def vuln_scan(target, stop_event=None):
+    if stop_event:
+        # --script vuln: Executa scripts de detecció de vulnerabilitats
+        # -sV: Necessari per saber la versió del servei
+        cmd = ["nmap", target, "-sV", "--script", "vuln"]
+        stdout, stderr, rc = run_stoppable_command(cmd, stop_event)
+        
+        # Si triga molt i l'usuari cancel·la
+        if rc == -1: return "Escaneig de vulnerabilitats aturat."
+        
+        return prettify_vuln(stdout + "\n" + stderr)
+    else: return "Error intern"
+# ---------------------------------------
+
+def enum4linux_scan(target, stop_event=None):
+    if not stop_event: return "Error intern"
+    try:
+        cmd = ["enum4linux", "-a", target]
+        stdout, stderr, rc = run_stoppable_command(cmd, stop_event)
+        if rc == -1: return "Aturat per l'usuari"
+        return prettify_enum4linux((stdout or "") + (stderr or ""))
+    except Exception as e: return f"Error: {e}"
+
+def ssh_audit_scan(target, stop_event=None):
+    if not stop_event: return "Error intern"
+    try:
+        cmd = ["ssh-audit", target]
+        global current_process
+        current_process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        stdout_acc = []
+        stderr_acc = []
+        while True:
+            if stop_event.is_set():
+                current_process.terminate()
+                return "Aturat per l'usuari"
+            line = current_process.stdout.readline()
+            if line: stdout_acc.append(line)
+            else:
+                if current_process.poll() is not None:
+                    rem_out, rem_err = current_process.communicate()
+                    if rem_out: stdout_acc.append(rem_out)
+                    if rem_err: stderr_acc.append(rem_err)
+                    break
+                time.sleep(0.05)
+        return prettify_ssh_audit("".join(stdout_acc) + "".join(stderr_acc))
+    except Exception as e: return f"Error: {e}"
+    finally: current_process = None
+
+
+# ---------- GUI PROFESSIONAL ----------
+class AuditorGUI:
+    def __init__(self, root):
+        self.root = root
+        self.stop_event = threading.Event()
+        self.scan_in_progress = False
+        
+        root.title("SEC-AUDIT TOOL v2.1 (VULN SUPPORT)")
+        root.geometry("1100x750")
+        root.configure(bg=COLOR_BG_MAIN)
+
+        self._setup_styles()
+
+        # Layout
+        self.sidebar = Frame(root, bg=COLOR_BG_SIDEBAR, width=250, padx=15, pady=15)
+        self.sidebar.pack(side=LEFT, fill="y")
+        self.sidebar.pack_propagate(False)
+
+        self.main_area = Frame(root, bg=COLOR_BG_MAIN)
+        self.main_area.pack(side=RIGHT, fill=BOTH, expand=True)
+
+        # Sidebar content
+        lbl_logo = Label(self.sidebar, text="AUDITOR", bg=COLOR_BG_SIDEBAR, fg=COLOR_ACCENT, font=("Verdana", 20, "bold"))
+        lbl_logo.pack(anchor="w", pady=(0, 5))
+        Label(self.sidebar, text="Security Suite", bg=COLOR_BG_SIDEBAR, fg=COLOR_TEXT_DIM, font=("Verdana", 10)).pack(anchor="w", pady=(0, 30))
+
+        Label(self.sidebar, text="OBJECTIU (IP/XARXA)", bg=COLOR_BG_SIDEBAR, fg=COLOR_TEXT_MAIN, font=("Segoe UI", 9, "bold")).pack(anchor="w", pady=(0, 5))
+        self.entry_target = Entry(self.sidebar, bg="#3c3c3c", fg="white", insertbackground="white", relief=FLAT, font=("Consolas", 11))
+        self.entry_target.pack(fill="x", ipady=5, pady=(0, 20))
+        self.entry_target.insert(0, "127.0.0.1")
+
+        Frame(self.sidebar, height=2, bg="#3e3e42").pack(fill="x", pady=(0, 20))
+
+        # --- BOTONS ---
+        Label(self.sidebar, text="XARXA I PORTS", bg=COLOR_BG_SIDEBAR, fg=COLOR_TEXT_DIM, font=("Segoe UI", 8)).pack(anchor="w", pady=(0, 5))
+        self.create_btn("PING SCAN (Discovery)", self.start_ping_scan)
+        self.create_btn("PORT SCAN (Fast)", self.start_port_scan)
+        self.create_btn("VERSION SCAN (Services)", self.start_version_scan)
+        
+        # NOU BOTÓ VULNERABILITATS
+        Frame(self.sidebar, height=10, bg=COLOR_BG_SIDEBAR).pack()
+        Label(self.sidebar, text="ANÀLISI AVANÇADA", bg=COLOR_BG_SIDEBAR, fg=COLOR_ACCENT, font=("Segoe UI", 8, "bold")).pack(anchor="w", pady=(0, 5))
+        self.create_btn("⚠ VULN SCAN (NSE)", self.start_vuln_scan) # <--- NOU
+
+        Frame(self.sidebar, height=10, bg=COLOR_BG_SIDEBAR).pack()
+        Label(self.sidebar, text="SERVEIS ESPECÍFICS", bg=COLOR_BG_SIDEBAR, fg=COLOR_TEXT_DIM, font=("Segoe UI", 8)).pack(anchor="w", pady=(0, 5))
+        self.create_btn("SMB ENUM (enum4linux)", self.start_enum4linux_scan)
+        self.create_btn("SSH AUDIT", self.start_ssh_audit)
+
+        self.btn_stop = Button(self.sidebar, text="⏹ ATURAR PROCÉS", command=self.peticio_stop_auditoria,
+               bg=COLOR_DANGER, fg="white", activebackground="#b71c1c", activeforeground="white",
+               relief=FLAT, font=("Segoe UI", 10, "bold"), cursor="hand2")
+        self.btn_stop.pack(side=BOTTOM, fill="x", pady=10, ipady=5)
+
+        # Main Area content
+        header_frame = Frame(self.main_area, bg=COLOR_BG_MAIN, pady=10, padx=20)
+        header_frame.pack(fill="x")
+        self.status_var = StringVar()
+        self.status_var.set("A punt per escanejar.")
+        self.lbl_status = Label(header_frame, textvariable=self.status_var, bg=COLOR_BG_MAIN, fg=COLOR_TEXT_DIM, font=("Consolas", 10))
+        self.lbl_status.pack(side=LEFT)
+
+        out_container = Frame(self.main_area, bg=COLOR_TERM_BG, padx=2, pady=2)
+        out_container.pack(fill=BOTH, expand=True, padx=20, pady=(0, 20))
+        scroll = Scrollbar(out_container)
+        scroll.pack(side=RIGHT, fill=Y)
+        self.txt = Text(out_container, bg=COLOR_TERM_BG, fg=COLOR_TERM_FG, font=("Consolas", 10), bd=0, highlightthickness=0, yscrollcommand=scroll.set, wrap="word")
+        self.txt.pack(side=LEFT, fill=BOTH, expand=True, padx=5, pady=5)
+        scroll.config(command=self.txt.yview)
+
+        # Tags colors
+        self.txt.tag_config("HEADER", foreground=COLOR_ACCENT, font=("Consolas", 11, "bold"))
+        self.txt.tag_config("FAIL", foreground="#ff5555", font=("Consolas", 10, "bold")) 
+        self.txt.tag_config("WARN", foreground="#ffb86c")
+        self.txt.tag_config("SUCCESS", foreground="#50fa7b")
+        self.txt.tag_config("INFO", foreground="#8be9fd")
+        self.txt.tag_config("CMD", foreground="#6272a4", font=("Consolas", 9, "italic"))
+        self.txt.tag_config("VULN_HIGHLIGHT", foreground="#ff5555", background="#4a1010", font=("Consolas", 10, "bold")) # Estil especial vulnerabilitat
+
+        self._welcome_msg()
+
+    def _setup_styles(self):
+        style = ttk.Style()
+        style.theme_use('clam')
+        style.configure("TButton", background=COLOR_BG_SIDEBAR, foreground="white", borderwidth=0)
+        style.map("TButton", background=[('active', '#3e3e42')])
+
+    def create_btn(self, text, command):
+        # Color especial si és VULN
+        fg_color = "white"
+        if "VULN" in text: 
+            fg_color = "#ffcccc" # Lleugerament vermell
+
+        btn = Button(self.sidebar, text=text, command=command,
+                     bg="#333333", fg=fg_color, 
+                     activebackground=COLOR_ACCENT, activeforeground="white",
+                     relief=FLAT, bd=0, font=("Segoe UI", 9),
+                     cursor="hand2", anchor="w", padx=10)
+        btn.pack(fill="x", pady=2, ipady=4)
+        
+        def on_enter(e):
+            if e.widget['state'] != 'disabled': e.widget['background'] = '#444444'
+        def on_leave(e):
+            if e.widget['state'] != 'disabled': e.widget['background'] = '#333333'
+        btn.bind("<Enter>", on_enter)
+        btn.bind("<Leave>", on_leave)
+
+    def _welcome_msg(self):
+        self.append_text_tagged("SYSTEM READY...", "CMD")
+        self.append_text_tagged("Cyber Security Tool v2.1 Loaded.", "INFO")
+        self.append_text_tagged("-" * 60, "CMD")
+
+    def append_text_tagged(self, text, tag=None):
+        self.txt.insert(END, text + "\n", tag)
+        self.txt.see(END)
+        self.root.update()
+
+    def parse_and_print_output(self, text):
+        """Analitza sortida i aplica colors"""
+        for line in text.splitlines():
+            # --- DETECCIO DE VULNERABILITATS ---
+            # Si NMAP diu "VULNERABLE" o troba un CVE, ho pintem molt visible
+            if "VULNERABLE" in line or "CVE-" in line:
+                self.txt.insert(END, line + "\n", "VULN_HIGHLIGHT")
+                continue
+            # -----------------------------------
+
+            if line.startswith("SECTION_HEADER::"):
+                content = line.split("::", 1)[1]
+                self.txt.insert(END, "\n" + "="*40 + "\n", "CMD")
+                self.txt.insert(END, f"  {content}\n", "HEADER")
+                self.txt.insert(END, "="*40 + "\n", "CMD")
+            elif line.startswith("TAG_FAIL::"):
+                self.txt.insert(END, line.split("::", 1)[1] + "\n", "FAIL")
+            elif line.startswith("TAG_WARN::"):
+                self.txt.insert(END, line.split("::", 1)[1] + "\n", "WARN")
+            elif line.startswith("TAG_REC::"):
+                self.txt.insert(END, line.split("::", 1)[1] + "\n", "INFO")
+            elif line.startswith("TAG_SUCCESS::"):
+                self.txt.insert(END, line.split("::", 1)[1] + "\n", "SUCCESS")
+            else:
+                self.txt.insert(END, line + "\n")
+        self.txt.see(END)
+
+    def _prepare_scan(self, scan_type):
+        self.stop_event.clear()
+        self.scan_in_progress = True
+        self.txt.delete(1.0, END)
+        self.status_var.set(f"EXECUTANT: {scan_type}...")
+        self.lbl_status.config(fg=COLOR_ACCENT)
+        target = self.entry_target.get().strip()
+        self.append_text_tagged(f"[*] INICIANT {scan_type}", "HEADER")
+        self.append_text_tagged(f"[*] OBJECTIU: {target}", "CMD")
+        
+        # Avís si és vuln scan
+        if "VULN" in scan_type:
+            self.append_text_tagged("[!] ATENCIÓ: Aquest escaneig pot trigar diversos minuts.", "WARN")
+            self.append_text_tagged("[!] S'executen scripts NSE contra tots els serveis detectats.", "WARN")
+
+        self.append_text_tagged("-" * 50, "CMD")
+        return target
+
+    def _finish_scan(self):
+        self.scan_in_progress = False
+        self.status_var.set("Estat: Esperant comandes")
+        self.lbl_status.config(fg=COLOR_TEXT_DIM)
+        self.append_text_tagged("\n[✓] PROCÉS FINALITZAT", "SUCCESS")
+
+    # --- HANDLERS ---
+    def start_ping_scan(self):
+        if self.scan_in_progress: return
+        target = self._prepare_scan("PING SCAN")
+        if not target: return
+        self.execucions(ping_scan, target)
+
+    def start_port_scan(self):
+        if self.scan_in_progress: return
+        target = self._prepare_scan("PORT SCAN")
+        if not target: return
+        self.execucions(port_scan, target)
+
+    def start_version_scan(self):
+        if self.scan_in_progress: return
+        target = self._prepare_scan("VERSION SCAN")
+        if not target: return
+        self.execucions(version_scan, target)
+
+    def start_vuln_scan(self):
+        if self.scan_in_progress: return
+        target = self._prepare_scan("VULN SCAN (NSE)")
+        if not target: return
+        self.execucions(vuln_scan, target)
+
+    def start_enum4linux_scan(self):
+        if self.scan_in_progress: return
+        target = self._prepare_scan("ENUM4LINUX")
+        if not target: return
+        self.execucions(enum4linux_scan, target)
+
+    def start_ssh_audit(self):
+        if self.scan_in_progress: return
+        target = self._prepare_scan("SSH AUDIT")
+        if not target: return
+        self.execucions(ssh_audit_scan, target)
+
+    def execucions(self, func, *args):
+        def task():
+            try:
+                output = func(*args, self.stop_event)
+                self.root.after(0, lambda: self.parse_and_print_output(output))
+            except Exception as e:
+                self.root.after(0, lambda: self.append_text_tagged(f"[ERROR] {e}", "FAIL"))
+            finally:
+                self.root.after(0, self._finish_scan)
+        t = threading.Thread(target=task)
+        t.daemon = True
+        t.start()
+
+    def peticio_stop_auditoria(self):
+        if self.scan_in_progress:
+            self.append_text_tagged("[!] SOL·LICITANT ATURADA...", "WARN")
+            self.stop_event.set()
+            global current_process
+            if current_process:
+                try: current_process.terminate()
+                except: pass
+        else:
+            messagebox.showinfo("Info", "No hi ha cap procés actiu.")
+
+def main():
+    root = Tk()
+    app = AuditorGUI(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
