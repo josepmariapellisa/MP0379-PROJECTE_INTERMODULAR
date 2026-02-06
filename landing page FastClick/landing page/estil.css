@@ -1,0 +1,391 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f8fb;
+  color: #1a2b3c;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0a2c4d;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo-img {
+  height: 70px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.buttons button {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login {
+  background-color: #0a2c4d;
+  color: white;
+  border: 2px solid white;
+}
+
+.register {
+  background-color: #00bfa6;
+  color: white;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #e6f2f8;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  color: #0a2c4d;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #00bfa6;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #ffffff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.partners img {
+  height: 40px;
+  margin: 0 1rem;
+}
+
+.social a {
+  margin: 0 1rem;
+  color: #0a2c4d;
+  text-decoration: none;
+  font-weight: bold;
+}
+.services {
+  padding: 3rem 2rem;
+  background-color: #f4f8fb;
+  text-align: center;
+}
+
+.services h2 {
+  font-size: 2rem;
+  color: #0a2c4d;
+  margin-bottom: 2rem;
+}
+
+.service-item {
+  background-color: white;
+  border: 1px solid #d0dbe5;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  max-width: 700px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.service-item:hover {
+  transform: scale(1.02);
+}
+
+.service-item h4 {
+  font-size: 1.3rem;
+  color: #00bfa6;
+  margin-bottom: 0.5rem;
+}
+
+.service-item p {
+  font-size: 1rem;
+  color: #1a2b3c;
+  line-height: 1.6;
+}
+.team {
+  padding: 3rem 2rem;
+  background-color: #f4f8fb;
+  text-align: center;
+}
+
+.team h2 {
+  font-size: 2rem;
+  color: #0a2c4d;
+  margin-bottom: 2rem;
+}
+
+.team table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.team th,
+.team td {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e6ed;
+  text-align: left;
+}
+
+.team th {
+  background-color: #0a2c4d;
+  color: white;
+  font-weight: bold;
+}
+
+.team tr:last-child td {
+  border-bottom: none;
+}
+
+.team td {
+  color: #1a2b3c;
+}
+
+@media (max-width: 600px) {
+  .team table,
+  .team th,
+  .team td {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+}
+.about {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #0a2c4d;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+.about p {
+  font-size: 1.1rem;
+  color: #1a2b3c;
+  line-height: 1.8;
+}
+.pricing {
+  padding: 3rem 2rem;
+  background-color: #f4f8fb;
+  text-align: center;
+}
+
+.pricing h2 {
+  font-size: 2rem;
+  color: #0a2c4d;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.pricing table {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pricing th {
+  background-color: #0a2c4d;
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: bold;
+}
+
+.pricing td {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e6ed;
+  color: #1a2b3c;
+  text-align: left;
+}
+
+.pricing tr:last-child td {
+  border-bottom: none;
+}
+
+.pricing tr:nth-child(even) td {
+  background-color: #f9fbfd;
+}
+
+@media (max-width: 768px) {
+  .pricing table,
+  .pricing th,
+  .pricing td {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+}
+.contact {
+  padding: 3rem 2rem;
+  background-color: #f4f8fb;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  color: #0a2c4d;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d0dbe5;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.contact button {
+  background-color: #00bfa6;
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.contact button:hover {
+  background-color: #009780;
+}
+
+.social-icons {
+  margin-top: 1.5rem;
+}
+
+.social-icons a {
+  margin: 0 1rem;
+  color: #0a2c4d;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.social-icons a:hover {
+  color: #00bfa6;
+}
+/* Contenidor de la secció de blog */
+.blog {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background-color: #fefefe;
+}
+
+/* Títol principal */
+.blog h2 {
+  font-size: 2rem;
+  color: #005a9c;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* Estil dels articles */
+.blog article {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-left: 5px solid #005a9c;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.blog article:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Títol de cada article */
+.blog article h3 {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Autor i data */
+.blog article p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Enllaç "Llegeix més" */
+.blog article a {
+  display: inline-block;
+  color: #0078d4;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.blog article a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,2732 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fastclick Auditors - Automatització d'Auditories i Plans de Millora</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ============================================
+           VARIABLES GLOBALS PREMIUM
+        =========================================== */
+        :root {
+            /* Colors Premium */
+            --primary: #00d4aa;
+            --primary-dark: #00b894;
+            --primary-light: #2fe6c8;
+            --secondary: #1a237e;
+            --secondary-light: #283593;
+            --accent: #ff6b6b;
+            --accent-light: #ff8787;
+
+            /* Backgrounds */
+            --bg-dark: #0a0f1e;
+            --bg-darker: #050913;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --border: rgba(255, 255, 255, 0.1);
+            --border-light: rgba(255, 255, 255, 0.05);
+
+            /* Text */
+            --text-white: #ffffff;
+            --text-light: #e2e8f0;
+            --text-gray: #94a3b8;
+            --text-muted: #64748b;
+
+            /* Effects */
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --shadow-glow: 0 0 40px rgba(0, 212, 170, 0.2);
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+
+            /* Spacing */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+
+            /* Transitions */
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-fast: all 0.2s ease;
+        }
+
+        /* ============================================
+           RESET I ESTILS BASE PREMIUM
+        =========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 170, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(26, 35, 126, 0.08) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            position: relative;
+            padding: 120px 0;
+        }
+
+        /* ============================================
+           TIPOGRAFIA PREMIUM
+        =========================================== */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: var(--text-gray);
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           COMPONENTS PREMIUM
+        =========================================== */
+
+        /* Butons Premium */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 36px;
+            border-radius: var(--radius-md);
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                var(--shadow-glow),
+                0 20px 40px rgba(0, 212, 170, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-white);
+            border-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .btn-lg {
+            padding: 22px 48px;
+            font-size: 1.25rem;
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Cards Premium */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            transition: var(--transition);
+            backdrop-filter: blur(20px);
+        }
+
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .card-featured {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        /* Badges Premium */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ============================================
+           NAVIGACIÓ PREMIUM
+        =========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            background: rgba(10, 15, 30, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-white);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        /* ============================================
+           HERO SECTION PREMIUM
+        =========================================== */
+        .hero-section {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 48px;
+            color: var(--text-gray);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin: 60px 0;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            margin-bottom: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        /* ============================================
+           TECH STACK PREMIUM
+        =========================================== */
+        .tech-stack {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            margin: 80px auto;
+            max-width: 1000px;
+            backdrop-filter: blur(20px);
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            width: 160px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                    transparent,
+                    rgba(0, 212, 170, 0.05),
+                    transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .tech-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateY(-5px);
+        }
+
+        .tech-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(0, 212, 170, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary);
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-icon::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-primary);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .tech-item:hover .tech-icon::after {
+            opacity: 1;
+        }
+
+        .tech-item:hover .tech-icon {
+            color: white;
+        }
+
+        /* ============================================
+           TEAM SECTION PREMIUM
+        =========================================== */
+        .team-section {
+            background: var(--bg-darker);
+            position: relative;
+        }
+
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--primary),
+                    transparent);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--gradient-primary);
+            transition: height 0.6s ease;
+        }
+
+        .team-card:hover::before {
+            height: 100%;
+        }
+
+        .member-avatar {
+            width: 140px;
+            height: 140px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+        }
+
+        .member-avatar::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .member-name {
+            font-size: 1.75rem;
+            margin-bottom: 8px;
+            color: var(--text-white);
+        }
+
+        .member-role {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 24px;
+            font-size: 1.125rem;
+        }
+
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 24px 0;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            transition: var(--transition-fast);
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 212, 170, 0.1);
+            color: var(--primary);
+        }
+
+        .member-contact {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .contact-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .contact-link:hover::before {
+            opacity: 1;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        .contact-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           FEATURES SECTION PREMIUM
+        =========================================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 212, 170, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid var(--primary);
+            border-radius: 24px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card:hover .feature-icon::after {
+            opacity: 0.3;
+        }
+
+        /* ============================================
+           HOW IT WORKS PREMIUM
+        =========================================== */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            margin: 0 auto 32px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           PRICING SECTION PREMIUM
+        =========================================== */
+        .pricing-section {
+            background: var(--bg-darker);
+            position: relative;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: 8px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.875rem;
+            z-index: 1;
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ============================================
+           CTA SECTION PREMIUM
+        =========================================== */
+        .cta-section {
+            background: var(--gradient-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0 L1000,0 L1000,100 Q500,120 0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>'),
+                linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            background-size: 100% 100%, 200% 200%;
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 0%, 0% 0%;
+            }
+
+            100% {
+                background-position: 0% 0%, 200% 0%;
+            }
+        }
+
+        /* ============================================
+           FOOTER PREMIUM
+        =========================================== */
+        .footer {
+            background: var(--bg-darker);
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--border);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--primary),
+                    transparent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-white);
+            padding-left: 8px;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           ANIMATIONS PREMIUM
+        =========================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+
+        .delay-5 {
+            animation-delay: 1s;
+        }
+
+        /* ============================================
+           RESPONSIVE PREMIUM
+        =========================================== */
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 0 32px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2.25rem;
+            }
+
+            section {
+                padding: 100px 0;
+            }
+
+            .navbar {
+                padding: 16px 0;
+            }
+
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 32px;
+                gap: 24px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 8px;
+            }
+
+            .nav-toggle span {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background: var(--text-white);
+                transition: var(--transition);
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .team-grid,
+            .features-grid,
+            .steps,
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 16px 32px;
+            }
+
+            .btn-lg {
+                padding: 20px 40px;
+            }
+
+            .card,
+            .tech-stack,
+            .team-card {
+                padding: 32px 24px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+        }
+
+        /* ============================================
+           CUSTOM SCROLLBAR PREMIUM
+        =========================================== */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 6px;
+            border: 3px solid var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+
+        /* ============================================
+           PARTICLE BACKGROUND
+        =========================================== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        /* ============================================
+           MILLORES AFEGIDES PER A CONTACTE I PREUS
+        =========================================== */
+        /* Animació de sacsejada */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Estils per als inputs millorats */
+        .input-wrapper input:focus,
+        .input-wrapper textarea:focus,
+        .input-wrapper select:focus {
+            outline: none;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1) !important;
+        }
+
+        /* Estil per la taula de comparació */
+        table tr:hover td {
+            background: rgba(255, 255, 255, 0.02) !important;
+        }
+
+        /* Responsive per a la secció de preus */
+        @media (max-width: 992px) {
+            .card.card-featured {
+                transform: scale(1) !important;
+            }
+
+            .pricing-toggle {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        /* Estils per al toggle switch */
+        .toggle-switch label {
+            position: relative;
+        }
+
+        .toggle-switch input:checked+label {
+            border-color: var(--primary);
+        }
+
+        .toggle-switch input:checked+label .toggle-slider {
+            background: var(--primary);
+            transform: translateX(30px);
+        }
+
+        /* Estils per a la secció de contacte */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .price-display {
+            display: inline-block;
+        }
+
+        .discount-badge {
+            background: var(--accent);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#inici" class="logo">
+                    <img src="img/logo.png" alt="FastClick Logo" class="logo-img">
+                </a>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inici" class="nav-link active">Inici</a></li>
+                    <li><a href="#funcionalitats" class="nav-link">Funcionalitats</a></li>
+                    <li><a href="#com-funciona" class="nav-link">Com funciona</a></li>
+                    <li><a href="#equip" class="nav-link">L'Equip</a></li>
+                    <li><a href="#preus" class="nav-link">Preus</a></li>
+                    <li><a href="#contacte" class="nav-link">Contacte</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#login" class="btn btn-secondary">Accedir</a>
+                    <a href="#demo" class="btn btn-primary">Registrar-se</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inici" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge animate">
+                    <i class="fas fa-bolt"></i>
+                    <span>Automatització d'auditories i plans de millora</span>
+                </div>
+
+                <h1 class="hero-title animate delay-1">
+                    Seguretat automatitzada per als teus sistemes
+                </h1>
+
+                <p class="hero-subtitle animate delay-1">
+                    Auditem, detectem i reforcem. Des d'entorns Linux a infraestructures híbrides.
+                    Produeix informes professionals (PDF/CSV) en minuts.
+                </p>
+
+                <div class="hero-stats animate delay-2">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span class="stat-label">Sistemes auditats</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="99">0</span>
+                        <span class="stat-label">% Satisfacció</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="24">0</span>
+                        <span class="stat-label">h màx. resposta</span>
+                    </div>
+                </div>
+
+                <div class="hero-features animate delay-3">
+                    <div class="badge">
+                        <i class="fas fa-bolt"></i>
+                        <span>Automatització total</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Codi Open-Source</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Resultats mesurables</span>
+                    </div>
+                </div>
+
+                <div class="animate delay-4" style="margin-top: 48px;">
+                    <a href="#demo" class="btn btn-primary btn-lg" style="margin-right: 20px;">
+                        <i class="fas fa-play-circle"></i> Prova el Diag Agent
+                    </a>
+                    <a href="#contacte" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-file-alt"></i> Sol·licita una auditoria
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="tech-stack animate delay-5">
+                <h3 style="text-align: center; margin-bottom: 40px; color: var(--text-light);">
+                    Tecnologies que auditem
+                </h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <div class="tech-icon">L</div>
+                        <span class="tech-name">Linux</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">U</div>
+                        <span class="tech-name">Ubuntu</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">P</div>
+                        <span class="tech-name">Prometheus</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">C</div>
+                        <span class="tech-name">CentOS</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">D</div>
+                        <span class="tech-name">Docker</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">Py</div>
+                        <span class="tech-name">Python</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="equip" class="team-section">
+        <div class="container">
+            <div class="section-header animate">
+                <h2>L'Equip de Fastclick Auditors</h2>
+                <p style="text-align: center; max-width: 800px; margin: 20px auto 0;">
+                    Experts en seguretat informàtica amb més de 15 anys d'experiència combinada.
+                    Tots els membres del nostre equip són graduats en ASIX (Administració de Sistemes Informàtics).
+                </p>
+            </div>
+
+            <div class="team-grid">
+                <!-- Josep Maria Pellisa -->
+                <div class="team-card animate delay-1">
+                    <div class="member-avatar">JP</div>
+                    <h3 class="member-name">Josep Maria Pellisa</h3>
+                    <div class="member-role">Auditor Tècnic Principal</div>
+                    <p style="margin-bottom: 24px;">
+                        Expert en auditoria de sistemes Linux i hardening de servidors amb 7 anys d'experiència.
+                        Especialista en detecció de vulnerabilitats, pentesting i seguretat perimetral.
+                    </p>
+
+                    <div class="member-skills">
+                        <span class="skill-tag">Linux Security</span>
+                        <span class="skill-tag">Pentesting</span>
+                        <span class="skill-tag">Firewalls</span>
+                        <span class="skill-tag">IDS/IPS</span>
+                        <span class="skill-tag">Vulnerability Assessment</span>
+                        <span class="skill-tag">Security Hardening</span>
+                    </div>
+
+                    <div class="member-contact">
+                        <a href="#" class="contact-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-file-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ramon Aibar -->
+                <div class="team-card animate delay-2">
+                    <div class="member-avatar">RA</div>
+                    <h3 class="member-name">Ramon Aibar</h3>
+                    <div class="member-role">Analista de Seguretat</div>
+                    <p style="margin-bottom: 24px;">
+                        Expert en anàlisi forense i resposta a incidents amb 6 anys d'experiència.
+                        Especialista en criptografia, seguretat de dades i investigació digital.
+                    </p>
+
+                    <div class="member-skills">
+                        <span class="skill-tag">Forensic Analysis</span>
+                        <span class="skill-tag">Cryptography</span>
+                        <span class="skill-tag">Incident Response</span>
+                        <span class="skill-tag">Data Security</span>
+                        <span class="skill-tag">Malware Analysis</span>
+                        <span class="skill-tag">Digital Investigation</span>
+                    </div>
+
+                    <div class="member-contact">
+                        <a href="#" class="contact-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-file-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Robert Daniel Miron -->
+                <div class="team-card animate delay-3">
+                    <div class="member-avatar">RD</div>
+                    <h3 class="member-name">Robert Daniel Miron</h3>
+                    <div class="member-role">SysAdmin & DevOps Engineer</div>
+                    <p style="margin-bottom: 24px;">
+                        Expert en administració de sistemes i automatització DevOps amb 8 anys d'experiència.
+                        Especialista en containers, orquestració cloud i automatització de seguretat.
+                    </p>
+
+                    <div class="member-skills">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Cloud Security</span>
+                        <span class="skill-tag">Infrastructure as Code</span>
+                        <span class="skill-tag">Automation</span>
+                    </div>
+
+                    <div class="member-contact">
+                        <a href="#" class="contact-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="#" class="contact-link">
+                            <i class="fas fa-file-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="funcionalitats" class="features-section">
+        <div class="container">
+            <div class="section-header animate">
+                <h2>Funcionalitats Avançades</h2>
+                <p style="text-align: center; max-width: 800px; margin: 20px auto 0;">
+                    Desenvolupem les eines més avançades per a una auditoria de seguretat completa i automatitzada.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="card animate delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Escaneig Integral</h3>
+                    <p>Anàlisi exhaustiva de vulnerabilitats, configuracions, permisos i amenaces en temps real amb
+                        intel·ligència artificial.</p>
+                </div>
+
+                <div class="card animate delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Informes Detallats</h3>
+                    <p>Generació automàtica d'informes en múltiples formats (PDF, CSV, JSON) amb dades estructurades i
+                        recomanacions accionables.</p>
+                </div>
+
+                <div class="card animate delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Monitorització Contínua</h3>
+                    <p>Seguiment constant del estat de seguretat i alertes automàtiques per a incidents en temps real
+                        amb dashboards interactius.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="com-funciona" class="how-it-works">
+        <div class="container">
+            <div class="section-header animate">
+                <h2>Com Funciona Fastclick</h2>
+                <p style="text-align: center; max-width: 800px; margin: 20px auto 0;">
+                    Un procés senzill en 3 passos per a implementar una seguretat completa i automatitzada.
+                </p>
+            </div>
+
+            <div class="steps">
+                <div class="card animate delay-1">
+                    <div class="step-number">1</div>
+                    <h3 style="text-align: center; margin-bottom: 16px;">Instal·lació</h3>
+                    <p style="text-align: center;">Instal·la el nostre agent amb una sola comanda al teu sistema. Sense
+                        dependències complexes.</p>
+                </div>
+
+                <div class="card animate delay-2">
+                    <div class="step-number">2</div>
+                    <h3 style="text-align: center; margin-bottom: 16px;">Auditoria</h3>
+                    <p style="text-align: center;">L'agent analitza automàticament tot el teu sistema de seguretat amb
+                        els nostres algorismes avançats.</p>
+                </div>
+
+                <div class="card animate delay-3">
+                    <div class="step-number">3</div>
+                    <h3 style="text-align: center; margin-bottom: 16px;">Resultats</h3>
+                    <p style="text-align: center;">Rep l'informe complet amb recomanacions prioritzades i plans d'acció
+                        detallats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section - Millorada -->
+    <section id="preus" class="pricing-section">
+        <div class="container">
+            <div class="section-header animate">
+                <span class="badge" style="margin-bottom: 24px;">
+                    <i class="fas fa-tags"></i>
+                    Plans Flexibles
+                </span>
+                <h2>Plans que S'Adapten al Teu Creixement</h2>
+                <p style="text-align: center; max-width: 800px; margin: 20px auto 0;">
+                    Escull el pla perfecte per a la teva organització. Tots inclouen el nostre Diag Agent avançat i
+                    generació d'informes en múltiples formats.
+                </p>
+            </div>
+
+            <!-- Toggle Anual/Mensual -->
+            <div class="pricing-toggle animate delay-1"
+                style="display: flex; justify-content: center; align-items: center; gap: 20px; margin: 40px 0;">
+                <span style="color: var(--text-light);">Facturació mensual</span>
+                <div class="toggle-switch" style="position: relative; width: 60px; height: 30px;">
+                    <input type="checkbox" id="billingToggle" style="display: none;">
+                    <label for="billingToggle"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-card); border-radius: var(--radius-full); cursor: pointer; border: 2px solid var(--border); transition: var(--transition);">
+                        <span class="toggle-slider"
+                            style="position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; background: var(--primary); border-radius: 50%; transition: var(--transition);"></span>
+                    </label>
+                </div>
+                <span style="color: var(--primary); font-weight: 600;">Facturació anual <span class="discount-badge"
+                        style="background: var(--accent); color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.75rem; margin-left: 8px;">2
+                        mesos gratis</span></span>
+            </div>
+
+            <div class="pricing-cards">
+                <!-- Pla Bàsic - Millorat -->
+                <div class="card animate delay-2" style="position: relative;">
+                    <div class="feature-icon" style="margin: 0 auto 32px; background: rgba(0, 212, 170, 0.1);">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 style="text-align: center; margin-bottom: 16px;">Pla Startup</h3>
+                    <div style="text-align: center; margin-bottom: 32px; position: relative;">
+                        <div class="price-display">
+                            <span class="price-monthly"
+                                style="font-size: 3rem; font-weight: 800; color: var(--primary);">49€</span>
+                            <span class="price-annual"
+                                style="font-size: 3rem; font-weight: 800; color: var(--primary); display: none;">40€</span>
+                            <span style="color: var(--text-gray);">/mes</span>
+                        </div>
+                        <div class="price-subtext"
+                            style="font-size: 0.875rem; color: var(--text-muted); margin-top: 8px;">
+                            <span class="monthly-text">Facturació mensual</span>
+                            <span class="annual-text" style="display: none;"><i class="fas fa-gift"
+                                    style="color: var(--accent);"></i> 490€/any (estalvia 98€)</span>
+                        </div>
+                    </div>
+
+                    <ul style="list-style: none; margin-bottom: 32px; padding: 0 20px;">
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Fins a 5 sistemes</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Perfecte per
+                                    a equips petits</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Auditoria mensual
+                                    completa</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Escaneig
+                                    profund cada mes</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Informes PDF i CSV</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Format
+                                    estàndard empresarial</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Suport per correu
+                                    electrònic</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Resposta en
+                                    48 hores</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="#signup-startup" class="btn btn-secondary" style="width: 100%;">
+                        <i class="fas fa-rocket"></i> Començar Gratuïtament
+                    </a>
+                    <p style="text-align: center; margin-top: 16px; font-size: 0.875rem; color: var(--text-muted);">
+                        14 dies de prova gratuïta, sense targeta
+                    </p>
+                </div>
+
+                <!-- Pla Professional - Millorat -->
+                <div class="card card-featured animate delay-2" style="position: relative; transform: scale(1.05);">
+                    <div class="featured-badge">Recomanat per Experts</div>
+                    <div class="feature-icon"
+                        style="margin: 0 auto 32px; background: var(--gradient-primary); color: white;">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 style="text-align: center; margin-bottom: 16px;">Pla Professional</h3>
+                    <div style="text-align: center; margin-bottom: 32px; position: relative;">
+                        <div class="price-display">
+                            <span class="price-monthly"
+                                style="font-size: 3rem; font-weight: 800; color: var(--primary);">99€</span>
+                            <span class="price-annual"
+                                style="font-size: 3rem; font-weight: 800; color: var(--primary); display: none;">82€</span>
+                            <span style="color: var(--text-gray);">/mes</span>
+                        </div>
+                        <div class="price-subtext"
+                            style="font-size: 0.875rem; color: var(--text-muted); margin-top: 8px;">
+                            <span class="monthly-text">Facturació mensual</span>
+                            <span class="annual-text" style="display: none;"><i class="fas fa-gift"
+                                    style="color: var(--accent);"></i> 990€/any (estalvia 198€)</span>
+                        </div>
+                    </div>
+
+                    <ul style="list-style: none; margin-bottom: 32px; padding: 0 20px;">
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Fins a 20 sistemes</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Ideal per a
+                                    empreses mitjanes</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Auditoria setmanal
+                                    automàtica</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Manteniment
+                                    continu de seguretat</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Monitorització en temps
+                                    real</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Alertes
+                                    immediates de vulnerabilitats</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Suport prioritari 24/7</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Resposta en
+                                    menys de 4 hores</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">API completa i Webhooks</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Integració
+                                    amb els teus sistemes</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="#signup-pro" class="btn btn-primary"
+                        style="width: 100%; background: var(--gradient-primary);">
+                        <i class="fas fa-crown"></i> Prova Professional 30 Dies
+                    </a>
+                    <p style="text-align: center; margin-top: 16px; font-size: 0.875rem; color: var(--text-muted);">
+                        + de 500 empreses confien en aquest pla
+                    </p>
+                </div>
+
+                <!-- Pla Enterprise - Millorat -->
+                <div class="card animate delay-2" style="position: relative;">
+                    <div class="feature-icon"
+                        style="margin: 0 auto 32px; background: rgba(26, 35, 126, 0.1); color: var(--secondary-light);">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 style="text-align: center; margin-bottom: 16px;">Pla Enterprise</h3>
+                    <div style="text-align: center; margin-bottom: 32px;">
+                        <div style="font-size: 3rem; font-weight: 800; color: var(--secondary-light);">
+                            Personalitzat
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 8px;">
+                            Preu adaptat a les teves necessitats
+                        </p>
+                    </div>
+
+                    <ul style="list-style: none; margin-bottom: 32px; padding: 0 20px;">
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-star" style="color: var(--accent); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Sistemes il·limitats</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Escalabilitat
+                                    sense límits</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-star" style="color: var(--accent); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Auditoria en temps real
+                                    24/7</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Monitors
+                                    dedicats contínuament</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-star" style="color: var(--accent); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Equip dedicat d'experts</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Gestor de
+                                    compte personal</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-star" style="color: var(--accent); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Formació i consultoria
+                                    inclosa</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">Sessions
+                                    trimestrals amb experts</p>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 16px; display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-star" style="color: var(--accent); margin-top: 4px;"></i>
+                            <div>
+                                <span style="font-weight: 500; color: var(--text-light);">Compliment normatiu
+                                    garantit</span>
+                                <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 4px;">GDPR, ISO
+                                    27001, SOC2, etc.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a href="#contacte" class="btn btn-secondary" style="width: 100%;">
+                        <i class="fas fa-calendar-check"></i> Demana una Reunió
+                    </a>
+                    <p style="text-align: center; margin-top: 16px; font-size: 0.875rem; color: var(--text-muted);">
+                        Responem en menys de 2 hores laborals
+                    </p>
+                </div>
+            </div>
+
+            <!-- Comparativa de Plans -->
+            <div class="pricing-comparison animate delay-3"
+                style="margin-top: 80px; background: var(--bg-card); border-radius: var(--radius-lg); padding: 48px; border: 1px solid var(--border);">
+                <h3 style="text-align: center; margin-bottom: 40px;">Comparativa Completa de Plans</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th
+                                    style="text-align: left; padding: 20px; border-bottom: 1px solid var(--border); color: var(--text-light);">
+                                    Característica</th>
+                                <th
+                                    style="text-align: center; padding: 20px; border-bottom: 1px solid var(--border); color: var(--text-gray);">
+                                    Startup</th>
+                                <th
+                                    style="text-align: center; padding: 20px; border-bottom: 1px solid var(--border); color: var(--primary);">
+                                    Professional</th>
+                                <th
+                                    style="text-align: center; padding: 20px; border-bottom: 1px solid var(--border); color: var(--secondary-light);">
+                                    Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 16px 20px; border-bottom: 1px solid var(--border-light);">Nombre de
+                                    sistemes</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                    Fins a 5</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center; background: rgba(0, 212, 170, 0.05);">
+                                    Fins a 20</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                    Il·limitat</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 16px 20px; border-bottom: 1px solid var(--border-light);">Freqüència
+                                    d'auditories</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                    Mensual</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center; background: rgba(0, 212, 170, 0.05);">
+                                    Setmanal</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                    Contínua (24/7)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 16px 20px; border-bottom: 1px solid var(--border-light);">Temps de
+                                    resposta</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                    48 hores</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center; background: rgba(0, 212, 170, 0.05);">
+                                    4 hores</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                    1 hora</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 16px 20px; border-bottom: 1px solid var(--border-light);">SLA
+                                    garantit</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                    99%</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center; background: rgba(0, 212, 170, 0.05);">
+                                    99.5%</td>
+                                <td
+                                    style="padding: 16px 20px; border-bottom: 1px solid var(--border-light); text-align: center;">
+                                    99.9%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Millorada -->
+    <section id="contacte" class="contact-section">
+        <div class="container">
+            <div class="section-header animate">
+                <span class="badge" style="margin-bottom: 24px;">
+                    <i class="fas fa-headset"></i>
+                    Suport Personalitzat
+                </span>
+                <h2>Estem Aquí per Ajudar-te</h2>
+                <p style="text-align: center; max-width: 800px; margin: 20px auto 0;">
+                    Tens preguntes sobre els nostres serveis? Vols una demostració personalitzada?
+                    El nostre equip d'experts està a la teva disposició.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Formulari de Contacte Millorat -->
+                <div class="card animate delay-1" style="padding: 40px;">
+                    <h3 style="margin-bottom: 32px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-paper-plane" style="color: var(--primary);"></i>
+                        Envia'ns un missatge
+                    </h3>
+
+                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 24px;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <label for="name" style="color: var(--text-light);">Nom complet *</label>
+                                <span id="nameError"
+                                    style="color: var(--accent); font-size: 0.875rem; display: none;"></span>
+                            </div>
+                            <div class="input-wrapper" style="position: relative;">
+                                <i class="fas fa-user"
+                                    style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                                <input type="text" id="name" required placeholder="El teu nom complet"
+                                    style="width: 100%; padding: 16px 16px 16px 44px; background: var(--bg-darker); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-white); transition: var(--transition);">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <label for="email" style="color: var(--text-light);">Correu electrònic *</label>
+                                <span id="emailError"
+                                    style="color: var(--accent); font-size: 0.875rem; display: none;"></span>
+                            </div>
+                            <div class="input-wrapper" style="position: relative;">
+                                <i class="fas fa-envelope"
+                                    style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                                <input type="email" id="email" required placeholder="email@exemple.cat"
+                                    style="width: 100%; padding: 16px 16px 16px 44px; background: var(--bg-darker); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-white); transition: var(--transition);">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <label for="company" style="color: var(--text-light);">Empresa</label>
+                                <span id="companyError"
+                                    style="color: var(--accent); font-size: 0.875rem; display: none;"></span>
+                            </div>
+                            <div class="input-wrapper" style="position: relative;">
+                                <i class="fas fa-building"
+                                    style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+                                <input type="text" id="company" placeholder="Nom de la teva empresa"
+                                    style="width: 100%; padding: 16px 16px 16px 44px; background: var(--bg-darker); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-white); transition: var(--transition);">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <label for="service" style="color: var(--text-light);">Servei d'interès</label>
+                            </div>
+                            <div class="input-wrapper" style="position: relative;">
+                                <i class="fas fa-cogs"
+                                    style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); z-index: 2;"></i>
+                                <select id="service"
+                                    style="width: 100%; padding: 16px 16px 16px 44px; background: var(--bg-darker); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-white); transition: var(--transition); appearance: none; cursor: pointer;">
+                                    <option value="">Selecciona una opció</option>
+                                    <option value="auditoria">Auditoria de seguretat</option>
+                                    <option value="consulta">Consulta tècnica</option>
+                                    <option value="demo">Demostració del producte</option>
+                                    <option value="soci">Col·laboració o partnership</option>
+                                    <option value="altres">Altres</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <label for="message" style="color: var(--text-light);">Missatge *</label>
+                                <span id="messageError"
+                                    style="color: var(--accent); font-size: 0.875rem; display: none;"></span>
+                            </div>
+                            <div class="input-wrapper" style="position: relative;">
+                                <i class="fas fa-comment"
+                                    style="position: absolute; left: 16px; top: 20px; color: var(--text-muted);"></i>
+                                <textarea id="message" rows="6" required placeholder="Explica'ns com podem ajudar-te..."
+                                    style="width: 100%; padding: 16px 16px 16px 44px; background: var(--bg-darker); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-white); transition: var(--transition); resize: vertical;"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="margin-top: 16px;">
+                            <i class="fas fa-paper-plane"></i> Enviar Missatge
+                        </button>
+
+                        <p style="font-size: 0.875rem; color: var(--text-muted); text-align: center; margin-top: 16px;">
+                            <i class="fas fa-lock"></i> Els teus dades estan segurs amb nosaltres. No compartim
+                            informació amb tercers.
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Informació de Contacte Millorada -->
+                <div class="animate delay-2">
+                    <h3 style="margin-bottom: 32px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-info-circle" style="color: var(--primary);"></i>
+                        Contacte Directe
+                    </h3>
+
+                    <!-- Tarjetes de Contacte -->
+                    <div style="display: flex; flex-direction: column; gap: 24px;">
+                        <!-- Atenció al Client -->
+                        <div class="card" style="padding: 24px; border-left: 4px solid var(--primary);">
+                            <h4
+                                style="margin-bottom: 16px; color: var(--text-white); display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-headset" style="color: var(--primary);"></i>
+                                Atenció al Client
+                            </h4>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <a href="tel:+34934567890"
+                                    style="color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: 12px; transition: var(--transition);">
+                                    <i class="fas fa-phone" style="color: var(--primary);"></i>
+                                    <div>
+                                        <div style="font-weight: 500;">+34 934 567 890</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-muted);">De dilluns a
+                                            divendres, 9h-18h</div>
+                                    </div>
+                                </a>
+                                <a href="mailto:support@fastclick.cat"
+                                    style="color: var(--text-light); text-decoration: none; display: flex; align-items: center; gap: 12px; transition: var(--transition);">
+                                    <i class="fas fa-envelope" style="color: var(--primary);"></i>
+                                    <div>
+                                        <div style="font-weight: 500;">support@fastclick.cat</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-muted);">Resposta en menys de
+                                            24h</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Oficina Principal -->
+                        <div class="card" style="padding: 24px; border-left: 4px solid var(--secondary);">
+                            <h4
+                                style="margin-bottom: 16px; color: var(--text-white); display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-map-marker-alt" style="color: var(--secondary);"></i>
+                                Oficina Principal
+                            </h4>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="color: var(--text-light); display: flex; align-items: start; gap: 12px;">
+                                    <i class="fas fa-building" style="color: var(--text-muted); margin-top: 4px;"></i>
+                                    <div>
+                                        <div style="font-weight: 500;">Fastclick Auditors S.L.</div>
+                                        <div style="font-size: 0.875rem; color: var(--text-muted); margin-top: 4px;">
+                                            43500 Tortosa, Tarragona</div>
+                                    </div>
+                                </div>
+                                <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x12a0e4bd4079a9d1:0x253c0ed9489c50f8?sa=X&ved=1t:8290&ictx=111"
+                                    target="_blank" class="btn btn-secondary" style="width: 100%;">
+                                    <i class="fas fa-map-marked-alt"></i> Veure a Google Maps
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Suport Ràpid -->
+                        <div class="card" style="padding: 24px; border-left: 4px solid var(--accent);">
+                            <h4
+                                style="margin-bottom: 16px; color: var(--text-white); display: flex; align-items: center; gap: 12px;">
+                                <i class="fas fa-bolt" style="color: var(--accent);"></i>
+                                Suport Ràpid
+                            </h4>
+                            <p style="margin-bottom: 24px; color: var(--text-gray);">
+                                Per a incidències urgents o assistència tècnica immediata:
+                            </p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                                <a href="https://t.me/fastclick_support" target="_blank" class="btn btn-secondary"
+                                    style="flex: 1;">
+                                    <i class="fab fa-telegram"></i> Telegram
+                                </a>
+                                <a href="#" class="btn btn-secondary" style="flex: 1;">
+                                    <i class="fas fa-comment-dots"></i> Xat en Directe
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Xarxes Socials -->
+                        <div
+                            style="background: var(--bg-card); border-radius: var(--radius-lg); padding: 32px; text-align: center;">
+                            <h4 style="margin-bottom: 24px; color: var(--text-white);">Segueix-nos</h4>
+                            <div class="footer-social" style="justify-content: center;">
+                                <a href="#" class="social-link" style="width: 50px; height: 50px;">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link" style="width: 50px; height: 50px;">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-link" style="width: 50px; height: 50px;">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-link" style="width: 50px; height: 50px;">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="hero-content animate">
+                <h2 style="text-align: center; margin-bottom: 24px;">
+                    Comença a Auditar Avui Mateix
+                </h2>
+
+                <p
+                    style="text-align: center; margin-bottom: 48px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Prova Fastclick Auditors durant 14 dies completament gratuït.
+                    Sense targeta de crèdit, sense compromís. Accés complet a totes les funcionalitats.
+                </p>
+
+                <div style="text-align: center;">
+                    <a href="#signup" class="btn btn-primary btn-lg" style="margin-right: 24px;">
+                        <i class="fas fa-rocket"></i> Començar Prova Gratuïta
+                    </a>
+                    <a href="#demo" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-play-circle"></i> Demostració en Directe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#inici" class="logo" style="margin-bottom: 32px;">
+                        <img src="img/logo.png" alt="FastClick Logo" class="logo-img">
+                    </a>
+                    <p style="margin-bottom: 32px; max-width: 300px;">
+                        Automatització d'auditories i plans de millora per a sistemes Linux i infraestructures cloud.
+                    </p>
+
+                    <div class="footer-social">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 style="margin-bottom: 24px; color: var(--text-white);">Producte</h4>
+                    <ul class="footer-links">
+                        <li><a href="#funcionalitats">Funcionalitats</a></li>
+                        <li><a href="#preus">Preus</a></li>
+                        <li><a href="#documentacio">Documentació</a></li>
+                        <li><a href="#changelog">Noves Versions</a></li>
+                        <li><a href="#estat">Estat del Servei</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="margin-bottom: 24px; color: var(--text-white);">Empresa</h4>
+                    <ul class="footer-links">
+                        <li><a href="#equip">L'Equip</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#treballa-amb-nosaltres">Treballa amb Nosaltres</a></li>
+                        <li><a href="#contacte">Contacte</a></li>
+                        <li><a href="#premsa">Premsa</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="margin-bottom: 24px; color: var(--text-white);">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#privacitat">Privacitat</a></li>
+                        <li><a href="#terminis">Terminis del Servei</a></li>
+                        <li><a href="#seguretat">Seguretat</a></li>
+                        <li><a href="#cookies">Cookies</a></li>
+                        <li><a href="#compliment">Compliment Normatiu</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p style="margin-bottom: 16px;">
+                    © <span id="current-year">2024</span> Fastclick Auditors. Tots els drets reservats.
+                </p>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Premium -->
+    <script>
+        // Particle Background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                const size = Math.random() * 6 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 10 + 10;
+
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+
+                // Random color variation
+                const hue = 160 + Math.random() * 40;
+                particle.style.background = `hsl(${hue}, 100%, 60%)`;
+                particle.style.opacity = Math.random() * 0.1 + 0.05;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Mobile Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !navToggle.contains(e.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Update active navigation
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+
+                    // Smooth scroll
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animated counter
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 20);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate stats in hero section
+                    if (entry.target.id === 'inici') {
+                        const statNumbers = document.querySelectorAll('.stat-number');
+                        statNumbers.forEach(stat => {
+                            const target = parseInt(stat.getAttribute('data-count'));
+                            if (stat.textContent === '0') {
+                                animateCounter(stat, target);
+                            }
+                        });
+                    }
+
+                    // Add animation class to elements
+                    entry.target.querySelectorAll('.animate').forEach(el => {
+                        const computedStyle = window.getComputedStyle(el);
+                        if (computedStyle.opacity === '0') {
+                            el.style.animationPlayState = 'running';
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Form handling
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            const inputs = contactForm.querySelectorAll('input, textarea, select');
+
+            inputs.forEach(input => {
+                // Efecte hover/focus
+                input.addEventListener('focus', function () {
+                    this.style.borderColor = 'var(--primary)';
+                    this.style.boxShadow = '0 0 0 3px rgba(0, 212, 170, 0.1)';
+                });
+
+                input.addEventListener('blur', function () {
+                    this.style.borderColor = 'var(--border)';
+                    this.style.boxShadow = 'none';
+
+                    // Validació en temps real
+                    validateField(this);
+                });
+            });
+
+            function validateField(field) {
+                const errorElement = document.getElementById(`${field.id}Error`);
+                if (!errorElement) return;
+
+                errorElement.style.display = 'none';
+                field.style.borderColor = 'var(--border)';
+
+                if (field.required && !field.value.trim()) {
+                    errorElement.textContent = 'Aquest camp és obligatori';
+                    errorElement.style.display = 'block';
+                    field.style.borderColor = 'var(--accent)';
+                    return false;
+                }
+
+                if (field.type === 'email' && field.value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(field.value.trim())) {
+                        errorElement.textContent = 'Format de correu invàlid';
+                        errorElement.style.display = 'block';
+                        field.style.borderColor = 'var(--accent)';
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            contactForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                let isValid = true;
+                const requiredInputs = this.querySelectorAll('input[required], textarea[required]');
+
+                // Validar tots els camps obligatoris
+                requiredInputs.forEach(input => {
+                    if (!validateField(input)) {
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) {
+                    // Animació de sacsejada per als errors
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.style.animation = 'shake 0.5s ease';
+                    setTimeout(() => {
+                        submitBtn.style.animation = '';
+                    }, 500);
+                    return;
+                }
+
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                const originalWidth = submitBtn.offsetWidth;
+
+                submitBtn.style.width = `${originalWidth}px`;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                submitBtn.disabled = true;
+
+                // Simular enviament
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Mostrar confirmació animada
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviat!';
+                submitBtn.style.background = 'var(--primary-dark)';
+
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                // Restaurar botó
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.width = '';
+                submitBtn.style.background = '';
+
+                // Mostrar missatge de confirmació amb modal
+                const modalHTML = `
+                    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.3s ease;">
+                        <div style="background: var(--bg-card); border: 2px solid var(--primary); border-radius: var(--radius-lg); padding: 48px; max-width: 500px; width: 100%; position: relative; animation: slideUp 0.4s ease;">
+                            <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-gray); font-size: 24px; cursor: pointer; transition: var(--transition);">×</button>
+                            <div style="text-align: center;">
+                                <div style="width: 80px; height: 80px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; color: white; margin: 0 auto 24px;">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <h3 style="margin-bottom: 16px; color: var(--primary);">Missatge enviat correctament!</h3>
+                                <p style="margin-bottom: 8px;">Gràcies per contactar amb Fastclick Auditors.</p>
+                                <p style="color: var(--text-gray); font-size: 0.875rem;">Et contactarem en les properes 24 hores laborals.</p>
+                            </div>
+                            <div style="text-align: center; margin-top: 32px;">
+                                <button onclick="this.parentElement.parentElement.remove()" class="btn btn-primary">
+                                    <i class="fas fa-thumbs-up"></i> Entès
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+                // Netejar formulari
+                this.reset();
+            });
+        }
+
+        // Demo button functionality
+        document.querySelectorAll('a[href="#demo"]').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                if (this.getAttribute('href') === '#demo') {
+                    e.preventDefault();
+
+                    // Show demo modal
+                    const demoModal = `
+                        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 48px; max-width: 600px; width: 100%; position: relative;">
+                                <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-gray); font-size: 24px; cursor: pointer;">×</button>
+                                <h3 style="margin-bottom: 20px; color: var(--primary);">🚀 Demo del Diag Agent</h3>
+                                <p style="margin-bottom: 30px;">Prova el nostre agent de diagnòstic amb aquestes comandes:</p>
+                                <pre style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: var(--radius-md); overflow-x: auto; margin-bottom: 30px;">
+                                    <code style="color: var(--primary);">
+# Instal·lació
+curl -sSL https://fastclick.cat/install.sh | bash
+
+# Auditoria ràpida
+fastclick audit --quick
+
+# Informe complet
+fastclick report --format pdf --output informe.pdf
+                                    </code>
+                                </pre>
+                                <button onclick="this.parentElement.parentElement.remove()" class="btn btn-primary" style="width: 100%;">
+                                    <i class="fas fa-download"></i> Descàrrega el Diag Agent
+                                </button>
+                            </div>
+                        </div>
+                    `;
+
+                    document.body.insertAdjacentHTML('beforeend', demoModal);
+                }
+            });
+        });
+
+        // Update current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+
+            // Set initial active nav based on scroll position
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Add hover effects
+            document.querySelectorAll('.card, .tech-item, .team-card').forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    element.style.transform = 'translateY(-10px)';
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    element.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Toggle de facturació anual/mensual
+            const billingToggle = document.getElementById('billingToggle');
+            if (billingToggle) {
+                billingToggle.addEventListener('change', function () {
+                    const isAnnual = this.checked;
+                    const toggleSlider = document.querySelector('.toggle-slider');
+                    const monthlyPrices = document.querySelectorAll('.price-monthly');
+                    const annualPrices = document.querySelectorAll('.price-annual');
+                    const monthlyTexts = document.querySelectorAll('.monthly-text');
+                    const annualTexts = document.querySelectorAll('.annual-text');
+
+                    // Animar el slider
+                    if (isAnnual) {
+                        toggleSlider.style.transform = 'translateX(30px)';
+                    } else {
+                        toggleSlider.style.transform = 'translateX(2px)';
+                    }
+
+                    // Canviar preus
+                    monthlyPrices.forEach(price => {
+                        price.style.display = isAnnual ? 'none' : 'inline';
+                    });
+
+                    annualPrices.forEach(price => {
+                        price.style.display = isAnnual ? 'inline' : 'none';
+                    });
+
+                    // Canviar textos
+                    monthlyTexts.forEach(text => {
+                        text.style.display = isAnnual ? 'none' : 'inline';
+                    });
+
+                    annualTexts.forEach(text => {
+                        text.style.display = isAnnual ? 'inline' : 'none';
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
