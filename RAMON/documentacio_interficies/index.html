@@ -1,0 +1,936 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+    
+    
+      
+        <title>Documentació: Interfície i Escanejos Nmap - MP0379-PROJECTE INTERMODULAR</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.9f615399.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#documentacio-interficie-i-escanejos-nmap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MP0379-PROJECTE INTERMODULAR" class="md-header__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MP0379-PROJECTE INTERMODULAR
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documentació: Interfície i Escanejos Nmap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MP0379-PROJECTE INTERMODULAR" class="md-nav__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MP0379-PROJECTE INTERMODULAR
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Introduccio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducció
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodologia_scrum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../burocracia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Administració
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../landing_page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Landing Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Desenvolupament i Disseny Auditoria
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desenvolupament i Disseny Auditoria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentacio_enum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enumeracions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentacio_interficies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interfícies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentacio_ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH AUDIT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harvester/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Harvester
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../shodan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Api Shodan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bot_telegram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bot Telegram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Auditoria
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../conclusions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Referències
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llicència
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-gestio-de-processos-nmap" class="md-nav__link">
+    1. Gestió de Processos (Nmap)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-funcions-descaneig-nmap" class="md-nav__link">
+    2. Funcions d'Escaneig (Nmap)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-estructura-de-la-interficie-grafica-gui" class="md-nav__link">
+    3. Estructura de la Interfície Gràfica (GUI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gestio-dexecucio-i-fils-threading" class="md-nav__link">
+    4. Gestió d'Execució i Fils (Threading)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mecanisme-daturada" class="md-nav__link">
+    5. Mecanisme d'Aturada
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-escaneig-de-vulnerabilitats-nse" class="md-nav__link">
+    6. Escaneig de Vulnerabilitats (NSE)
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Escaneig de Vulnerabilitats (NSE)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arguments-clau" class="md-nav__link">
+    Arguments Clau
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tractament-de-la-sortida" class="md-nav__link">
+    Tractament de la Sortida
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="documentacio-interficie-i-escanejos-nmap">Documentació: Interfície i Escanejos Nmap</h1>
+<p>Aquest document. Se centra en tres pilars: la gestió dels subprocessos <code>nmap</code>, l'estructura de la interfície gràfica (GUI) amb Tkinter, i el mètode d'execució en fils (threading) que permet a l'aplicació ser responsiva i cancel·lable.</p>
+<hr />
+<h3 id="1-gestio-de-processos-nmap">1. Gestió de Processos (Nmap)</h3>
+<p>Per poder executar escanejos <code>nmap</code> (que poden trigar molt) sense bloquejar el programa i permetent a l'usuari aturar-los, s'utilitza una funció wrapper anomenada <code>run_nmap_stoppable</code>.</p>
+<ul>
+<li><strong>Execució no bloquejant:</strong> Fa servir <code>subprocess.Popen</code> per llançar <code>nmap</code> com un procés separat.</li>
+<li><strong>Variable Global <code>current_process</code>:</strong> Emmagatzema el procés en execució en una variable global perquè altres funcions (com la d'aturar) hi puguin accedir.</li>
+<li><strong>Bucle de Comprovació:</strong> Entra en un bucle <code>while True</code> que comprova dues coses:<ol>
+<li><code>stop_event.is_set()</code>: Si l'usuari ha demanat aturar l'escaneig. Si és així, termina el procés (<code>.terminate()</code>) i retorna.</li>
+<li><code>current_process.poll()</code>: Si el procés ha acabat per si mateix. Si és així, recull la sortida (<code>.communicate()</code>) i la retorna.</li>
+</ol>
+</li>
+<li><strong>Gestió d'Errors:</strong> Captura excepcions, com ara si <code>nmap</code> no està instal·lat.</li>
+</ul>
+<!-- 
+======================================================================
+== CAPTURA DE CODI 1: Funció 'run_nmap_stoppable'
+======================================================================
+-->
+
+<pre><code class="language-python"># FUNCIO PER ATURAR PROCESSOS
+current_process = None
+def run_nmap_stoppable(args_list, stop_event):
+    global current_process
+    cmd = [&quot;nmap&quot;] + args_list
+    try:
+        current_process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        # Esperar que acabi o que es demani aturada
+        while True:
+            if stop_event.is_set():
+                current_process.terminate()
+                current_process.wait()
+                return &quot;&quot;, &quot;Escaneig aturat per l'usuari&quot;, -1
+
+            returncode = current_process.poll()
+            if returncode is not None:
+                stdout, stderr = current_process.communicate()
+                return stdout, stderr, returncode
+            time.sleep(0.1)
+    except Exception as e:
+        return &quot;&quot;, f&quot;Error: {e}&quot;, 1
+    finally:
+        current_process = None
+</code></pre>
+<hr />
+<h3 id="2-funcions-descaneig-nmap">2. Funcions d'Escaneig (Nmap)</h3>
+<p>Les funcions <code>ping_scan</code>, <code>port_scan</code> i <code>version_scan</code> són essencialment "wrappers" (embolcalls) que defineixen els arguments específics de <code>nmap</code> per a cada tipus d'escaneig. Totes elles deleguen l'execució real a <code>run_nmap_stoppable</code>, passant-li els arguments correctes i el <code>stop_event</code>.</p>
+<ul>
+<li><code>ping_scan</code>: Utilitza <code>-sn</code> (Scan de Ping, sense escaneig de ports).</li>
+<li><code>port_scan</code>: Utilitza <code>-sT --top-ports 100</code> (Escaneig TCP Connect als 100 ports més comuns).</li>
+<li><code>version_scan</code>: Utilitza <code>-sV --top-ports 100</code> (Detecció de Versió de Serveis als 100 ports més comuns).</li>
+</ul>
+<!-- 
+======================================================================
+== CAPTURA DE CODI 2: Definicions dels escanejos Nmap
+======================================================================
+-->
+
+<pre><code class="language-python">def ping_scan(target, stop_event=None):
+    &quot;&quot;&quot;Escaneig de ping bàsic&quot;&quot;&quot;
+    if stop_event:
+        stdout, stderr, rc = run_nmap_stoppable([target, &quot;-sn&quot;], stop_event)
+    else:
+        return f&quot;Error executant ping scan:&quot;
+    return stdout or stderr
+
+def port_scan(target, stop_event=None):
+    &quot;&quot;&quot;Escaneig de ports bàsic&quot;&quot;&quot;
+    if stop_event:
+        stdout, stderr, rc = run_nmap_stoppable([target, &quot;-sT&quot;, &quot;--top-ports&quot;, &quot;100&quot;], stop_event)
+    else:
+        return f&quot;Error executant port scan:&quot;
+    return stdout or stderr
+
+def version_scan(target, stop_event=None):
+    &quot;&quot;&quot;Escaneig de versió&quot;&quot;&quot;
+    if stop_event:
+        stdout, stderr, rc = run_nmap_stoppable([target, &quot;-sV&quot;, &quot;--top-ports&quot;, &quot;100&quot;], stop_event)
+    else:
+        return f&quot;Error executant version scan:&quot;
+    return stdout or stderr
+</code></pre>
+<hr />
+<h3 id="3-estructura-de-la-interficie-grafica-gui">3. Estructura de la Interfície Gràfica (GUI)</h3>
+<p>La classe <code>AuditorGUI</code> construeix la finestra principal de l'aplicació amb Tkinter.</p>
+<ul>
+<li><strong><code>__init__</code></strong>: El constructor defineix tots els elements visuals (<code>widgets</code>).</li>
+<li><strong><code>frm_top</code></strong>: Un <code>Frame</code> superior que conté l'etiqueta (<code>Label</code>) i el camp d'entrada (<code>Entry</code>) per a l'objectiu (target).</li>
+<li><strong><code>btn_frame</code></strong>: Un <code>Frame</code> que agrupa tots els botons d'acció (<code>Button</code>) per a una millor organització.</li>
+<li><strong>Àrea de Resultats</strong>: Un <code>Frame</code> inferior que conté el widget principal <code>Text</code> (on es mostra la sortida) i una <code>Scrollbar</code> (barra de desplaçament) associada.</li>
+</ul>
+<!-- 
+======================================================================
+== CAPTURA DE CODI 3: Constructor de la GUI (widgets principals)
+======================================================================
+-->
+
+<pre><code class="language-python">class AuditorGUI:
+    def __init__(self, root):
+        self.root = root
+        self.stop_event = threading.Event()
+        self.scan_in_progress = False
+
+        root.title(&quot;Eina d'auditoria - GUI&quot;)
+        root.geometry(&quot;900x600&quot;)
+
+        frm_top = Frame(root, pady=6)
+        frm_top.pack(fill=&quot;x&quot;)
+
+        Label(frm_top, text=&quot; XARXA :&quot;).grid(row=0, column=0, sticky=&quot;w&quot;)
+        self.entry_target = Entry(frm_top, width=40)
+        self.entry_target.grid(row=0, column=1, padx=6)
+        self.entry_target.insert(0,  &quot;127.0.0.1&quot;)
+
+        # BOTONS D'ESCANEIG
+        btn_frame = Frame(frm_top)
+        btn_frame.grid(row=0, column=2, rowspan=2, padx=10)
+        # ... (Definició dels botons) ...
+        Button(btn_frame, text=&quot;⏹ ATURA&quot;, command=self.peticio_stop_auditoria, 
+               bg=&quot;#ff4444&quot;, fg=&quot;white&quot;).pack(fill=&quot;x&quot;, pady=4)
+
+        # RESULTATS
+        Label(root, text=&quot;RESULTATS:&quot;).pack(anchor=&quot;w&quot;, padx=8)
+        text_frame = Frame(root)
+        text_frame.pack(fill=&quot;both&quot;, expand=True, padx=8, pady=6)
+        self.txt = Text(text_frame, wrap=&quot;none&quot;)
+        self.txt.pack(side=&quot;left&quot;, fill=&quot;both&quot;, expand=True)
+        scroll = Scrollbar(text_frame, command=self.txt.yview)
+        scroll.pack(side=&quot;right&quot;, fill=&quot;y&quot;)
+        self.txt.config(yscrollcommand=scroll.set)
+</code></pre>
+<hr />
+<h3 id="4-gestio-dexecucio-i-fils-threading">4. Gestió d'Execució i Fils (Threading)</h3>
+<p>Aquesta és la part més important per a la interactivitat de la GUI. Si es cridés a <code>nmap</code> directament des del botó, la interfície es "congelaria" fins que acabés l'escaneig. Per evitar-ho, cada escaneig es llança en un fil (thread) separat.</p>
+<ul>
+<li><strong><code>execucions(self, func, *args)</code></strong>: Aquest mètode és el cor del sistema.<ol>
+<li>Rep una funció (<code>func</code>) i els seus arguments (<code>*args</code>).</li>
+<li>Defineix una funció interna <code>task()</code>.</li>
+<li>Crea un nou <code>threading.Thread</code> que executarà <code>task()</code>.</li>
+<li>El fil es marca com a <code>daemon=True</code> perquè es tanqui automàticament si es tanca el programa principal.</li>
+<li>Inicia el fil (<code>.start()</code>).</li>
+</ol>
+</li>
+<li><strong><code>task()</code></strong>: Aquesta funció (ja dins del nou fil) executa la funció d'escaneig real (<code>func(*args)</code>), recull la sortida i, un cop acabada, l'afegeix a l'àrea de text (<code>self.append_text</code>).</li>
+<li><strong><code>start_...</code> Mètodes</strong>: Els mètodes com <code>start_ping_scan</code> actuen com a "cola":<ol>
+<li>Comproven si ja hi ha un escaneig en curs.</li>
+<li>Preparen la GUI (<code>_prepare_scan</code>).</li>
+<li>Obtenen l'objectiu del camp d'entrada.</li>
+<li>Criden a <code>self.execucions</code> per llançar l'escaneig en un fil.</li>
+</ol>
+</li>
+<li><strong><code>append_text</code></strong>: Aquesta funció de suport afegeix text a l'àrea de resultats i, crucialment, crida a <code>self.root.update()</code> per forçar la GUI a refrescar-se immediatament, fins i tot si el fil principal està ocupat.</li>
+</ul>
+<!-- 
+======================================================================
+== CAPTURA DE CODI 4: Mètode 'execucions' (Gestió de fils)
+======================================================================
+-->
+
+<pre><code class="language-python">    # --- EXECUCIÓ I RESULTATS ---
+    def execucions(self, func, *args):
+        def task():
+            try:
+                output = func(*args)
+                self.scan_in_progress = False
+
+                if self.stop_event.is_set():
+                    self.append_text(&quot;[!] ⏹ Escaneig ATURAT per l'usuari&quot;)
+                elif output:
+                    self.append_text(output)
+                    self.append_text(&quot;[✓] Escaneig COMPLETAT&quot;)
+                else:
+                    self.append_text(&quot;[!] Sense sortida o error desconegut.&quot;)
+            except Exception as e:
+                self.scan_in_progress = False
+                self.append_text(f&quot;[ERROR] {e}&quot;)
+
+        t = threading.Thread(target=task)
+        t.daemon = True
+        t.start()
+</code></pre>
+<!-- 
+======================================================================
+== CAPTURA DE CODI 5: Flux d'inici d'escaneig (Exemple)
+======================================================================
+-->
+
+<pre><code class="language-python">    def start_ping_scan(self):
+        &quot;&quot;&quot;Inicia l'escaneig de ping&quot;&quot;&quot;
+        if self.scan_in_progress:
+            messagebox.showwarning(&quot;Escaneig en curs&quot;, &quot;Ja hi ha un escaneig en curs. Atura'l primer.&quot;)
+            return
+        self._prepare_scan()
+        target = self.entry_target.get().strip()
+        if not target:
+            messagebox.showerror(&quot;Error&quot;, &quot;Indica una xarxa/host al camp.&quot;)
+            return
+        self.execucions(self._do_ping_scan, target)
+
+    def _do_ping_scan(self, target):
+        self.append_text(f&quot;[*] Iniciant Ping scan: {target}&quot;)
+        self.append_text(&quot;[!] Prem 'Atura Escaneig' per cancel·lar&quot;)
+        out = ping_scan(target, self.stop_event)
+        return out
+</code></pre>
+<hr />
+<h3 id="5-mecanisme-daturada">5. Mecanisme d'Aturada</h3>
+<p>El botó "ATURA" permet a l'usuari cancel·lar un escaneig en curs.</p>
+<ul>
+<li><strong><code>peticio_stop_auditoria(self)</code></strong>: Aquesta funció és cridada pel botó "⏹ ATURA".<ol>
+<li>Comprova si <code>self.scan_in_progress</code> és cert.</li>
+<li>Activa l'esdeveniment: <code>self.stop_event.set()</code>. Aquest és el senyal que el bucle dins de <code>run_nmap_stoppable</code> està escoltant.</li>
+<li>Per a una aturada més immediata, accedeix a la variable global <code>current_process</code> i crida a <code>.terminate()</code> directament, matant el procés <code>nmap</code> a l'instant.</li>
+</ol>
+</li>
+</ul>
+<!-- 
+======================================================================
+== CAPTURA DE CODI 6: Funció d'aturada
+======================================================================
+-->
+
+<pre><code class="language-python">    def peticio_stop_auditoria(self):
+        if self.scan_in_progress:
+            self.append_text(&quot;[!] Sol·licitant aturada...&quot;)
+            self.stop_event.set()
+            global current_process
+            if current_process:
+                try:
+                    current_process.terminate()
+                except:
+                    pass
+        else:
+            self.append_text(&quot;[!] No hi ha cap escaneig en curs&quot;)
+</code></pre>
+<h3 id="6-escaneig-de-vulnerabilitats-nse">6. Escaneig de Vulnerabilitats (NSE)</h3>
+<p>S'ha incorporat una funció específica vuln_scan per a l'auditoria de seguretat avançada. Aquesta funcionalitat aprofita la potència del Nmap Scripting Engine (NSE) per detectar CVEs i fallades de seguretat conegudes en els serveis identificats.</p>
+<h4 id="arguments-clau">Arguments Clau</h4>
+<ul>
+<li>
+<p><code>-sV:</code> Detecta la versió del servei.
+    Nota: Aquest argument és imprescindible perquè els scripts de vulnerabilitat sàpiguen exactament què buscar basant-se en la versió del programari.</p>
+</li>
+<li>
+<p><code>--script vuln:</code> Executa una col·lecció completa d'scripts classificats dins la categoria "vulnerabilitat" contra l'objectiu.</p>
+</li>
+</ul>
+<h4 id="tractament-de-la-sortida">Tractament de la Sortida</h4>
+<p>A diferència dels escanejos simples, aquest mòdul inclou un processament visual per facilitar l'anàlisi:</p>
+<ul>
+<li>Funció de neteja (prettify_vuln): Processa el text en brut per eliminar soroll.</li>
+<li>Ressaltat a la GUI: La interfície analitza el text en temps real buscant paraules clau crítiques com "VULNERABLE" o "CVE-". Quan les troba, les ressalta visualment en vermell (etiqueta VULN_HIGHLIGHT) per cridar l'atenció de l'auditor.</li>
+</ul>
+<pre><code class="language-python"># Funció d'escaneig principal
+def vuln_scan(target, stop_event=None):
+    if stop_event:
+        # --script vuln: Executa scripts de detecció de vulnerabilitats
+        # -sV: Necessari per saber la versió del servei
+        cmd = [&quot;nmap&quot;, target, &quot;-sV&quot;, &quot;--script&quot;, &quot;vuln&quot;]
+        stdout, stderr, rc = run_stoppable_command(cmd, stop_event)
+
+        # Si triga molt i l'usuari cancel·la
+        if rc == -1: return &quot;Escaneig de vulnerabilitats aturat.&quot;
+
+        return prettify_vuln(stdout + &quot;\n&quot; + stderr)
+    else: return &quot;Error intern&quot;
+
+# Helper per netejar text ANSI i detectar fallades crítiques
+def prettify_vuln(raw: str) -&gt; str:
+    lines = raw.splitlines()
+    out_lines = []
+    for raw_line in lines:
+        line = strip_ansi(raw_line).rstrip()
+        # Marca específica per injeccions SSL
+        if &quot;|_ssl-ccs-injection: VULNERABLE&quot; in line:
+             out_lines.append(f&quot;TAG_FAIL::{line}&quot;)
+        else:
+             out_lines.append(line)
+    return &quot;\n&quot;.join(out_lines)
+
+# Integració a la GUI: Detecció de paraules clau per ressaltar
+def parse_and_print_output(self, text):
+    &quot;&quot;&quot;Analitza sortida i aplica colors a la consola visual&quot;&quot;&quot;
+    for line in text.splitlines():
+        # --- DETECCIO DE VULNERABILITATS ---
+        # Si NMAP diu &quot;VULNERABLE&quot; o troba un CVE, ho pintem molt visible
+        if &quot;VULNERABLE&quot; in line or &quot;CVE-&quot; in line:
+            self.txt.insert(END, line + &quot;\n&quot;, &quot;VULN_HIGHLIGHT&quot;)
+            continue
+        # ... resta de lògica de parseig ...
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+    
+  </body>
+</html>

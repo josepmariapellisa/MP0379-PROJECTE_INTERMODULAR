@@ -1,0 +1,1002 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../bot_telegram/">
+      
+      
+        <link rel="next" href="../conclusions/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+    
+    
+      
+        <title>Docker Auditoria - MP0379-PROJECTE INTERMODULAR</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9f615399.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#documentacio-tecnica-eina-dauditoria-de-xarxa-amb-docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MP0379-PROJECTE INTERMODULAR" class="md-header__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MP0379-PROJECTE INTERMODULAR
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docker Auditoria
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MP0379-PROJECTE INTERMODULAR" class="md-nav__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MP0379-PROJECTE INTERMODULAR
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Introduccio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducció
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metodologia_scrum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../burocracia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Administració
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../landing_page/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Landing Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Desenvolupament i Disseny Auditoria
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desenvolupament i Disseny Auditoria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_enum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enumeracions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_interficies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interfícies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH AUDIT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../harvester/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Harvester
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shodan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Api Shodan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bot_telegram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bot Telegram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Docker Auditoria
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Docker Auditoria
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccio" class="md-nav__link">
+    1. Introducció
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dockerfile-i-configuracio-de-la-imatge" class="md-nav__link">
+    2. Dockerfile i Configuració de la Imatge
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Dockerfile i Configuració de la Imatge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-contingut-del-dockerfile" class="md-nav__link">
+    2.1 Contingut del Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-explicacio" class="md-nav__link">
+    2.2 Explicació
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-construccio-i-gestio-de-la-imatge-docker" class="md-nav__link">
+    3. Construcció i Gestió de la Imatge Docker
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Construcció i Gestió de la Imatge Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-llistat-dimatges-disponibles" class="md-nav__link">
+    3.1 Llistat d'imatges disponibles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-exportacio-de-la-imatge-a-un-fitxer-tar" class="md-nav__link">
+    3.2 Exportació de la imatge a un fitxer .tar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-execucio-de-lauditoria-des-dun-pendrive" class="md-nav__link">
+    4. Execució de l'Auditoria des d'un Pendrive
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Execució de l'Auditoria des d'un Pendrive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-comprovacio-del-pendrive-muntat" class="md-nav__link">
+    4.1 Comprovació del pendrive muntat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-carrega-de-la-imatge-docker-al-sistema-live" class="md-nav__link">
+    4.2 Càrrega de la imatge Docker al sistema Live
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-execucio-de-lauditoria-amb-volum-per-als-resultats" class="md-nav__link">
+    4.3 Execució de l'auditoria amb volum per als resultats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuracio-per-a-clients-amb-interficie-grafica" class="md-nav__link">
+    5. Configuració per a Clients amb Interfície Gràfica
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configuració per a Clients amb Interfície Gràfica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-permetre-connexions-locals-de-docker-a-x11" class="md-nav__link">
+    5.1 Permetre connexions locals de Docker a X11
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-execucio-amb-suport-grafic" class="md-nav__link">
+    5.2 Execució amb suport gràfic
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-estructura-de-fitxers-del-projecte" class="md-nav__link">
+    6. Estructura de Fitxers del Projecte
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusio" class="md-nav__link">
+    7. Conclusió
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../referencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Referències
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LICENSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llicència
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccio" class="md-nav__link">
+    1. Introducció
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dockerfile-i-configuracio-de-la-imatge" class="md-nav__link">
+    2. Dockerfile i Configuració de la Imatge
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Dockerfile i Configuració de la Imatge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-contingut-del-dockerfile" class="md-nav__link">
+    2.1 Contingut del Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-explicacio" class="md-nav__link">
+    2.2 Explicació
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-construccio-i-gestio-de-la-imatge-docker" class="md-nav__link">
+    3. Construcció i Gestió de la Imatge Docker
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Construcció i Gestió de la Imatge Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-llistat-dimatges-disponibles" class="md-nav__link">
+    3.1 Llistat d'imatges disponibles
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-exportacio-de-la-imatge-a-un-fitxer-tar" class="md-nav__link">
+    3.2 Exportació de la imatge a un fitxer .tar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-execucio-de-lauditoria-des-dun-pendrive" class="md-nav__link">
+    4. Execució de l'Auditoria des d'un Pendrive
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Execució de l'Auditoria des d'un Pendrive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-comprovacio-del-pendrive-muntat" class="md-nav__link">
+    4.1 Comprovació del pendrive muntat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-carrega-de-la-imatge-docker-al-sistema-live" class="md-nav__link">
+    4.2 Càrrega de la imatge Docker al sistema Live
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-execucio-de-lauditoria-amb-volum-per-als-resultats" class="md-nav__link">
+    4.3 Execució de l'auditoria amb volum per als resultats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuracio-per-a-clients-amb-interficie-grafica" class="md-nav__link">
+    5. Configuració per a Clients amb Interfície Gràfica
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Configuració per a Clients amb Interfície Gràfica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-permetre-connexions-locals-de-docker-a-x11" class="md-nav__link">
+    5.1 Permetre connexions locals de Docker a X11
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-execucio-amb-suport-grafic" class="md-nav__link">
+    5.2 Execució amb suport gràfic
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-estructura-de-fitxers-del-projecte" class="md-nav__link">
+    6. Estructura de Fitxers del Projecte
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-conclusio" class="md-nav__link">
+    7. Conclusió
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="documentacio-tecnica-eina-dauditoria-de-xarxa-amb-docker">Documentació Tècnica: Eina d'Auditoria de Xarxa amb Docker</h1>
+<p><strong>Projecte Intermodular - 2n ASIX</strong><br />
+<em>Data de generació: [Data actual]</em>  </p>
+<hr />
+<h2 id="1-introduccio">1. Introducció</h2>
+<p>Aquest document descriu el desenvolupament i l'ús d'una eina d'auditoria de xarxa implementada mitjançant Docker. L'objectiu és disposar d'un entorn portable i reproducible per a realitzar tasques d'auditoria de seguretat i reconeixement de xarxes, empaquetat en una imatge Docker que pot ser executada des d'un pendrive.</p>
+<hr />
+<h2 id="2-dockerfile-i-configuracio-de-la-imatge">2. Dockerfile i Configuració de la Imatge</h2>
+<p>El punt de partida és el fitxer <code>Dockerfile</code>, que defineix la imatge base i les eines necessàries per a l'auditoria.</p>
+<h3 id="21-contingut-del-dockerfile">2.1 Contingut del Dockerfile</h3>
+<pre><code class="language-dockerfile">FROM python:3.9-slim
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update &amp;&amp; apt-get install -y \
+    build-essential \
+    libxml2-dev \
+    libxslt1-dev \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install theHarvester
+COPY . /app
+RUN mkdir -p /app/dades
+ENTRYPOINT [&quot;python&quot;, &quot;main.py&quot;]
+</code></pre>
+<h3 id="22-explicacio">2.2 Explicació</h3>
+<ul>
+<li><strong>Imatge base:</strong> Python 3.9 slim.</li>
+<li><strong>Instal·lació de dependències:</strong> eines de compilació i biblioteques per a l'anàlisi XML/XSLT.</li>
+<li><strong>Instal·lació de Python:</strong> <code>requirements.txt</code> i l'eina <code>theHarvester</code>.</li>
+<li><strong>Directori de treball:</strong> <code>/app</code>.</li>
+<li><strong>Punt d'entrada:</strong> executa <code>main.py</code> quan s'inicia el contenidor.</li>
+</ul>
+<p><em>(Espai per captura del Dockerfile o de l'entorn de desenvolupament)</em></p>
+<hr />
+<h2 id="3-construccio-i-gestio-de-la-imatge-docker">3. Construcció i Gestió de la Imatge Docker</h2>
+<h3 id="31-llistat-dimatges-disponibles">3.1 Llistat d'imatges disponibles</h3>
+<pre><code class="language-bash">docker images
+</code></pre>
+<p><strong>Sortida esperada:</strong></p>
+<pre><code>REPOSITORY               TAG       IMAGE ID       CREATED         SIZE
+auditoria_pen2           latest    508f954e5d33   X temps         796MB
+auditoria_pendrive       latest    59a89a5657b3   X temps         609MB
+gns3/chromium            latest    78e98070dfe2   X temps         750MB
+gns3/ipterm              latest    21056db1c785   X temps         110MB
+gns3/ubuntu              focal     cf37c7335b09   X temps         124MB
+</code></pre>
+<p><em>(Espai per captura de la terminal amb la comanda <code>docker images</code>)</em></p>
+<hr />
+<h3 id="32-exportacio-de-la-imatge-a-un-fitxer-tar">3.2 Exportació de la imatge a un fitxer .tar</h3>
+<p>Per portabilitat, s'exporta la imatge a un fitxer comprimit:</p>
+<pre><code class="language-bash">docker save -o auditoria_pen2.tar auditoria_pen2
+</code></pre>
+<p><em>(Espai per captura de la comanda i el fitxer generat)</em></p>
+<hr />
+<h2 id="4-execucio-de-lauditoria-des-dun-pendrive">4. Execució de l'Auditoria des d'un Pendrive</h2>
+<p>El procés està dissenyat per ser executat des d'un Live USB o un pendrive amb el fitxer de la imatge.</p>
+<h3 id="41-comprovacio-del-pendrive-muntat">4.1 Comprovació del pendrive muntat</h3>
+<pre><code class="language-bash">ls /media/ubuntu/PENDRIVE/
+</code></pre>
+<h3 id="42-carrega-de-la-imatge-docker-al-sistema-live">4.2 Càrrega de la imatge Docker al sistema Live</h3>
+<pre><code class="language-bash">docker load &lt; /media/ubuntu/PENDRIVE/auditoria_pendrive.tar
+</code></pre>
+<h3 id="43-execucio-de-lauditoria-amb-volum-per-als-resultats">4.3 Execució de l'auditoria amb volum per als resultats</h3>
+<pre><code class="language-bash">docker run -it --rm -v /media/ubuntu/PENDRIVE/resultats:/app/dades auditoria_pendrive
+</code></pre>
+<p><strong>Explicació:</strong><br />
+- <code>-it</code>: mode interactiu.<br />
+- <code>--rm</code>: elimina el contenidor després de l'execució.<br />
+- <code>-v</code>: munta el directori del pendrive dins el contenidor per guardar resultats.  </p>
+<p><em>(Espai per captura del procés d'execució i la sortida de l'auditoria)</em></p>
+<hr />
+<h2 id="5-configuracio-per-a-clients-amb-interficie-grafica">5. Configuració per a Clients amb Interfície Gràfica</h2>
+<p>Si l'eina requereix sortida gràfica (per exemple, amb eines com <code>chromium</code>), es configura l'accés a X11:</p>
+<h3 id="51-permetre-connexions-locals-de-docker-a-x11">5.1 Permetre connexions locals de Docker a X11</h3>
+<pre><code class="language-bash">xhost +local:docker
+</code></pre>
+<h3 id="52-execucio-amb-suport-grafic">5.2 Execució amb suport gràfic</h3>
+<pre><code class="language-bash">docker run -it --rm \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v /media/ubuntu/PENDRIVE/results:/app/dades \
+  auditoria_pendrive
+</code></pre>
+<p><strong>Explicació:</strong><br />
+- <code>-e DISPLAY</code>: passa la variable d'entorn per a la interfície gràfica.<br />
+- <code>-v /tmp/.X11-unix</code>: comparteix el socket de X11 amb el contenidor.  </p>
+<p><em>(Espai per captura de l'execució amb sortida gràfica)</em></p>
+<hr />
+<h2 id="6-estructura-de-fitxers-del-projecte">6. Estructura de Fitxers del Projecte</h2>
+<pre><code>CODI_AUDITORIA/
+│
+├── Dockerfile
+├── main.py
+├── requirements.txt
+├── auditoria_pen2.tar
+└── results/ (directori per als resultats de l'auditoria)
+</code></pre>
+<p><em>(Espai per captura de l'estructura de directoris)</em></p>
+<hr />
+<h2 id="7-conclusio">7. Conclusió</h2>
+<p>Aquesta eina d'auditoria empaquetada amb Docker ofereix una solució <strong>portable, reproducible i aïllada</strong> per a tasques de reconeixement de xarxa i seguretat informàtica. Gràcies a la containerització, es pot executar en qualsevol sistema amb Docker instal·lat sense conflictes de dependències.</p>
+<hr />
+<p><em>Document elaborat com a part del Projecte Intermodular de 2n d'ASIX, mòdul d’Auditoria i Ciberseguretat.</em></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+    
+  </body>
+</html>
