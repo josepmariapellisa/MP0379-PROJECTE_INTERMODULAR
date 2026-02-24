@@ -493,15 +493,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#22-explicacio" class="md-nav__link">
-    2.2 Explicació
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    
+  </a>
   
 </li>
       
@@ -567,6 +567,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#5-configuracio-per-a-clients-amb-interficie-grafica" class="md-nav__link">
     5. Configuració per a Clients amb Interfície Gràfica
   </a>
@@ -594,8 +601,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#6-estructura-de-fitxers-del-projecte" class="md-nav__link">
     6. Estructura de Fitxers del Projecte
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    
   </a>
   
 </li>
@@ -720,15 +741,15 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#22-explicacio" class="md-nav__link">
-    2.2 Explicació
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    
+  </a>
   
 </li>
       
@@ -794,6 +815,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#5-configuracio-per-a-clients-amb-interficie-grafica" class="md-nav__link">
     5. Configuració per a Clients amb Interfície Gràfica
   </a>
@@ -821,8 +849,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#6-estructura-de-fitxers-del-projecte" class="md-nav__link">
     6. Estructura de Fitxers del Projecte
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    
   </a>
   
 </li>
@@ -850,8 +892,7 @@
 
 
 <h1 id="documentacio-tecnica-eina-dauditoria-de-xarxa-amb-docker">Documentació Tècnica: Eina d'Auditoria de Xarxa amb Docker</h1>
-<p><strong>Projecte Intermodular - 2n ASIX</strong><br />
-<em>Data de generació: [Data actual]</em>  </p>
+<p><strong>Projecte Intermodular - 2n ASIX</strong>  </p>
 <hr />
 <h2 id="1-introduccio">1. Introducció</h2>
 <p>Aquest document descriu el desenvolupament i l'ús d'una eina d'auditoria de xarxa implementada mitjançant Docker. L'objectiu és disposar d'un entorn portable i reproducible per a realitzar tasques d'auditoria de seguretat i reconeixement de xarxes, empaquetat en una imatge Docker que pot ser executada des d'un pendrive.</p>
@@ -859,31 +900,80 @@
 <h2 id="2-dockerfile-i-configuracio-de-la-imatge">2. Dockerfile i Configuració de la Imatge</h2>
 <p>El punt de partida és el fitxer <code>Dockerfile</code>, que defineix la imatge base i les eines necessàries per a l'auditoria.</p>
 <h3 id="21-contingut-del-dockerfile">2.1 Contingut del Dockerfile</h3>
-<pre><code class="language-dockerfile">FROM python:3.9-slim
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update &amp;&amp; apt-get install -y \
-    build-essential \
-    libxml2-dev \
-    libxslt1-dev \
-    &amp;&amp; rm -rf /var/lib/apt/lists/*
+<pre><code class="language-dockerfile"># SEC-AUDIT PRO v3.0 - Dockerfile
+# Imatge base lleugera amb Python 3.9
+FROM python:3.9-slim
+
+# Metadades de la imatge
+LABEL maintainer=&quot;SEC-AUDIT PRO Team&quot;
+LABEL version=&quot;3.0&quot;
+LABEL description=&quot;Advanced Security Auditing Tool with Modern GUI&quot;
+
+# Estableix el directori de treball
 WORKDIR /app
-COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install theHarvester
-COPY . /app
-RUN mkdir -p /app/dades
-ENTRYPOINT [&quot;python&quot;, &quot;main.py&quot;]
+
+# Instal·lació de dependències del sistema
+# Inclou eines d'auditoria i requeriments per Tkinter
+RUN apt-get update &amp;&amp; apt-get install -y \
+    git \
+    build-essential \
+    python3-tk \
+    tk-dev \
+    tcl-dev \
+    nmap \
+    net-tools \
+    iputils-ping \
+    dnsutils \
+    whois \
+    traceroute \
+    tcpdump \
+    netcat-openbsd \
+    smbclient \
+    curl \
+    wget \
+    openssh-client \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# Instal·lació manual d'enum4linux des del repositori oficial
+RUN git clone https://github.com/portcullislabs/enum4linux.git /opt/enum4linux &amp;&amp; \
+    chmod +x /opt/enum4linux/enum4linux.pl &amp;&amp; \
+    ln -sf /opt/enum4linux/enum4linux.pl /usr/local/bin/enum4linux
+
+# Instal·lació de ssh-audit via pip
+RUN pip3 install ssh-audit
+
+# Còpia dels fitxers de l'aplicació
+COPY main.py /app/main.py
+COPY requirements.txt /app/requirements.txt
+
+# Permisos d'execució i instal·lació de dependències Python
+RUN chmod +x /app/main.py &amp;&amp; \
+    pip3 install --user -r requirements.txt
+
+# Configuració de variables d'entorn per Tkinter
+ENV DISPLAY=:99
+ENV PYTHONUNBUFFERED=1
+ENV QT_X11_NO_MITSHM=1
+ENV XDG_RUNTIME_DIR=/tmp
+
+# Creació d'usuari no root per millorar la seguretat
+RUN useradd -m -u 1000 secaudit &amp;&amp; \
+    chown -R secaudit:secaudit /app
+
+# Canvi a l'usuari no root
+USER secaudit
+
+# Exposició del port (si escau)
+EXPOSE 8080
+
+# Comanda per defecte en executar el contenidor
+CMD [&quot;python3&quot;, &quot;/app/main.py&quot;]
 </code></pre>
-<h3 id="22-explicacio">2.2 Explicació</h3>
-<ul>
-<li><strong>Imatge base:</strong> Python 3.9 slim.</li>
-<li><strong>Instal·lació de dependències:</strong> eines de compilació i biblioteques per a l'anàlisi XML/XSLT.</li>
-<li><strong>Instal·lació de Python:</strong> <code>requirements.txt</code> i l'eina <code>theHarvester</code>.</li>
-<li><strong>Directori de treball:</strong> <code>/app</code>.</li>
-<li><strong>Punt d'entrada:</strong> executa <code>main.py</code> quan s'inicia el contenidor.</li>
-</ul>
-<p><em>(Espai per captura del Dockerfile o de l'entorn de desenvolupament)</em></p>
-<hr />
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_413.png" /></p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_414.png" /></p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_415.png" /></p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_416.png" /></p>
+<h2 id="_1"><img alt="Captura" src="../custom/Selecci%C3%B3_409.png" /></h2>
 <h2 id="3-construccio-i-gestio-de-la-imatge-docker">3. Construcció i Gestió de la Imatge Docker</h2>
 <h3 id="31-llistat-dimatges-disponibles">3.1 Llistat d'imatges disponibles</h3>
 <pre><code class="language-bash">docker images
@@ -896,13 +986,13 @@ gns3/chromium            latest    78e98070dfe2   X temps         750MB
 gns3/ipterm              latest    21056db1c785   X temps         110MB
 gns3/ubuntu              focal     cf37c7335b09   X temps         124MB
 </code></pre>
-<p><em>(Espai per captura de la terminal amb la comanda <code>docker images</code>)</em></p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_410.png" /></p>
 <hr />
 <h3 id="32-exportacio-de-la-imatge-a-un-fitxer-tar">3.2 Exportació de la imatge a un fitxer .tar</h3>
 <p>Per portabilitat, s'exporta la imatge a un fitxer comprimit:</p>
 <pre><code class="language-bash">docker save -o auditoria_pen2.tar auditoria_pen2
 </code></pre>
-<p><em>(Espai per captura de la comanda i el fitxer generat)</em></p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_411.png" /></p>
 <hr />
 <h2 id="4-execucio-de-lauditoria-des-dun-pendrive">4. Execució de l'Auditoria des d'un Pendrive</h2>
 <p>El procés està dissenyat per ser executat des d'un Live USB o un pendrive amb el fitxer de la imatge.</p>
@@ -912,6 +1002,7 @@ gns3/ubuntu              focal     cf37c7335b09   X temps         124MB
 <h3 id="42-carrega-de-la-imatge-docker-al-sistema-live">4.2 Càrrega de la imatge Docker al sistema Live</h3>
 <pre><code class="language-bash">docker load &lt; /media/ubuntu/PENDRIVE/auditoria_pendrive.tar
 </code></pre>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_405.png" /></p>
 <h3 id="43-execucio-de-lauditoria-amb-volum-per-als-resultats">4.3 Execució de l'auditoria amb volum per als resultats</h3>
 <pre><code class="language-bash">docker run -it --rm -v /media/ubuntu/PENDRIVE/resultats:/app/dades auditoria_pendrive
 </code></pre>
@@ -919,8 +1010,7 @@ gns3/ubuntu              focal     cf37c7335b09   X temps         124MB
 - <code>-it</code>: mode interactiu.<br />
 - <code>--rm</code>: elimina el contenidor després de l'execució.<br />
 - <code>-v</code>: munta el directori del pendrive dins el contenidor per guardar resultats.  </p>
-<p><em>(Espai per captura del procés d'execució i la sortida de l'auditoria)</em></p>
-<hr />
+<h2 id="_2"><img alt="Captura" src="../custom/Selecci%C3%B3_412.png" /></h2>
 <h2 id="5-configuracio-per-a-clients-amb-interficie-grafica">5. Configuració per a Clients amb Interfície Gràfica</h2>
 <p>Si l'eina requereix sortida gràfica (per exemple, amb eines com <code>chromium</code>), es configura l'accés a X11:</p>
 <h3 id="51-permetre-connexions-locals-de-docker-a-x11">5.1 Permetre connexions locals de Docker a X11</h3>
@@ -936,8 +1026,8 @@ gns3/ubuntu              focal     cf37c7335b09   X temps         124MB
 <p><strong>Explicació:</strong><br />
 - <code>-e DISPLAY</code>: passa la variable d'entorn per a la interfície gràfica.<br />
 - <code>-v /tmp/.X11-unix</code>: comparteix el socket de X11 amb el contenidor.  </p>
-<p><em>(Espai per captura de l'execució amb sortida gràfica)</em></p>
-<hr />
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_406.png" /></p>
+<h2 id="_3"><img alt="Captura" src="../custom/Selecci%C3%B3_407.png" /></h2>
 <h2 id="6-estructura-de-fitxers-del-projecte">6. Estructura de Fitxers del Projecte</h2>
 <pre><code>CODI_AUDITORIA/
 │
@@ -947,8 +1037,7 @@ gns3/ubuntu              focal     cf37c7335b09   X temps         124MB
 ├── auditoria_pen2.tar
 └── results/ (directori per als resultats de l'auditoria)
 </code></pre>
-<p><em>(Espai per captura de l'estructura de directoris)</em></p>
-<hr />
+<h2 id="_4"><img alt="Captura" src="../custom/Selecci%C3%B3_408.png" /></h2>
 <h2 id="7-conclusio">7. Conclusió</h2>
 <p>Aquesta eina d'auditoria empaquetada amb Docker ofereix una solució <strong>portable, reproducible i aïllada</strong> per a tasques de reconeixement de xarxa i seguretat informàtica. Gràcies a la containerització, es pot executar en qualsevol sistema amb Docker instal·lat sense conflictes de dependències.</p>
 <hr />
