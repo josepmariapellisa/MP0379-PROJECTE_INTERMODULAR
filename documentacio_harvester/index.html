@@ -1,0 +1,1139 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../documentacio_ssh/">
+      
+      
+        <link rel="next" href="../shodan/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+    
+    
+      
+        <title>The Harvester - MP0379-PROJECTE INTERMODULAR</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9f615399.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#documentacio-tecnica-del-codi-harvester" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MP0379-PROJECTE INTERMODULAR" class="md-header__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MP0379-PROJECTE INTERMODULAR
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The Harvester
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MP0379-PROJECTE INTERMODULAR" class="md-nav__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MP0379-PROJECTE INTERMODULAR
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducció
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metodologia_scrum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../burocracia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Administració
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../landing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Landing Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Desenvolupament i Disseny Auditoria
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desenvolupament i Disseny Auditoria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_enum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enumeracions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_interficies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interfícies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH AUDIT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    The Harvester
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    The Harvester
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-necessaries" class="md-nav__link">
+    Dependències Necessàries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura" class="md-nav__link">
+    Arquitectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcions" class="md-nav__link">
+    Funcions
+  </a>
+  
+    <nav class="md-nav" aria-label="Funcions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-prettify_harvesterraw-str-str" class="md-nav__link">
+    1. prettify_harvester(raw: str) -&gt; str
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-scandataparserparse_harvesterraw_output-str-dict" class="md-nav__link">
+    2. ScanDataParser.parse_harvester(raw_output: str) -&gt; dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-harvester_scantarget-stop_eventnone-str" class="md-nav__link">
+    3. harvester_scan(target, stop_event=None) -&gt; str
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-auditorguistart_harvester_scanself" class="md-nav__link">
+    4. AuditorGUI.start_harvester_scan(self)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-auditorguiexecucions-parsing" class="md-nav__link">
+    5. AuditorGUI.execucions() - Parsing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-auditorguishow_summary-visualitzacio" class="md-nav__link">
+    6. AuditorGUI.show_summary() - Visualització
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables-globals" class="md-nav__link">
+    Variables Globals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracio" class="md-nav__link">
+    Configuració
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestio-derrors" class="md-nav__link">
+    Gestió d'Errors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threading" class="md-nav__link">
+    Threading
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultat-dexecucio-harvester" class="md-nav__link">
+    RESULTAT D'EXECUCIÓ HARVESTER
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shodan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Api Shodan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_vuln/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vuln
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_telegram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bot Telegram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Auditoria
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../referencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Referències
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LICENSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llicència
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-necessaries" class="md-nav__link">
+    Dependències Necessàries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitectura" class="md-nav__link">
+    Arquitectura
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcions" class="md-nav__link">
+    Funcions
+  </a>
+  
+    <nav class="md-nav" aria-label="Funcions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-prettify_harvesterraw-str-str" class="md-nav__link">
+    1. prettify_harvester(raw: str) -&gt; str
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-scandataparserparse_harvesterraw_output-str-dict" class="md-nav__link">
+    2. ScanDataParser.parse_harvester(raw_output: str) -&gt; dict
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-harvester_scantarget-stop_eventnone-str" class="md-nav__link">
+    3. harvester_scan(target, stop_event=None) -&gt; str
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-auditorguistart_harvester_scanself" class="md-nav__link">
+    4. AuditorGUI.start_harvester_scan(self)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-auditorguiexecucions-parsing" class="md-nav__link">
+    5. AuditorGUI.execucions() - Parsing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-auditorguishow_summary-visualitzacio" class="md-nav__link">
+    6. AuditorGUI.show_summary() - Visualització
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables-globals" class="md-nav__link">
+    Variables Globals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracio" class="md-nav__link">
+    Configuració
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestio-derrors" class="md-nav__link">
+    Gestió d'Errors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threading" class="md-nav__link">
+    Threading
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultat-dexecucio-harvester" class="md-nav__link">
+    RESULTAT D'EXECUCIÓ HARVESTER
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="documentacio-tecnica-del-codi-harvester">💻 Documentació Tècnica del Codi - Harvester</h1>
+<h2 id="dependencies-necessaries">Dependències Necessàries</h2>
+<ul>
+<li><code>subprocess</code>: Execució de theHarvester</li>
+<li><code>threading</code>: Execució asíncrona</li>
+<li><code>re</code>: Expressions regulars</li>
+<li><code>tkinter</code>: GUI</li>
+<li><strong>Externa</strong>: <code>theHarvester</code> v4.10.0+</li>
+</ul>
+<h2 id="arquitectura">Arquitectura</h2>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                    GUI (AuditorGUI)                     │
+│  - Botó HARVESTER                                       │
+│  - start_harvester_scan()                               │
+└────────────────────┬────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│              Funció d'Execució                          │
+│  - harvester_scan(target, stop_event)                   │
+│  - Executa theHarvester com subprocess                  │
+└────────────────────┬────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│              Processament de Dades                      │
+│  - prettify_harvester(raw)                              │
+│  - ScanDataParser.parse_harvester(raw_output)           │
+└────────────────────┬────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────┐
+│              Visualització                              │
+│  - show_summary()                                       │
+│  - Terminal amb colors                                  │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="funcions">Funcions</h2>
+<h3 id="1-prettify_harvesterraw-str-str">1. <code>prettify_harvester(raw: str) -&gt; str</code></h3>
+<p><strong>Ubicació</strong>: <code>auditoria_definitiu.py</code> (línies 193-219)</p>
+<p><strong>Propòsit</strong>: Formata la sortida bruta de theHarvester per millorar la visualització al terminal.</p>
+<p><strong>Paràmetres</strong>:
+- <code>raw</code> (str): Sortida bruta de theHarvester</p>
+<p><strong>Retorn</strong>: String formatat amb tags de color</p>
+<p><strong>Funcionament</strong>:</p>
+<pre><code class="language-python">def prettify_harvester(raw: str) -&gt; str:
+    lines = raw.splitlines()
+    out_lines = []
+
+    for raw_line in lines:
+        line = strip_ansi(raw_line).rstrip()
+
+        # Destacar seccions importants
+        if line.startswith(&quot;[*]&quot;) or &quot;Searching&quot; in line:
+            out_lines.append(f&quot;TAG_INFO::🔍 {line.lstrip('[*] ')}&quot;)
+        elif &quot;Emails found:&quot; in line or &quot;Hosts found:&quot; in line:
+            out_lines.append(f&quot;SECTION_HEADER::{line}&quot;)
+        elif &quot;@&quot; in line and not line.startswith(&quot;[&quot;):
+            out_lines.append(f&quot;TAG_SUCCESS::📧 {line}&quot;)
+        else:
+            out_lines.append(f&quot;    {line}&quot;)
+
+    return &quot;\n&quot;.join(out_lines).strip() + &quot;\n&quot;
+</code></pre>
+<p><strong>Tags utilitzats</strong>:
+- <code>TAG_INFO::</code> → Color blau (informació)
+- <code>TAG_SUCCESS::</code> → Color verd (emails trobats)
+- <code>TAG_FAIL::</code> → Color vermell (errors)
+- <code>SECTION_HEADER::</code> → Color cian (títols)</p>
+<hr />
+<h3 id="2-scandataparserparse_harvesterraw_output-str-dict">2. <code>ScanDataParser.parse_harvester(raw_output: str) -&gt; dict</code></h3>
+<p><strong>Ubicació</strong>: <code>auditoria_definitiu.py</code> (línies 577-643)</p>
+<p><strong>Propòsit</strong>: Extreu dades estructurades de la sortida de theHarvester.</p>
+<p><strong>Paràmetres</strong>:
+- <code>raw_output</code> (str): Sortida bruta de theHarvester</p>
+<p><strong>Retorn</strong>: Diccionari amb dades parsejades</p>
+<p><strong>Estructura de retorn</strong>:</p>
+<pre><code class="language-python">{
+    'emails': ['user@example.com', 'admin@example.com'],
+    'hosts': ['www.example.com', 'mail.example.com'],
+    'ips': ['192.0.2.1', '192.0.2.2'],
+    'subdomains': ['blog.example.com'],
+    'sources_used': ['duckduckgo', 'yahoo', 'crtsh'],
+    'target_domain': 'example.com'
+}
+</code></pre>
+<p><strong>Algorisme</strong>:</p>
+<ol>
+<li><strong>Detecció del domini objectiu</strong>:</li>
+</ol>
+<pre><code class="language-python">if 'Target:' in clean_line or 'Searching' in clean_line:
+    parts = clean_line.split()
+    for part in parts:
+        if '.' in part and not part.startswith('['):
+            data['target_domain'] = part
+            break
+</code></pre>
+<ol>
+<li><strong>Identificació de fonts</strong>:</li>
+</ol>
+<pre><code class="language-python">if 'Searching' in clean_line:
+    for word in clean_line.split():
+        if word.lower() in ['google', 'bing', 'yahoo', 'duckduckgo', ...]:
+            if word.lower() not in data['sources_used']:
+                data['sources_used'].append(word.lower())
+</code></pre>
+<ol>
+<li><strong>Extracció d'emails</strong>:</li>
+</ol>
+<pre><code class="language-python">if '@' in clean_line and not clean_line.startswith('['):
+    email = clean_line.strip()
+    if email and email not in data['emails']:
+        data['emails'].append(email)
+</code></pre>
+<ol>
+<li><strong>Extracció d'IPs</strong> (amb regex):</li>
+</ol>
+<pre><code class="language-python">if current_section == 'ips':
+    ip_pattern = re.findall(r'\b(?:\d{1,3}\.){3}\d{1,3}\b', clean_line)
+    for ip in ip_pattern:
+        if ip and ip not in data['ips']:
+            data['ips'].append(ip)
+</code></pre>
+<hr />
+<h3 id="3-harvester_scantarget-stop_eventnone-str">3. <code>harvester_scan(target, stop_event=None) -&gt; str</code></h3>
+<p><strong>Ubicació</strong>: <code>auditoria_definitiu.py</code> (línies 1901-1943)</p>
+<p><strong>Propòsit</strong>: Executa theHarvester com a subprocess i captura la sortida.</p>
+<p><strong>Paràmetres</strong>:
+- <code>target</code> (str): Domini a investigar (NO IP)
+- <code>stop_event</code> (threading.Event): Event per aturar el procés</p>
+<p><strong>Retorn</strong>: String amb la sortida formatada</p>
+<p><strong>Comanda executada</strong>:</p>
+<pre><code class="language-python">cmd = [&quot;theHarvester&quot;, &quot;-d&quot;, target, &quot;-b&quot;, &quot;duckduckgo,yahoo,crtsh&quot;, &quot;-l&quot;, &quot;500&quot;]
+</code></pre>
+<p><strong>Paràmetres de theHarvester</strong>:
+- <code>-d</code>: Domini objectiu
+- <code>-b</code>: Fonts (duckduckgo, yahoo, crtsh)
+- <code>-l</code>: Límit de resultats (500)</p>
+<p><strong>Gestió del subprocess</strong>:</p>
+<pre><code class="language-python">def harvester_scan(target, stop_event=None):
+    if not stop_event: 
+        return &quot;Error intern&quot;
+
+    try:
+        cmd = [&quot;theHarvester&quot;, &quot;-d&quot;, target, &quot;-b&quot;, &quot;duckduckgo,yahoo,crtsh&quot;, &quot;-l&quot;, &quot;500&quot;]
+
+        global current_process
+        current_process = subprocess.Popen(
+            cmd, 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE, 
+            text=True
+        )
+
+        stdout_acc = []
+        stderr_acc = []
+
+        while True:
+            if stop_event.is_set():
+                current_process.terminate()
+                return &quot;Aturat per l'usuari&quot;
+
+            line = current_process.stdout.readline()
+            if line: 
+                stdout_acc.append(line)
+            else:
+                if current_process.poll() is not None:
+                    rem_out, rem_err = current_process.communicate()
+                    if rem_out: stdout_acc.append(rem_out)
+                    if rem_err: stderr_acc.append(rem_err)
+                    break
+                time.sleep(0.05)
+
+        output = &quot;&quot;.join(stdout_acc) + &quot;&quot;.join(stderr_acc)
+        return prettify_harvester(output)
+
+    except FileNotFoundError:
+        return &quot;Error: theHarvester no està instal·lat...&quot;
+    except Exception as e: 
+        return f&quot;Error: {e}&quot;
+    finally: 
+        current_process = None
+</code></pre>
+<hr />
+<h3 id="4-auditorguistart_harvester_scanself">4. <code>AuditorGUI.start_harvester_scan(self)</code></h3>
+<p><strong>Ubicació</strong>: <code>auditoria_definitiu.py</code> (línies 2627-2631)</p>
+<p><strong>Propòsit</strong>: Handler del botó HARVESTER a la GUI.</p>
+<p><strong>Codi</strong>:</p>
+<pre><code class="language-python">def start_harvester_scan(self):
+    if self.scan_in_progress: 
+        return
+    target = self._prepare_scan(&quot;HARVESTER (OSINT)&quot;)
+    if not target: 
+        return
+    self.execucions(harvester_scan, target)
+</code></pre>
+<p><strong>Flux</strong>:
+1. Verifica que no hi ha scan en curs
+2. Prepara el scan (neteja terminal, mostra capçalera)
+3. Executa <code>harvester_scan()</code> en un thread separat</p>
+<hr />
+<h3 id="5-auditorguiexecucions-parsing">5. <code>AuditorGUI.execucions()</code> - Parsing</h3>
+<p><strong>Ubicació</strong>: <code>auditoria_definitiu.py</code> (línies 2663-2665)</p>
+<p><strong>Codi afegit</strong>:</p>
+<pre><code class="language-python">elif &quot;HARVESTER&quot; in self.current_scan_type or &quot;OSINT&quot; in self.current_scan_type:
+    self.current_scan_data = ScanDataParser.parse_harvester(output)
+</code></pre>
+<p><strong>Funcionament</strong>:
+- Detecta si el scan és HARVESTER/OSINT
+- Crida al parser per extreure dades
+- Guarda les dades a <code>self.current_scan_data</code></p>
+<hr />
+<h3 id="6-auditorguishow_summary-visualitzacio">6. <code>AuditorGUI.show_summary()</code> - Visualització</h3>
+<p><strong>Ubicació</strong>: <code>auditoria_definitiu.py</code> (línies 2729-2763)</p>
+<p><strong>Propòsit</strong>: Mostra resum visual de les dades OSINT.</p>
+<p><strong>Codi</strong>:</p>
+<pre><code class="language-python"># Resum de Harvester (OSINT)
+if 'emails' in self.current_scan_data or 'hosts' in self.current_scan_data:
+    data = self.current_scan_data
+
+    if data.get('target_domain'):
+        self.append_text_tagged(f&quot;\n🎯 Domini Objectiu: {data['target_domain']}&quot;, &quot;INFO&quot;)
+
+    if data.get('emails'):
+        self.append_text_tagged(f&quot;\n📧 Emails Trobats: {len(data['emails'])}&quot;, &quot;SUCCESS&quot;)
+        self.append_text_tagged(&quot;─&quot; * 65, &quot;CMD&quot;)
+        for email in data['emails'][:10]:  # Primers 10
+            self.append_text_tagged(f&quot;  📧 {email}&quot;, &quot;SUCCESS&quot;)
+        if len(data['emails']) &gt; 10:
+            self.append_text_tagged(f&quot;  ... i {len(data['emails']) - 10} emails més&quot;, &quot;CMD&quot;)
+
+    if data.get('hosts'):
+        self.append_text_tagged(f&quot;\n🌐 Hosts Trobats: {len(data['hosts'])}&quot;, &quot;INFO&quot;)
+        # Similar per hosts...
+
+    if data.get('ips'):
+        self.append_text_tagged(f&quot;\n🔢 IPs Trobades: {len(data['ips'])}&quot;, &quot;WARN&quot;)
+        # Similar per IPs...
+</code></pre>
+<hr />
+<h2 id="variables-globals">Variables Globals</h2>
+<pre><code class="language-python">current_process = None  # Procés actual en execució
+</code></pre>
+<h2 id="configuracio">Configuració</h2>
+<pre><code class="language-python"># Fonts que funcionen
+sources = &quot;duckduckgo,yahoo,crtsh&quot;
+
+# Límit de resultats
+limit = &quot;500&quot;
+</code></pre>
+<h2 id="gestio-derrors">Gestió d'Errors</h2>
+<p><strong>Errors capturats</strong>:</p>
+<ol>
+<li><strong>theHarvester no instal·lat</strong>:</li>
+</ol>
+<pre><code class="language-python">except FileNotFoundError:
+    return &quot;Error: theHarvester no està instal·lat...&quot;
+</code></pre>
+<ol>
+<li><strong>Procés aturat</strong>:</li>
+</ol>
+<pre><code class="language-python">if stop_event.is_set():
+    current_process.terminate()
+    return &quot;Aturat per l'usuari&quot;
+</code></pre>
+<ol>
+<li><strong>Errors generals</strong>:</li>
+</ol>
+<pre><code class="language-python">except Exception as e: 
+    return f&quot;Error: {e}&quot;
+</code></pre>
+<h2 id="threading">Threading</h2>
+<p><strong>Execució asíncrona</strong>:</p>
+<pre><code class="language-python">def execucions(self, func, *args):
+    def task():
+        output = func(*args, self.stop_event)
+        # Processar output...
+
+    t = threading.Thread(target=task)
+    t.daemon = True
+    t.start()
+</code></pre>
+<h2 id="resultat-dexecucio-harvester">RESULTAT D'EXECUCIÓ HARVESTER</h2>
+<p><img alt="theHarvester OSINT" src="../fotos/7.png" /></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+    
+  </body>
+</html>
