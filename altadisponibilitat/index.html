@@ -1,0 +1,862 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../docker/">
+      
+      
+        <link rel="next" href="../plamilloravuln/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+    
+    
+      
+        <title>Alta Disponibilitat - MP0379-PROJECTE INTERMODULAR</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9f615399.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduccio-a-la-practica-de-servidors-raid-dhcp-dns" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MP0379-PROJECTE INTERMODULAR" class="md-header__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MP0379-PROJECTE INTERMODULAR
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Alta Disponibilitat
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MP0379-PROJECTE INTERMODULAR" class="md-nav__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MP0379-PROJECTE INTERMODULAR
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducció
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metodologia_scrum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../burocracia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Administració
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../landing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Landing Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Desenvolupament i Disseny Auditoria
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desenvolupament i Disseny Auditoria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_enum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enumeracions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_interficies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interfícies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH AUDIT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_harvester/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Harvester
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shodan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Api Shodan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_vuln/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vuln
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_telegram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bot Telegram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Auditoria
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Alta Disponibilitat
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Alta Disponibilitat
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#raid-1-mirall" class="md-nav__link">
+    RAID 1 (Mirall)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-mestre-esclau" class="md-nav__link">
+    DNS Mestre-Esclau
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp-amb-failover" class="md-nav__link">
+    DHCP amb Failover
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-dhcp" class="md-nav__link">
+    Client DHCP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esquema-de-xarxa" class="md-nav__link">
+    Esquema de Xarxa
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plamilloravuln/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pla de Millora Vuln
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../referencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Referències
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LICENSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llicència
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#raid-1-mirall" class="md-nav__link">
+    RAID 1 (Mirall)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-mestre-esclau" class="md-nav__link">
+    DNS Mestre-Esclau
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dhcp-amb-failover" class="md-nav__link">
+    DHCP amb Failover
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#client-dhcp" class="md-nav__link">
+    Client DHCP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esquema-de-xarxa" class="md-nav__link">
+    Esquema de Xarxa
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="introduccio-a-la-practica-de-servidors-raid-dhcp-dns">Introducció a la Pràctica de Servidors (RAID, DHCP, DNS)</h1>
+<p>En aquesta pràctica he desenvolupat i configurat una infraestructura completa de servidors en un entorn virtualitzat amb Ubuntu 24.04. L'objectiu principal ha estat implementar un sistema tolerant a fallades i altament disponible que inclou serveis de RAID, DHCP amb failover i DNS mestre-esclau.</p>
+<h2 id="raid-1-mirall">RAID 1 (Mirall)</h2>
+<p>En primer lloc, he creat un RAID 1 per redundància de dades utilitzant dos discs de 13,2 GB (<code>sdb</code> i <code>sdc</code>). He particionat els discs amb <code>fdisk</code>, he instal·lat l'eina <code>mdadm</code> i he creat l'array <code>/dev/md0</code> amb nivell RAID 1 (mirall). He formatat el dispositiu amb sistema de fitxers ext4 i l'he muntat a <code>/srv/dades_servidors</code>. Per demostrar la tolerància a fallades, he simulat la fallada d'un disc amb <code>mdadm --fail</code>, he comprovat que les dades es mantenien íntegres i he reconstruït l'array automàticament en substituir el disc defectuós amb <code>mdadm --remove</code> i <code>mdadm --add</code>.</p>
+<h2 id="dns-mestre-esclau">DNS Mestre-Esclau</h2>
+<p>Seguidament, he configurat dos servidors DNS en mode mestre-esclau. El servidor primari (192.168.2.2) conté les zones directa i inversa del domini "informatica.com" al fitxer <code>named.conf.local</code>, mentre que el servidor secundari (192.168.2.3) actua com a esclau rebent les transferències de zona. He creat el fitxer de zona <code>db.informatica.com</code> amb els registres SOA, NS, A i SRV. He verificat la sintaxi amb <code>named-checkconf</code> i he comprovat la transferència de zona mitjançant els logs del sistema amb <code>tail -f /var/log/syslog | grep named</code>.</p>
+<h2 id="dhcp-amb-failover">DHCP amb Failover</h2>
+<p>A continuació, he implementat un servei DHCP amb failover entre els dos servidors. He instal·lat <code>isc-dhcp-server</code> a les dues màquines i he configurat el fitxer <code>/etc/dhcp/dhcpd.conf</code> amb el peer "dhcp-failover". El servidor primari té el rol <code>primary</code> amb split 128, mentre que el secundari té el rol <code>secondary</code>. Tots dos comparteixen el mateix rang d'adreces (192.168.2.100 - 192.168.2.200) i la mateixa subxarxa 192.168.2.0/24. He especificat la interfície <code>enp0s3</code> al fitxer <code>/etc/default/isc-dhcp-server</code> i he verificat l'estat dels serveis amb <code>systemctl status</code>.</p>
+<h2 id="client-dhcp">Client DHCP</h2>
+<p>Finalment, he configurat un client Ubuntu per obtenir IP mitjançant DHCP. He alliberat l'adreça anterior amb <code>dhclient -r</code> i n'he sol·licitat una de nova amb <code>dhclient -v</code>, obtenint l'adreça 192.168.2.149. He verificat la connectivitat amb els dos servidors mitjançant <code>ping</code> i he confirmat que el servei DHCP amb failover funciona correctament, aportant alta disponibilitat a la infraestructura.</p>
+<h2 id="esquema-de-xarxa">Esquema de Xarxa</h2>
+<p>Tota aquesta infraestructura està basada en l'esquema de xarxa que he dissenyat, amb una LAN (192.168.2.0/24) per als servidors i clients, i una DMZ (192.168.100.0/24) per al servidor Apache, separada per un firewall amb NAT per accedir a Internet.</p>
+<p><img alt="Captura" src="../custom/Estructuraxarxa.png" /></p>
+<p>Aqui mostro l'esquema de xarxa complet que hem dissenyat per a la pràctica del servidor. L'estructura parteix d'Internet cap a l'ISP, després travessa un PROXY/Firewall que fa funcions de NAT. D'aquest firewall surten dues interfícies: la interfície LAN amb la xarxa 192.168.2.0/24 i la interfície DMZ amb la xarxa 192.168.100.0/24. A la LAN hi connecto el Servidor Primari amb IP 192.168.2.2, el Servidor Secundari amb IP 192.168.2.3, i el Client DHCP que rep IP dinàmica dins del rang 192.168.2.x. A la DMZ hi connecto el Servidor Apache amb IP 192.168.100.10. Aquesta separació entre LAN i DMZ millora la seguretat de la infraestructura.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_417.png" /></p>
+<p>Aqui mostrem amb la comanda <code>lsblk</code> l'estructura de discs que utilitzarem per fer el RAID. Podem observar que el sistema té tres discs físics: <code>sda</code> de 25GB, <code>sdb</code> de 13,2GB i <code>sdc</code> de 13,2GB. El disc <code>sda</code> ja està particionat i conté el sistema operatiu muntat a la arrel <code>/</code>, mentre que <code>sdb</code> i <code>sdc</code> estan sense particionar ni muntar. Aquests dos discs seran els que utilitzarem per crear el RAID, ja que tenen la mateixa mida i estan en desús. També veiem diversos dispositius loop corresponents a snaps i un CD-ROM virtual amb les Guest Additions de VirtualBox, però aquests no ens afectaran per a la pràctica del RAID.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_418.png" /></p>
+<p>Aqui mostro com creo la partició al disc sdb utilitzant la comanda fdisk. Primer executo fdisk /dev/sdb i com que el disc no té taula de particions, en creo una de nova. Selecciono n per crear una partició nova, escullo tipus p (primària), numero 1 i accepto els valors per defecte per utilitzar tot l'espai disponible de 13,2 GB. Finalment, deso els canvis amb w i ja tinc la partició /dev/sdb1 preparada.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_419.png" /></p>
+<p>Aqui mostro el mateix procediment que abans però aplicat al disc sdc. Executo fdisk /dev/sdc, creo una partició nova amb n, selecciono partició primària p i assigno el número 1. Accepto els valors per defecte perquè la partició ocupi tot el disc de 13,2 GB. Deso els canvis amb w i obtinc la partició /dev/sdc1. Ja tinc els dos discs particionats iguals per crear el RAID.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_420.png" /></p>
+<p>Aqui mostro la verificació de les particions creades executant lsblk. Puc comprovar que els discs sdb i sdc tenen cadascun una partició (sdb1 i sdc1) de 13,2 GB. També veig el disc sda que conté el sistema operatiu amb la seva partició sda2 muntada a /, i el lector de CD-ROM sr0 amb les Guest Additions. Confirmo que els dos discs tenen la mateixa mida, requisit indispensable per al RAID 1.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_421.png" /></p>
+<p>Aqui mostro la instal·lació de l'eina mdadm que necessito per gestionar el RAID. Executo apt install mdadm i el sistema em mostra els paquets que s'instal·laran, incloent finalrd com a dependència. Confirmo la instal·lació prement S. Un cop finalitzat, el meu sistema ja disposa de les utilitats necessàries per crear i administrar arrays RAID.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_422.png" /></p>
+<p>Aqui mostro el final del procés d'instal·lació de mdadm. El sistema genera automàticament el fitxer mdadm.conf i actualitza el GRUB. També s'actualitza l'initramfs per preparar el sistema per reconèixer dispositius RAID a l'arrencada. El procés d'instal·lació es completa sense errors i el sistema està llest per crear el RAID.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_423.png" /></p>
+<p>Aqui mostro la creació del RAID 1 executant mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb1 /dev/sdc1. El sistema m'adverteix que la metadata es troba al principi del disc i que pot no ser adequat com a dispositiu d'arrencada, però com que no faré servir aquest RAID per bootejar, confirmo amb y. El sistema crea l'array /dev/md0 i comença la sincronització inicial en segon pla.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_424.png" /></p>
+<p>Aqui mostro l'estat de la sincronització del RAID consultant el fitxer /proc/mdstat. Puc veure que el RAID md0 està actiu amb els dos dispositius sdb1 i sdc1 marcats com [UU], la qual cosa indica que tots dos estan sans. El progrés de resincronització és del 28,8% a una velocitat d'uns 210 MB/segon. Aquest fitxer m'ajuda a monitoritzar l'evolució del RAID en temps real.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_425.png" /></p>
+<p>Aqui mostro la creació del sistema de fitxers al dispositiu RAID. Un cop finalitzada la sincronització, executo mkfs.ext4 /dev/md0 per formatar el RAID amb sistema de fitxers ext4. El sistema em genera un UUID (427f18f9-1774-4f06-97c1-e39867926799) que identificarà aquest sistema de fitxers de manera única. El formatat es completa correctament.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_426.png" /></p>
+<p>Aqui mostro el muntatge del RAID al sistema de fitxers. Primer creo el punt de muntatge amb mkdir -p /srv/dades_servidors i després munto el dispositiu executant mount /dev/md0 /srv/dades_servidors. Un cop executades aquestes comandes, el RAID ja està accessible al directori /srv/dades_servidors i puc començar a desar-hi dades.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_427.png" /></p>
+<p>Aqui mostro la verificació de l'UUID del RAID utilitzant blkid /dev/md0. El sistema em retorna l'UUID 427f18f9-1774-4f06-97c1-e39867926799 que es va generar en el formatat. Aquesta informació la necessitaré més endavant per afegir el RAID a /etc/fstab i que es munti automàticament a l'arrencada del sistema.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_428.png" />
+Modifiquem el fitxer fstab per a que el punt de montatge ens quedi permanent.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_429.png" /></p>
+<p>Aqui mostro la configuració persistent del RAID perquè es mantingui després de reiniciar el sistema. Executo mdadm --detail --scan per obtenir la línia de configuració i l'afegeixo al fitxer /etc/mdadm/mdadm.conf amb tee -a. Després actualitzo l'initramfs amb update-initramfs -u perquè el sistema pugui reconèixer i activar el RAID durant el procés d'arrencada.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_430.png" /></p>
+<p>Aqui mostro l'estat detallat del RAID un cop completada la configuració. Executo mdadm --detail /dev/md0 i puc veure que l'Estat és "clean", els dos dispositius actius són 2, i no hi ha dispositius fallits. Els discs sdb1 i sdc1 apareixen com a "active sync". També veig informació com la mida de l'array (13,21 GB) i el nivell RAID 1. Tot està funcionant correctament.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_431.png" /></p>
+<p>Aqui mostro la creació d'un fitxer de prova per verificar el funcionament del RAID. Executo echo "Prova integritat de dades" | sudo tee -a /srv/dades_servidors/test_raid.txt per crear un fitxer amb contingut de text. Després llisto el contingut del directori amb ls -l i confirmo que el fitxer s'ha creat correctament al RAID. Aquest fitxer em servirà per provar la tolerància a fallades.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_432.png" /></p>
+<p>Aqui mostro la simulació de la fallada d'un disc dins del RAID. Executo mdadm --manage /dev/md0 --fail /dev/sdb1 per marcar el disc sdb1 com a defectuós. El sistema accepta la comanda i el disc passa a estat "faulty". D'aquesta manera puc simular que un disc s'ha trencat i comprovar com es comporta el RAID 1 davant d'aquesta situació.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_433.png" /></p>
+<p>Aqui mostro la comprovació que les dades segueixen intactes després d'haver marcat un disc com a defectuós. Executo cat /srv/dades_servidors/test_raid.txt i puc llegir el contingut "Prova integritat de dades" sense cap problema. Això demostra que el RAID 1 continua funcionant en mode degradat i que les dades no s'han perdut tot i la fallada d'un disc.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_434.png" /></p>
+<p>Aqui mostro l'estat del RAID després de la fallada del disc. Executo mdadm --detail /dev/md0 i observo que l'Estat ara és "clean, degraded". Els dispositius actius són només 1 (sdc1), i el disc sdb1 apareix com a "faulty" i "removed". El RAID ha detectat la fallada correctament i continua operatiu en mode degradat, tal com s'espera d'un RAID 1.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_435.png" /></p>
+<p>Aqui mostro el progrés de la reconstrucció després d'afegir un disc nou. Un cop hem afegit de nou el disc sdb1, el sistema comença automàticament la reconstrucció. Consulto /proc/mdstat i veig que la recuperació està al 20,2% a una velocitat de 215 MB/segon. El disc sdb1 apareix com a "spare rebuilding" i la configuració és [2/1] [_U].</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_436.png" /></p>
+<p>Aqui mostro com substitueixo el disc fallit. Primer elimino el disc defectuós de l'array amb mdadm --manage /dev/md0 --remove /dev/sdb1. Després afegeixo el disc de nou com a recanvi amb mdadm --manage /dev/md0 --add /dev/sdb1. El sistema accepta les dues comandes i immediatament comença el procés de reconstrucció del RAID.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_437.png" /></p>
+<p>Aqui mostro l'estat detallat del RAID durant el procés de reconstrucció. Executo mdadm --detail /dev/md0 i puc veure que l'Estat és "clean, degraded, recovering" amb un "Rebuild Status" del 54%. El disc sdb1 apareix com a "spare rebuilding" mentre que sdc1 segueix com a "active sync". La reconstrucció avança correctament.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_438.png" /></p>
+<p>Aqui mostro l'estat final de la reconstrucció del RAID. Consulto /proc/mdstat i veig que el RAID està completament recuperat amb la configuració [2/2] [UU]. No hi ha dispositius fallits i la reconstrucció ha finalitzat amb èxit. El sistema torna a tenir tota la redundància del RAID 1.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_439.png" /></p>
+<p>Aqui mostro la verificació final després de la reconstrucció completa. Executo mdadm --detail /dev/md0 i confirmo que l'Estat és "clean", els dispositius actius són 2, i no hi ha dispositius fallits. Els dos discs sdb1 i sdc1 estan marcats com a "active sync". La reconstrucció ha estat un èxit i el RAID 1 ha recuperat completament la redundància, tal com hem demostrat al llarg de tota la pràctica.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_440.png" /></p>
+<p>Aqui mostro el fitxer de configuració /etc/bind/named.conf.local del servidor DNS primari, però amb una IP incorrecta. Configuro les zones "informatica.com" i "2.168.192.in-addr.arpa" com a master, però poso l'adreça 192.168.1.11 com a servidor secundari enlloc de la 192.168.2.3 que correspon. Aquest error el detectaré i corregiré més endavant perquè la transferència de zona funcioni correctament.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_441.png" /></p>
+<p>Aqui mostro el fitxer /etc/bind/named.conf.local del servidor DNS primari ja corregit. Configuro la zona directa "informatica.com" com a master amb el fitxer /etc/bind/db.informatica.com, i li permeto la transferència al secundari amb allow-transfer { 192.168.2.3; } i l'avis amb also-notify { 192.168.2.3; }. Faig el mateix per a la zona inversa "2.168.192.in-addr.arpa" amb el fitxer db.192. Ara la configuració és correcta.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_442.png" /></p>
+<p>Aqui mostro el fitxer de zona directa /etc/bind/db.informatica.com que hem creat al servidor primari. Defineixo el $TTL de 604800 segons i el registre SOA amb el servidor ns1.informatica.com i l'admin. El número de sèrie el poso com a 2026040801 basat en la data. Configuro els registres NS per ns1 i ns2, els registres A per ns1 (192.168.2.2), ns2 (192.168.2.3) i per al domini principal. També afegeixo registres SRV per a serveis XMPP.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_443.png" /></p>
+<p>Aqui mostro la verificació de la sintaxi del fitxer de configuració de BIND. Executo sudo named-checkconf per comprovar que no hi ha errors de sintaxi als fitxers de configuració de BIND. La comanda no retorna cap missatge d'error, la qual cosa indica que la configuració és correcta. Aquest pas és important abans de reiniciar el servei per assegurar-me que no hi ha errors.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_444.png" /></p>
+<p>Aqui mostro el fitxer /etc/bind/named.conf.local del servidor DNS secundari. Configuro la zona "informatica.com" com a slave, indicant que el fitxer de zona es guardarà com a db.informatica.com i que el mestre és a l'adreça 192.168.2.2. D'aquesta manera, el servidor secundari rebrà una còpia de la zona des del primari mitjançant transferència de zona.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_445.png" /></p>
+<p>Aqui mostro l'estat del servei BIND9 al servidor secundari després de reiniciar-lo. Executo systemctl restart bind9 i després systemctl status bind9 per comprovar que el servei està actiu i funcionant correctament. El estat apareix com a "active (running)", la qual cosa confirma que el servidor DNS secundari està operatiu i preparat per rebre les transferències de zona des del primari.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_447.png" /></p>
+<p>Aqui mostro els logs del sistema per verificar que la transferència de zona s'ha realitzat correctament. Executo sudo tail -f /var/log/syslog | grep named i puc veure com el servidor secundari ha rebut la zona "informatica.com" des del primari 192.168.2.2. Els logs mostren "transfer started", "connected" i finalment "Transfer completed: success" amb 10 registres transferits. La transferència ha estat un èxit.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_448.png" /></p>
+<p>Aqui mostro la configuració de xarxa que faig al client Ubuntu. Vaig a la configuració de xarxa i selecciono el mètode IPv4 com a "Manual". Assigno l'adreça IP 192.168.2.10 amb màscara de xarxa 255.255.255.0, però deixo la puerta d'enllaç buida. Configuro els servidors DNS com a 192.168.2.2 i 192.168.2.3. Aquesta configuració manual em permetrà provar la resolució de noms</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_449.png" /></p>
+<p>Aqui mostro el fitxer /etc/hosts del client que hem modificat temporalment. Afegeixo les entrades 192.168.2.2 informatica.com i 192.168.2.3 informatica.com per poder resoldre el domini mentre acabo de configurar el DNS. Això és una solució temporal per poder fer proves abans que la resolució DNS funcioni completament.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_450.png" />
+Realitzem un ping al domini i veiem que s'executa correctament.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_451.png" /></p>
+<p>Aqui mostro les proves de connectivitat que faig des del client. Primer intento fer ping a 192.168.2.2 però no tinc resposta perquè encara no hi ha connectivitat. Després faig ping a informatica.com i tinc resposta de 192.168.2.3 amb temps de 0,788 ms i 1,05 ms. El domini es resol correctament gràcies a l'entrada que hem posat al fitxer /etc/hosts. La pèrdua de paquets és del 0%.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_452.png" /></p>
+<p>Aqui mostro la instal·lació del servidor DHCP al servidor primari. Executo apt install isc-dhcp-server i el sistema em mostra que s'instal·laran els paquets isc-dhcp-common i isc-dhcp-server. La descàrrega és de 1.281 kB i s'utilitzaran 4.281 kB d'espai de disc. Confirmo la instal·lació prement s. Un cop instal·lat, podré configurar el servei DHCP.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_453.png" />
+Establim la interficie de surtida en aquest cas enp0s3.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_454.png" /></p>
+<p>Aqui mostro el fitxer de configuració /etc/dhcp/dhcpd.conf del servidor DHCP primari. Configuro el failover amb el peer "dhcp-failover" indicant que sóc el primary amb adreça 192.168.2.2 i port 647, i el peer secundari a 192.168.2.3. Defineixo la subxarxa 192.168.2.0/24 amb els routers, DNS i domini. El pool té un rang de 192.168.2.100 a 192.168.2.200 amb el failover activat i un split de 128.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_455.png" /></p>
+<p>Aqui mostro l'estat del servei DHCP al servidor primari després de reiniciar-lo. Executo sudo systemctl restart isc-dhcp-server i després sudo systemctl status isc-dhcp-server. El servei apareix com a "active (running)" des de les 13:01:55. Els logs mostren que està escoltant a la interfície enp0s3 i que el servei s'ha iniciat correctament sense errors.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_456.png" /></p>
+<p>Aqui mostro la instal·lació del servidor DHCP al servidor secundari. Executo sudo apt update per actualitzar els repositoris i després sudo apt install isc-dhcp-server -y per instal·lar el paquet automàticament. Les descàrregues es realitzen correctament des dels repositoris d'Ubuntu. Un cop finalitzada la instal·lació, el servidor secundari tindrà el mateix programari que el primari.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_457.png" /></p>
+<p>Aqui mostro el fitxer /etc/default/isc-dhcp-server del servidor secundari on especifico per quines interfícies ha de servir el DHCP. Configuro INTERFACESv4="enp0s3" perquè el servidor DHCP escolti només a la interfície enp0s3. D'aquesta manera, el servei només respondrà peticions DHCP que arribin per aquesta interfície de xarxa.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_458.png" /></p>
+<p>Aqui mostro el fitxer /etc/dhcp/dhcpd.conf del servidor DHCP secundari. Configuro el failover indicant que sóc el secondary amb adreça 192.168.2.3 i port 647, i el peer primari a 192.168.2.2. Defineixo exactament la mateixa subxarxa que al primari, amb el mateix rang d'adreces 192.168.2.100 a 192.168.2.200. La configuració del pool inclou el failover però sense el split perquè el secundari no el necessita</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_459.png" /></p>
+<p>Aqui mostro l'estat del servei DHCP al servidor secundari. Executo systemctl restart isc-dhcp-server i després sudo systemctl status isc-dhcp-server. El servei apareix com a "active (running)" des de les 13:07:32. Els logs mostren que està escoltant a la interfície enp0s3 i que el peer de failover s'ha iniciat correctament passant de l'estat "recover" a "normal".</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_460.png" /></p>
+<p>Aqui mostro de nou l'estat del servei DHCP al servidor primari per confirmar que el failover està funcionant. Executo systemctl restart isc-dhcp-server i systemctl status isc-dhcp-server. Veig que el servei està "active (running)" i als logs observo el missatge "failover peer dhcp-failover: Both servers normal" indicant que tots dos servidors estan en estat normal i el failover funciona correctament.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_461.png" /></p>
+<p>Aqui mostro la configuració de xarxa del client canviant a mode DHCP. Vaig a la configuració de xarxa i selecciono el mètode IPv4 com a "Automàtic (DHCP)". Configuro els servidors DNS com a 192.168.2.2, 192.168.2.3. D'aquesta manera, el client obtindrà l'adreça IP automàticament mitjançant DHCP, ja sigui del servidor primari o del secundari gràcies al failover.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_462.png" /></p>
+<p>Aqui mostro la configuració de xarxa del client abans d'obtenir una adreça per DHCP. Executo ip a i veig que la interfície enp0s3 té una adreça IP 192.168.2.150/24 que havia assignada manualment anteriorment. La validació de la llicència és de 597 segons. Ara procediré a alliberar aquesta adreça i obtenir-ne una de nova mitjançant DHCP.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_463.png" /></p>
+<p>Aqui mostro les proves de connectivitat que faig des del client. Faig ping a 192.168.2.2 i tinc resposta amb temps de 0,816 ms. Després faig ping a 192.168.2.3 i també tinc resposta amb temps d'1,72 ms. La connectivitat amb els dos servidors és correcta i la pèrdua de paquets és del 0%. Això confirma que el client pot comunicar-se amb tots dos servidors.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_464.png" /></p>
+<p>Aqui mostro com allibero l'adreça IP actual i en demano una de nova via DHCP. Primer executo sudo dhclient -r per alliberar l'adreça existent i matar el procés client antic. Després executo sudo dhclient -v per sol·licitar una nova adreça en mode verbose. El servidor m'ofereix l'adreça 192.168.2.149 des del servidor 192.168.2.3 i finalment quedo vinculat a aquesta adreça.</p>
+<p><img alt="Captura" src="../custom/Selecci%C3%B3_465.png" /></p>
+<p>Aqui mostro la configuració final del client després d'obtenir l'adreça per DHCP. Executo ip a i veig que la interfície enp0s3 té l'adreça 192.168.2.149/24 obtinguda dinàmicament del servidor DHCP. La llicència té una validesa de 563 segons i el servidor DNS és 192.168.2.3 que ha assignat el DHCP. Tot el sistema de DHCP amb failover funciona correctament.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+    
+  </body>
+</html>
