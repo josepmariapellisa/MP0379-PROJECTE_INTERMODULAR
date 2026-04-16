@@ -1,0 +1,3348 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../altadisponibilitat/">
+      
+      
+        <link rel="next" href="../conclusions/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.0">
+    
+    
+      
+        <title>Pla de Millora Vuln - MP0379-PROJECTE INTERMODULAR</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.9f615399.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#informe-dauditoria-de-seguretat-informatica" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MP0379-PROJECTE INTERMODULAR" class="md-header__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MP0379-PROJECTE INTERMODULAR
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pla de Millora Vuln
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MP0379-PROJECTE INTERMODULAR" class="md-nav__button md-logo" aria-label="MP0379-PROJECTE INTERMODULAR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    MP0379-PROJECTE INTERMODULAR
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introducció
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metodologia_scrum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../burocracia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Administració
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../landing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Landing Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Desenvolupament i Disseny Auditoria
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Desenvolupament i Disseny Auditoria
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_enum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enumeracions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_interficies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interfícies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH AUDIT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_harvester/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Harvester
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_vuln/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vuln
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentacio_telegram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bot Telegram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Auditoria
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../altadisponibilitat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Alta Disponibilitat
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Pla de Millora Vuln
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Pla de Millora Vuln
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    📋 ÍNDEX
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-resum-executiu" class="md-nav__link">
+    1. Resum Executiu
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Resum Executiu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultats-clau" class="md-nav__link">
+    Resultats clau
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-metodologia-emprada" class="md-nav__link">
+    2. Metodologia Emprada
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fase-1-descobriment-de-xarxa-ping-scan" class="md-nav__link">
+    3. Fase 1 — Descobriment de Xarxa (Ping Scan)
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Fase 1 — Descobriment de Xarxa (Ping Scan)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-objectiu" class="md-nav__link">
+    3.1 Objectiu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-resultats" class="md-nav__link">
+    3.2 Resultats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-vulnerabilitats-i-riscos-detectats" class="md-nav__link">
+    3.3 Vulnerabilitats i Riscos Detectats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-propostes-de-millora" class="md-nav__link">
+    3.4 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-fase-2-escaneig-de-ports" class="md-nav__link">
+    4. Fase 2 — Escaneig de Ports
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Fase 2 — Escaneig de Ports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-servidor-primari-19216822" class="md-nav__link">
+    4.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-servidor-secundari-19216823" class="md-nav__link">
+    4.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-comparativa-de-ports-primari-vs-secundari" class="md-nav__link">
+    4.3 Comparativa de Ports — Primari vs. Secundari
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-vulnerabilitats-i-riscos-detectats" class="md-nav__link">
+    4.4 Vulnerabilitats i Riscos Detectats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-propostes-de-millora" class="md-nav__link">
+    4.5 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-fase-3-deteccio-de-versions-de-serveis" class="md-nav__link">
+    5. Fase 3 — Detecció de Versions de Serveis
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Fase 3 — Detecció de Versions de Serveis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-servidor-primari-19216822" class="md-nav__link">
+    5.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-servidor-secundari-19216823" class="md-nav__link">
+    5.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-vulnerabilitats-i-riscos-detectats" class="md-nav__link">
+    5.3 Vulnerabilitats i Riscos Detectats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-propostes-de-millora" class="md-nav__link">
+    5.4 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-fase-4-analisi-de-vulnerabilitats-nse" class="md-nav__link">
+    6. Fase 4 — Anàlisi de Vulnerabilitats (NSE)
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Fase 4 — Anàlisi de Vulnerabilitats (NSE)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-servidor-primari-19216822" class="md-nav__link">
+    6.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-servidor-secundari-19216823" class="md-nav__link">
+    6.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-propostes-de-millora" class="md-nav__link">
+    6.3 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fase-5-enumeracio-smb-enum4linux" class="md-nav__link">
+    7. Fase 5 — Enumeració SMB (enum4linux)
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Fase 5 — Enumeració SMB (enum4linux)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-servidor-primari-19216822" class="md-nav__link">
+    7.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-servidor-secundari-19216823" class="md-nav__link">
+    7.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-analisi-de-resultats-smb" class="md-nav__link">
+    7.3 Anàlisi de Resultats SMB
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-propostes-de-millora-manteniment" class="md-nav__link">
+    7.4 Propostes de Millora (Manteniment)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-fase-6-auditoria-ssh" class="md-nav__link">
+    8. Fase 6 — Auditoria SSH
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Fase 6 — Auditoria SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-servidor-primari-19216822" class="md-nav__link">
+    8.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-servidor-secundari-19216823" class="md-nav__link">
+    8.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-propostes-de-millora" class="md-nav__link">
+    8.3 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-fase-7-reconeixement-osint-theharvester" class="md-nav__link">
+    9. Fase 7 — Reconeixement OSINT (theHarvester)
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Fase 7 — Reconeixement OSINT (theHarvester)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-resultats" class="md-nav__link">
+    9.1 Resultats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-vulnerabilitats-i-riscos-detectats" class="md-nav__link">
+    9.2 Vulnerabilitats i Riscos Detectats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-propostes-de-millora" class="md-nav__link">
+    9.3 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-inventari-de-vulnerabilitats-detectades" class="md-nav__link">
+    10. Inventari de Vulnerabilitats Detectades
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Inventari de Vulnerabilitats Detectades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-servidor-primari-19216822" class="md-nav__link">
+    10.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-servidor-secundari-19216823" class="md-nav__link">
+    10.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-matriu-de-riscos-consolidada" class="md-nav__link">
+    11. Matriu de Riscos Consolidada
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Matriu de Riscos Consolidada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resum-per-nivell-de-risc" class="md-nav__link">
+    Resum per Nivell de Risc
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-pla-de-remediacio-prioritzat" class="md-nav__link">
+    12. Pla de Remediació Prioritzat
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Pla de Remediació Prioritzat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prioritat-critica-0-48-hores" class="md-nav__link">
+    Prioritat 🔴 CRÍTICA (0-48 hores)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prioritat-alta-1-setmana" class="md-nav__link">
+    Prioritat 🟠 ALTA (1 setmana)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prioritat-mitjana-1-mes" class="md-nav__link">
+    Prioritat 🟡 MITJANA (1 mes)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prioritat-baixa-manteniment-continu" class="md-nav__link">
+    Prioritat 🟢 BAIXA (Manteniment continu)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-conclusions" class="md-nav__link">
+    13. Conclusions
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Conclusions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aspectes-positius" class="md-nav__link">
+    ✅ Aspectes Positius
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aspectes-a-millorar-urgentment" class="md-nav__link">
+    ❌ Aspectes a Millorar Urgentment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classificacio-global-de-risc" class="md-nav__link">
+    Classificació Global de Risc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recomanacio-final" class="md-nav__link">
+    Recomanació Final
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conclusions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conclusions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../referencies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Referències
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LICENSE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Llicència
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    📋 ÍNDEX
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-resum-executiu" class="md-nav__link">
+    1. Resum Executiu
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Resum Executiu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resultats-clau" class="md-nav__link">
+    Resultats clau
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-metodologia-emprada" class="md-nav__link">
+    2. Metodologia Emprada
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fase-1-descobriment-de-xarxa-ping-scan" class="md-nav__link">
+    3. Fase 1 — Descobriment de Xarxa (Ping Scan)
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Fase 1 — Descobriment de Xarxa (Ping Scan)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-objectiu" class="md-nav__link">
+    3.1 Objectiu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-resultats" class="md-nav__link">
+    3.2 Resultats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-vulnerabilitats-i-riscos-detectats" class="md-nav__link">
+    3.3 Vulnerabilitats i Riscos Detectats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-propostes-de-millora" class="md-nav__link">
+    3.4 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-fase-2-escaneig-de-ports" class="md-nav__link">
+    4. Fase 2 — Escaneig de Ports
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Fase 2 — Escaneig de Ports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-servidor-primari-19216822" class="md-nav__link">
+    4.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-servidor-secundari-19216823" class="md-nav__link">
+    4.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-comparativa-de-ports-primari-vs-secundari" class="md-nav__link">
+    4.3 Comparativa de Ports — Primari vs. Secundari
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-vulnerabilitats-i-riscos-detectats" class="md-nav__link">
+    4.4 Vulnerabilitats i Riscos Detectats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-propostes-de-millora" class="md-nav__link">
+    4.5 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-fase-3-deteccio-de-versions-de-serveis" class="md-nav__link">
+    5. Fase 3 — Detecció de Versions de Serveis
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Fase 3 — Detecció de Versions de Serveis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-servidor-primari-19216822" class="md-nav__link">
+    5.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-servidor-secundari-19216823" class="md-nav__link">
+    5.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-vulnerabilitats-i-riscos-detectats" class="md-nav__link">
+    5.3 Vulnerabilitats i Riscos Detectats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-propostes-de-millora" class="md-nav__link">
+    5.4 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-fase-4-analisi-de-vulnerabilitats-nse" class="md-nav__link">
+    6. Fase 4 — Anàlisi de Vulnerabilitats (NSE)
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Fase 4 — Anàlisi de Vulnerabilitats (NSE)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-servidor-primari-19216822" class="md-nav__link">
+    6.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-servidor-secundari-19216823" class="md-nav__link">
+    6.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-propostes-de-millora" class="md-nav__link">
+    6.3 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fase-5-enumeracio-smb-enum4linux" class="md-nav__link">
+    7. Fase 5 — Enumeració SMB (enum4linux)
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Fase 5 — Enumeració SMB (enum4linux)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-servidor-primari-19216822" class="md-nav__link">
+    7.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-servidor-secundari-19216823" class="md-nav__link">
+    7.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-analisi-de-resultats-smb" class="md-nav__link">
+    7.3 Anàlisi de Resultats SMB
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-propostes-de-millora-manteniment" class="md-nav__link">
+    7.4 Propostes de Millora (Manteniment)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-fase-6-auditoria-ssh" class="md-nav__link">
+    8. Fase 6 — Auditoria SSH
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Fase 6 — Auditoria SSH">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-servidor-primari-19216822" class="md-nav__link">
+    8.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-servidor-secundari-19216823" class="md-nav__link">
+    8.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-propostes-de-millora" class="md-nav__link">
+    8.3 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-fase-7-reconeixement-osint-theharvester" class="md-nav__link">
+    9. Fase 7 — Reconeixement OSINT (theHarvester)
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Fase 7 — Reconeixement OSINT (theHarvester)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-resultats" class="md-nav__link">
+    9.1 Resultats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-vulnerabilitats-i-riscos-detectats" class="md-nav__link">
+    9.2 Vulnerabilitats i Riscos Detectats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-propostes-de-millora" class="md-nav__link">
+    9.3 Propostes de Millora
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-inventari-de-vulnerabilitats-detectades" class="md-nav__link">
+    10. Inventari de Vulnerabilitats Detectades
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Inventari de Vulnerabilitats Detectades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-servidor-primari-19216822" class="md-nav__link">
+    10.1 Servidor Primari (192.168.2.2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-servidor-secundari-19216823" class="md-nav__link">
+    10.2 Servidor Secundari (192.168.2.3)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-matriu-de-riscos-consolidada" class="md-nav__link">
+    11. Matriu de Riscos Consolidada
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Matriu de Riscos Consolidada">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resum-per-nivell-de-risc" class="md-nav__link">
+    Resum per Nivell de Risc
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-pla-de-remediacio-prioritzat" class="md-nav__link">
+    12. Pla de Remediació Prioritzat
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Pla de Remediació Prioritzat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prioritat-critica-0-48-hores" class="md-nav__link">
+    Prioritat 🔴 CRÍTICA (0-48 hores)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prioritat-alta-1-setmana" class="md-nav__link">
+    Prioritat 🟠 ALTA (1 setmana)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prioritat-mitjana-1-mes" class="md-nav__link">
+    Prioritat 🟡 MITJANA (1 mes)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prioritat-baixa-manteniment-continu" class="md-nav__link">
+    Prioritat 🟢 BAIXA (Manteniment continu)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-conclusions" class="md-nav__link">
+    13. Conclusions
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Conclusions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aspectes-positius" class="md-nav__link">
+    ✅ Aspectes Positius
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aspectes-a-millorar-urgentment" class="md-nav__link">
+    ❌ Aspectes a Millorar Urgentment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classificacio-global-de-risc" class="md-nav__link">
+    Classificació Global de Risc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recomanacio-final" class="md-nav__link">
+    Recomanació Final
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="informe-dauditoria-de-seguretat-informatica">🔒 INFORME D'AUDITORIA DE SEGURETAT INFORMÀTICA</h1>
+<p><strong>Projecte:</strong> Auditoria de Seguretat — Infraestructura de Servidors<br />
+<strong>Àmbit:</strong> Xarxa interna <code>192.168.2.0/24</code><br />
+<strong>Data d'execució:</strong> 11-13 d'abril de 2026<br />
+<strong>Eina principal:</strong> SEC-AUDIT PRO v3.0 — Advanced Security Suite (Nmap 7.94SVN)<br />
+<strong>Auditor:</strong> [Nom de l'Auditor]<br />
+<strong>Classificació:</strong> CONFIDENCIAL  </p>
+<hr />
+<h2 id="index">📋 ÍNDEX</h2>
+<ol>
+<li><a href="#1-resum-executiu">Resum Executiu</a></li>
+<li><a href="#2-metodologia-emprada">Metodologia Emprada</a></li>
+<li><a href="#3-fase-1--descobriment-de-xarxa-ping-scan">Fase 1 — Descobriment de Xarxa (Ping Scan)</a></li>
+<li><a href="#4-fase-2--escaneig-de-ports">Fase 2 — Escaneig de Ports</a></li>
+<li><a href="#5-fase-3--detecció-de-versions-de-serveis">Fase 3 — Detecció de Versions de Serveis</a></li>
+<li><a href="#6-fase-4--anàlisi-de-vulnerabilitats-nse">Fase 4 — Anàlisi de Vulnerabilitats (NSE)</a></li>
+<li><a href="#7-fase-5--enumeració-smb-enum4linux">Fase 5 — Enumeració SMB (enum4linux)</a></li>
+<li><a href="#8-fase-6--auditoria-ssh">Fase 6 — Auditoria SSH</a></li>
+<li><a href="#9-fase-7--reconeixement-osint-theharvester">Fase 7 — Reconeixement OSINT (theHarvester)</a></li>
+<li><a href="#10-inventari-de-vulnerabilitats-detectades">Inventari de Vulnerabilitats Detectades</a></li>
+<li><a href="#11-matriu-de-riscos-consolidada">Matriu de Riscos Consolidada</a></li>
+<li><a href="#12-pla-de-remediació-prioritzat">Pla de Remediació Prioritzat</a></li>
+<li><a href="#13-conclusions">Conclusions</a></li>
+</ol>
+<hr />
+<h2 id="1-resum-executiu">1. Resum Executiu</h2>
+<p>La present auditoria de seguretat ha estat realitzada sobre la infraestructura de xarxa interna <code>192.168.2.0/24</code>, on s'han identificat <strong>tres hosts actius</strong>: la màquina de l'auditor (<code>192.168.2.4</code>) i dos servidors objectiu:</p>
+<table>
+<thead>
+<tr>
+<th>Rol</th>
+<th>Adreça IP</th>
+<th>Hostname</th>
+<th>MAC Address</th>
+<th>Plataforma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Servidor Primari</strong></td>
+<td><code>192.168.2.2</code></td>
+<td><code>asix2.informatica.com</code> / <code>dam2.informatica.com</code></td>
+<td><code>08:00:27:F0:90:FA</code></td>
+<td>Oracle VirtualBox — Ubuntu Linux</td>
+</tr>
+<tr>
+<td><strong>Servidor Secundari</strong></td>
+<td><code>192.168.2.3</code></td>
+<td>—</td>
+<td><code>08:00:27:00:59:D5</code></td>
+<td>Oracle VirtualBox — Ubuntu Linux</td>
+</tr>
+<tr>
+<td>Màquina Auditor</td>
+<td><code>192.168.2.4</code></td>
+<td>—</td>
+<td><code>08:00:27:00:59:D5</code></td>
+<td>Oracle VirtualBox — Ubuntu Linux</td>
+</tr>
+</tbody>
+</table>
+<h3 id="resultats-clau">Resultats clau</h3>
+<blockquote>
+<p>[!CAUTION]
+S'han identificat <strong>vulnerabilitats crítiques</strong> (CVSS ≥ 9.0) en ambdós servidors, principalment associades al servei <strong>OpenSSH 9.6p1</strong> i al servidor <strong>vsftpd 3.0.5</strong>. Es recomana acció immediata.</p>
+</blockquote>
+<ul>
+<li><strong>Total de CVEs detectades:</strong> 30+ vulnerabilitats úniques</li>
+<li><strong>Vulnerabilitats crítiques (CVSS ≥ 9.0):</strong> 4 (CVE-2025-31651, CVE-2025-55754, CVE-2026-29145, CVE-2025-66614)</li>
+<li><strong>Vulnerabilitats altes (CVSS 7.0-8.9):</strong> 15+</li>
+<li><strong>Serveis exposats sense xifratge:</strong> FTP (port 21/tcp)</li>
+<li><strong>Algoritmes criptogràfics dèbils:</strong> Corbes el·líptiques NIST detectades en SSH (sospitoses de backdoor NSA)</li>
+<li><strong>Serveis DNS exposats:</strong> ISC BIND 9.18.39 accessible externament</li>
+</ul>
+<hr />
+<h2 id="2-metodologia-emprada">2. Metodologia Emprada</h2>
+<p>L'auditoria ha seguit una metodologia sistemàtica basada en les fases estàndard de <em>penetration testing</em> (PTES/OWASP):</p>
+<pre><code class="language-mermaid">graph LR
+    A[&quot;1. Descobriment&lt;br/&gt;Ping Scan&quot;] --&gt; B[&quot;2. Escaneig Ports&lt;br/&gt;Port Scan Fast&quot;]
+    B --&gt; C[&quot;3. Detecció Versions&lt;br/&gt;Version Scan&quot;]
+    C --&gt; D[&quot;4. Vulnerabilitats&lt;br/&gt;Vuln Scan NSE&quot;]
+    D --&gt; E[&quot;5. Enumeració SMB&lt;br/&gt;enum4linux&quot;]
+    E --&gt; F[&quot;6. Auditoria SSH&lt;br/&gt;SSH Audit&quot;]
+    F --&gt; G[&quot;7. OSINT&lt;br/&gt;theHarvester&quot;]
+    G --&gt; H[&quot;8. Anàlisi i&lt;br/&gt;Informe&quot;]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Fase</th>
+<th>Eina</th>
+<th>Tècnica</th>
+<th>Objectiu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Descobriment</td>
+<td>Nmap Ping Scan</td>
+<td>ICMP/ARP Sweep</td>
+<td>Identificar hosts actius a la xarxa</td>
+</tr>
+<tr>
+<td>Escaneig de Ports</td>
+<td>Nmap <code>-sS -sU</code></td>
+<td>SYN Scan + UDP Scan</td>
+<td>Descobrir ports oberts TCP/UDP</td>
+</tr>
+<tr>
+<td>Versions de Serveis</td>
+<td>Nmap <code>-sV</code></td>
+<td>Service Version Detection</td>
+<td>Identificar programari i versions</td>
+</tr>
+<tr>
+<td>Vulnerabilitats</td>
+<td>Nmap NSE <code>--script vuln</code></td>
+<td>Script Engine (vulners)</td>
+<td>Detectar CVEs conegudes</td>
+</tr>
+<tr>
+<td>Enumeració SMB</td>
+<td>enum4linux v0.9.1</td>
+<td>NetBIOS/SMB Enum</td>
+<td>Enumerar recursos compartits</td>
+</tr>
+<tr>
+<td>Auditoria SSH</td>
+<td>ssh-audit</td>
+<td>Anàlisi criptogràfica</td>
+<td>Avaluar configuració SSH</td>
+</tr>
+<tr>
+<td>OSINT</td>
+<td>theHarvester</td>
+<td>Intel·ligència de fonts obertes</td>
+<td>Recopilar informació pública</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-fase-1-descobriment-de-xarxa-ping-scan">3. Fase 1 — Descobriment de Xarxa (Ping Scan)</h2>
+<h3 id="31-objectiu">3.1 Objectiu</h3>
+<p>Identificar tots els hosts actius dins del segment de xarxa <code>192.168.2.0/24</code> mitjançant un escaneig ARP/ICMP.</p>
+<h3 id="32-resultats">3.2 Resultats</h3>
+<p><img alt="Resultat del Ping Scan — Descobriment de xarxa 192.168.2.0/24" src="../auditoria/Captura%20de%20pantalla%202026-04-11%20210111.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">nmap -sn 192.168.2.0/24
+</code></pre>
+<p><strong>Hosts detectats:</strong> 3 hosts actius en 1.89 segons</p>
+<table>
+<thead>
+<tr>
+<th>Host</th>
+<th>Adreça MAC</th>
+<th>Fabricant NIC</th>
+<th>Estat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>192.168.2.2</code></td>
+<td><code>08:00:27:F0:90:FA</code></td>
+<td>Oracle VirtualBox virtual NIC</td>
+<td>✅ UP (0.00036s latency)</td>
+</tr>
+<tr>
+<td><code>192.168.2.3</code></td>
+<td><code>08:00:27:00:59:D5</code></td>
+<td>Oracle VirtualBox virtual NIC</td>
+<td>✅ UP (0.00030s latency)</td>
+</tr>
+<tr>
+<td><code>192.168.2.4</code></td>
+<td><code>08:00:27:00:59:D5</code></td>
+<td>Oracle VirtualBox virtual NIC</td>
+<td>✅ UP (host local)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!NOTE]
+Les adreces MAC confirmen que tots els hosts s'executen sobre <strong>Oracle VirtualBox</strong>, indicant un entorn virtualitzat. Les baixes latències (&lt; 1ms) són consistents amb un segment de xarxa local compartit.</p>
+</blockquote>
+<h3 id="33-vulnerabilitats-i-riscos-detectats">3.3 Vulnerabilitats i Riscos Detectats</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Risc</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NET-01</td>
+<td>🟡 Mitjà</td>
+<td>L'escaneig ARP respon sense restriccions, permetent el descobriment complet de la topologia de xarxa</td>
+</tr>
+<tr>
+<td>NET-02</td>
+<td>🟡 Mitjà</td>
+<td>Dues màquines comparteixen la mateixa adreça MAC (<code>08:00:27:00:59:D5</code>), possiblement per clonació de VM</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-propostes-de-millora">3.4 Propostes de Millora</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acció Correctiva</th>
+<th>Prioritat</th>
+<th>Detalls Tècnics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NET-01</td>
+<td>Implementar segmentació de xarxa amb VLANs</td>
+<td>🔴 Alta</td>
+<td>Configurar VLANs (802.1Q) per aïllar els servidors en segments dedicats. Aplicar ACLs al switch/router per restringir la comunicació entre segments.</td>
+</tr>
+<tr>
+<td>NET-01</td>
+<td>Activar protecció ARP</td>
+<td>🟡 Mitjana</td>
+<td>Habilitar <strong>Dynamic ARP Inspection (DAI)</strong> al switch per prevenir escaneigs ARP no autoritzats i atacs ARP spoofing. Configurar <code>arpwatch</code> per monitorar canvis d'associació MAC-IP.</td>
+</tr>
+<tr>
+<td>NET-02</td>
+<td>Regenerar adreces MAC úniques</td>
+<td>🟢 Baixa</td>
+<td>Assignar adreces MAC úniques a cada VM per evitar conflictes de xarxa: <code>VBoxManage modifyvm "VM_NAME" --macaddress1 auto</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-fase-2-escaneig-de-ports">4. Fase 2 — Escaneig de Ports</h2>
+<h3 id="41-servidor-primari-19216822">4.1 Servidor Primari (<code>192.168.2.2</code>)</h3>
+<p><img alt="Escaneig de ports del servidor primari 192.168.2.2" src="../auditoria/port_scan_primari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">nmap -sS -sU -p- 192.168.2.2
+</code></pre>
+<p><strong>Resultats:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Protocol</th>
+<th>Estat</th>
+<th>Servei</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21/tcp</td>
+<td>TCP</td>
+<td>🟢 OPEN</td>
+<td>FTP</td>
+</tr>
+<tr>
+<td>22/tcp</td>
+<td>TCP</td>
+<td>🟢 OPEN</td>
+<td>SSH</td>
+</tr>
+<tr>
+<td>53/tcp</td>
+<td>TCP</td>
+<td>🟢 OPEN</td>
+<td>DNS (domain)</td>
+</tr>
+<tr>
+<td>8080/tcp</td>
+<td>TCP</td>
+<td>🟢 OPEN</td>
+<td>HTTP-Proxy</td>
+</tr>
+<tr>
+<td>53/udp</td>
+<td>UDP</td>
+<td>🟢 OPEN</td>
+<td>DNS (domain)</td>
+</tr>
+<tr>
+<td>67/udp</td>
+<td>UDP</td>
+<td>🟠 OPEN|FILTERED</td>
+<td>DHCP Server</td>
+</tr>
+<tr>
+<td>5353/udp</td>
+<td>UDP</td>
+<td>🟠 OPEN|FILTERED</td>
+<td>Zeroconf (mDNS)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resum:</strong> 5 ports oberts, 0 tancats explícitament, 0 filtrats.</p>
+<h3 id="42-servidor-secundari-19216823">4.2 Servidor Secundari (<code>192.168.2.3</code>)</h3>
+<p><img alt="Escaneig de ports del servidor secundari 192.168.2.3" src="../auditoria/port_scan_secundari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">nmap -sS -sU -p- 192.168.2.3
+</code></pre>
+<p><strong>Resultats:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Protocol</th>
+<th>Estat</th>
+<th>Servei</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21/tcp</td>
+<td>TCP</td>
+<td>🟢 OPEN</td>
+<td>FTP</td>
+</tr>
+<tr>
+<td>22/tcp</td>
+<td>TCP</td>
+<td>🟢 OPEN</td>
+<td>SSH</td>
+</tr>
+<tr>
+<td>53/tcp</td>
+<td>TCP</td>
+<td>🟢 OPEN</td>
+<td>DNS (domain)</td>
+</tr>
+<tr>
+<td>53/udp</td>
+<td>UDP</td>
+<td>🟢 OPEN</td>
+<td>DNS (domain)</td>
+</tr>
+<tr>
+<td>67/udp</td>
+<td>UDP</td>
+<td>🟠 OPEN|FILTERED</td>
+<td>DHCP Server</td>
+</tr>
+<tr>
+<td>5353/udp</td>
+<td>UDP</td>
+<td>🟠 OPEN|FILTERED</td>
+<td>Zeroconf (mDNS)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resum:</strong> 4 ports oberts, 0 tancats explícitament, 0 filtrats.</p>
+<blockquote>
+<p>[!WARNING]
+El servidor primari exposa un port addicional <strong>8080/tcp (HTTP-Proxy)</strong> que no està present al servidor secundari. Això augmenta significativament la superfície d'atac del servidor primari, ja que Apache Tomcat és un objectiu habitual d'exploits.</p>
+</blockquote>
+<h3 id="43-comparativa-de-ports-primari-vs-secundari">4.3 Comparativa de Ports — Primari vs. Secundari</h3>
+<table>
+<thead>
+<tr>
+<th>Port/Servei</th>
+<th style="text-align: center;">Primari (192.168.2.2)</th>
+<th style="text-align: center;">Secundari (192.168.2.3)</th>
+<th>Observació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21/tcp FTP</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>Ambdós exposen FTP — risc alt</td>
+</tr>
+<tr>
+<td>22/tcp SSH</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>Accés remot en ambdós</td>
+</tr>
+<tr>
+<td>53/tcp DNS</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>Servei DNS actiu</td>
+</tr>
+<tr>
+<td>8080/tcp HTTP</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td>Només al primari (Tomcat)</td>
+</tr>
+<tr>
+<td>53/udp DNS</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td>DNS UDP en ambdós</td>
+</tr>
+<tr>
+<td>67/udp DHCP</td>
+<td style="text-align: center;">🟠</td>
+<td style="text-align: center;">🟠</td>
+<td>Possiblement actiu</td>
+</tr>
+<tr>
+<td>5353/udp mDNS</td>
+<td style="text-align: center;">🟠</td>
+<td style="text-align: center;">🟠</td>
+<td>Zeroconf exposat</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-vulnerabilitats-i-riscos-detectats">4.4 Vulnerabilitats i Riscos Detectats</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Risc</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PORT-01</td>
+<td>🔴 Crític</td>
+<td>Port <strong>21/tcp (FTP)</strong> obert — protocol inherentment insegur, credencials en text pla</td>
+</tr>
+<tr>
+<td>PORT-02</td>
+<td>🔴 Alt</td>
+<td>Port <strong>8080/tcp (HTTP-Proxy/Tomcat)</strong> exposat al servidor primari — superfície d'atac web</td>
+</tr>
+<tr>
+<td>PORT-03</td>
+<td>🟡 Mitjà</td>
+<td>Port <strong>53/tcp i 53/udp (DNS)</strong> accessibles — possible abús per DNS amplification</td>
+</tr>
+<tr>
+<td>PORT-04</td>
+<td>🟡 Mitjà</td>
+<td>Port <strong>5353/udp (mDNS)</strong> exposat — fuita d'informació sobre serveis locals</td>
+</tr>
+<tr>
+<td>PORT-05</td>
+<td>🟡 Mitjà</td>
+<td>Port <strong>67/udp (DHCP)</strong> possiblement actiu — risc de DHCP rogue</td>
+</tr>
+</tbody>
+</table>
+<h3 id="45-propostes-de-millora">4.5 Propostes de Millora</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acció Correctiva</th>
+<th>Prioritat</th>
+<th>Detalls Tècnics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PORT-01</td>
+<td><strong>Desactivar FTP i migrar a SFTP/SCP</strong></td>
+<td>🔴 Crítica</td>
+<td>Desactivar vsftpd: <code>sudo systemctl disable --now vsftpd</code>. Configurar el subsistema SFTP d'OpenSSH a <code>/etc/ssh/sshd_config</code>: <code>Subsystem sftp internal-sftp</code>. Crear jaula chroot per als usuaris FTP.</td>
+</tr>
+<tr>
+<td>PORT-02</td>
+<td><strong>Restringir accés a Tomcat via firewall</strong></td>
+<td>🔴 Alta</td>
+<td>Configurar <code>iptables</code> o <code>ufw</code> per permetre accés al port 8080 només des d'IPs autoritzades: <code>sudo ufw allow from 192.168.2.0/24 to any port 8080</code>. Canviar el port per defecte i desactivar la consola d'administració.</td>
+</tr>
+<tr>
+<td>PORT-03</td>
+<td><strong>Restringir servei DNS</strong></td>
+<td>🟡 Mitjana</td>
+<td>Configurar BIND per acceptar consultes només des de la xarxa interna: afegir <code>allow-query { 192.168.2.0/24; localhost; };</code> a <code>named.conf.options</code>. Desactivar recursió si no és necessària: <code>recursion no;</code>.</td>
+</tr>
+<tr>
+<td>PORT-04</td>
+<td><strong>Desactivar mDNS/Avahi</strong></td>
+<td>🟡 Mitjana</td>
+<td><code>sudo systemctl disable --now avahi-daemon</code>. Bloquejar port 5353/udp al firewall: <code>sudo ufw deny 5353/udp</code>.</td>
+</tr>
+<tr>
+<td>PORT-05</td>
+<td><strong>Securitzar DHCP</strong></td>
+<td>🟡 Mitjana</td>
+<td>Implementar <strong>DHCP Snooping</strong> al switch. Configurar llistes de control d'accés per evitar servidors DHCP no autoritzats.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-fase-3-deteccio-de-versions-de-serveis">5. Fase 3 — Detecció de Versions de Serveis</h2>
+<h3 id="51-servidor-primari-19216822">5.1 Servidor Primari (<code>192.168.2.2</code>)</h3>
+<p><img alt="Detecció de versions de serveis al servidor primari" src="../auditoria/version_scan_primari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">nmap -sV -sC 192.168.2.2
+</code></pre>
+<p><strong>Serveis identificats:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Servei</th>
+<th>Versió Completa</th>
+<th>Observacions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21/tcp</td>
+<td>FTP</td>
+<td><strong>vsftpd 3.0.5</strong></td>
+<td>Servidor FTP — sense TLS detectat</td>
+</tr>
+<tr>
+<td>22/tcp</td>
+<td>SSH</td>
+<td><strong>OpenSSH 9.6p1 Ubuntu 3ubuntu13.15</strong> (protocol 2.0)</td>
+<td>Ubuntu Linux</td>
+</tr>
+<tr>
+<td>53/tcp</td>
+<td>DNS</td>
+<td><strong>ISC BIND 9.18.39-0ubuntu0.24.04.3</strong></td>
+<td>Servidor DNS autoritatiu</td>
+</tr>
+<tr>
+<td>8080/tcp</td>
+<td>HTTP</td>
+<td><strong>Apache Tomcat 10.1.36</strong></td>
+<td>Servidor d'aplicacions Java</td>
+</tr>
+<tr>
+<td>53/udp</td>
+<td>DNS</td>
+<td><strong>ISC BIND 9.18.39-0ubuntu0.24.04.3</strong></td>
+<td>DNS UDP (mateixa instància)</td>
+</tr>
+<tr>
+<td>67/udp</td>
+<td>DHCP</td>
+<td>open|filtered</td>
+<td>No es pot determinar versió</td>
+</tr>
+<tr>
+<td>5353/udp</td>
+<td>Zeroconf</td>
+<td>open|filtered</td>
+<td>mDNS/Avahi</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sistema operatiu detectat:</strong> Unix, Linux (CPE: <code>cpe:/o:linux:linux_kernel</code>)</p>
+<h3 id="52-servidor-secundari-19216823">5.2 Servidor Secundari (<code>192.168.2.3</code>)</h3>
+<p><img alt="Detecció de versions de serveis al servidor secundari" src="../auditoria/versiion_scan_secundari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">nmap -sV -sC 192.168.2.3
+</code></pre>
+<p><strong>Serveis identificats:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Servei</th>
+<th>Versió Completa</th>
+<th>Observacions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21/tcp</td>
+<td>FTP</td>
+<td><strong>vsftpd 3.0.5</strong></td>
+<td>Servidor FTP — sense TLS detectat</td>
+</tr>
+<tr>
+<td>22/tcp</td>
+<td>SSH</td>
+<td><strong>OpenSSH 9.6p1 Ubuntu 3ubuntu13.15</strong> (protocol 2.0)</td>
+<td>Mateixa versió que el primari</td>
+</tr>
+<tr>
+<td>53/tcp</td>
+<td>DNS</td>
+<td><strong>ISC BIND 9.18.39-0ubuntu0.24.04.3</strong></td>
+<td>Servidor DNS</td>
+</tr>
+<tr>
+<td>53/udp</td>
+<td>DNS</td>
+<td><strong>ISC BIND 9.18.39-0ubuntu0.24.04.3</strong></td>
+<td>DNS UDP</td>
+</tr>
+<tr>
+<td>67/udp</td>
+<td>DHCP</td>
+<td>open|filtered</td>
+<td>No es pot determinar versió</td>
+</tr>
+<tr>
+<td>5353/udp</td>
+<td>Zeroconf</td>
+<td>open|filtered</td>
+<td>mDNS/Avahi</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sistema operatiu detectat:</strong> Unix, Linux (CPE: <code>cpe:/o:linux:linux_kernel</code>)</p>
+<blockquote>
+<p>[!IMPORTANT]
+Ambdós servidors executen <strong>versions idèntiques</strong> de tots els serveis compartits (vsftpd 3.0.5, OpenSSH 9.6p1, BIND 9.18.39), cosa que suggereix que van ser desplegats des de la mateixa imatge base o plantilla. Això implica que <strong>les vulnerabilitats afecten ambdós servidors simultàniament</strong>.</p>
+</blockquote>
+<h3 id="53-vulnerabilitats-i-riscos-detectats">5.3 Vulnerabilitats i Riscos Detectats</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Risc</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VER-01</td>
+<td>🔴 Crític</td>
+<td><strong>OpenSSH 9.6p1</strong> — versió amb múltiples CVEs conegudes de severitat crítica i alta</td>
+</tr>
+<tr>
+<td>VER-02</td>
+<td>🔴 Alt</td>
+<td><strong>vsftpd 3.0.5</strong> — protocol FTP sense xifratge TLS, transmissió de credencials en text pla</td>
+</tr>
+<tr>
+<td>VER-03</td>
+<td>🟡 Mitjà</td>
+<td><strong>Apache Tomcat 10.1.36</strong> — versió potencialment desactualitzada amb vulnerabilitats conegudes</td>
+</tr>
+<tr>
+<td>VER-04</td>
+<td>🟡 Mitjà</td>
+<td><strong>ISC BIND 9.18.39</strong> — exposició de versió que facilita fingerprinting per a atacants</td>
+</tr>
+<tr>
+<td>VER-05</td>
+<td>🟢 Baix</td>
+<td>Divulgació de versions exactes de tots els serveis — facilita la planificació d'atacs dirigits</td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-propostes-de-millora">5.4 Propostes de Millora</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acció Correctiva</th>
+<th>Prioritat</th>
+<th>Detalls Tècnics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VER-01</td>
+<td><strong>Actualitzar OpenSSH a l'última versió estable</strong></td>
+<td>🔴 Crítica</td>
+<td><code>sudo apt update &amp;&amp; sudo apt install --only-upgrade openssh-server</code>. Verificar amb <code>ssh -V</code>. Objectiu: OpenSSH ≥ 9.9p1. Reiniciar servei: <code>sudo systemctl restart sshd</code>.</td>
+</tr>
+<tr>
+<td>VER-02</td>
+<td><strong>Habilitar TLS obligatori a vsftpd o migrar a SFTP</strong></td>
+<td>🔴 Alta</td>
+<td>Si s'ha de mantenir FTP, configurar a <code>/etc/vsftpd.conf</code>: <code>ssl_enable=YES</code>, <code>force_local_logins_ssl=YES</code>, <code>force_local_data_ssl=YES</code>. Generar certificat: <code>sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.pem</code>.</td>
+</tr>
+<tr>
+<td>VER-03</td>
+<td><strong>Actualitzar Apache Tomcat</strong></td>
+<td>🟡 Mitjana</td>
+<td>Descarregar l'última versió estable de Tomcat 10.x des d'<code>https://tomcat.apache.org</code>. Aplicar hardening: desactivar exemples, manager app, i la pàgina per defecte. Configurar headers de seguretat.</td>
+</tr>
+<tr>
+<td>VER-04</td>
+<td><strong>Ocultar versió de BIND</strong></td>
+<td>🟡 Mitjana</td>
+<td>Afegir a <code>named.conf.options</code>: <code>version "not disclosed";</code>. També afegir: <code>hostname none;</code> i <code>server-id none;</code>.</td>
+</tr>
+<tr>
+<td>VER-05</td>
+<td><strong>Ocultar banners de serveis</strong></td>
+<td>🟢 Baixa</td>
+<td>OpenSSH: Afegir <code>DebianBanner no</code> a <code>/etc/ssh/sshd_config</code>. vsftpd: <code>ftpd_banner=Welcome</code> a <code>/etc/vsftpd.conf</code>. Tomcat: Modificar <code>server.xml</code> per canviar l'atribut <code>server</code> del connector.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-fase-4-analisi-de-vulnerabilitats-nse">6. Fase 4 — Anàlisi de Vulnerabilitats (NSE)</h2>
+<h3 id="61-servidor-primari-19216822">6.1 Servidor Primari (<code>192.168.2.2</code>)</h3>
+<p><img alt="Escaneig de vulnerabilitats NSE al servidor primari" src="../auditoria/vuln_primari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">nmap --script vuln -sV 192.168.2.2
+</code></pre>
+<p><strong>Hostname resolt:</strong> <code>dam2.informatica.com</code></p>
+<p><strong>Resultats Pre-scan:</strong>
+- <strong>broadcast-avahi-dos:</strong> Host descobert a <code>224.0.0.251</code>
+  - ⚠️ <strong>CVE-2011-1002</strong>: After NULL UDP avahi packet DoS — <strong>Hosts are all up (not vulnerable)</strong></p>
+<p><strong>Vulnerabilitats del servei OpenSSH 9.6p1 (port 22/tcp):</strong></p>
+<p>Scripts <code>vulners</code> van detectar múltiples exploits disponibles públicament:</p>
+<table>
+<thead>
+<tr>
+<th>CVE</th>
+<th>CVSS</th>
+<th>Tipus</th>
+<th>Exploit Públic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PACKETSTORM:179290</td>
+<td><strong>10.0</strong></td>
+<td>Exploit remot</td>
+<td>✅ <em>EXPLOIT</em></td>
+</tr>
+<tr>
+<td>1EEC8894-D2F7-547C-827C-915BE866875C</td>
+<td><strong>10.0</strong></td>
+<td>Exploit remot</td>
+<td>✅ <em>EXPLOIT</em></td>
+</tr>
+<tr>
+<td>09B905C6-CD97-54E6-AD97-B0DD1AC4771B</td>
+<td><strong>10.0</strong></td>
+<td>Exploit remot</td>
+<td>✅ <em>EXPLOIT</em></td>
+</tr>
+<tr>
+<td>33D623F7-98E0-5F75-80FA-81AA666D1340</td>
+<td><strong>9.8</strong></td>
+<td>Exploit remot</td>
+<td>✅ <em>EXPLOIT</em></td>
+</tr>
+<tr>
+<td>F8981437-1287-5B69-93F1-657DFB1DCE59</td>
+<td><strong>9.3</strong></td>
+<td>Exploit remot</td>
+<td>✅ <em>EXPLOIT</em></td>
+</tr>
+<tr>
+<td>CB2926E1-2355-5C82-A42A-D4F72F114F9B</td>
+<td><strong>9.3</strong></td>
+<td>Exploit remot</td>
+<td>✅ <em>EXPLOIT</em></td>
+</tr>
+<tr>
+<td>B6C4923E-8565-5D3E-8E68-8D182C3DAD5C</td>
+<td><strong>9.3</strong></td>
+<td>Exploit remot</td>
+<td>✅ <em>EXPLOIT</em></td>
+</tr>
+<tr>
+<td>8DEE261C-33D4-5057-BA46-E4293B705BAE</td>
+<td><strong>9.3</strong></td>
+<td>Exploit remot</td>
+<td>✅ <em>EXPLOIT</em></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!CAUTION]
+<strong>8 exploits públics</strong> amb puntuació CVSS entre 9.3 i 10.0 han estat identificats per al servei OpenSSH 9.6p1. Això significa que <strong>un atacant pot comprometre completament el servidor</strong> utilitzant eines disponibles lliurement a Internet (PacketStorm, GitHub).</p>
+</blockquote>
+<h3 id="62-servidor-secundari-19216823">6.2 Servidor Secundari (<code>192.168.2.3</code>)</h3>
+<p><img alt="Escaneig de vulnerabilitats NSE al servidor secundari" src="../auditoria/vuln_secundari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">nmap --script vuln -sV 192.168.2.3
+</code></pre>
+<p><strong>Resultats Pre-scan:</strong>
+- <strong>broadcast-avahi-dos:</strong> Host descobert a <code>224.0.0.251</code>
+  - ⚠️ <strong>CVE-2011-1002</strong>: After NULL UDP avahi packet DoS — <strong>Hosts are all up (not vulnerable)</strong></p>
+<p><strong>Vulnerabilitats del servei OpenSSH 9.6p1 (port 22/tcp):</strong></p>
+<p>Els resultats són <strong>idèntics</strong> als del servidor primari, amb els mateixos 8 exploits públics detectats amb puntuacions CVSS de 9.3 a 10.0.</p>
+<h3 id="63-propostes-de-millora">6.3 Propostes de Millora</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acció Correctiva</th>
+<th>Prioritat</th>
+<th>Detalls Tècnics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VULN-01</td>
+<td><strong>Actualitzar OpenSSH immediatament</strong></td>
+<td>🔴 Crítica</td>
+<td>Existeixen exploits actius. Actualitzar a la versió més recent: <code>sudo apt update &amp;&amp; sudo apt upgrade openssh-server -y</code>. Reiniciar: <code>sudo systemctl restart ssh</code>. Verificar: <code>ssh -V</code>.</td>
+</tr>
+<tr>
+<td>VULN-02</td>
+<td><strong>Implementar autenticació per claus RSA/Ed25519</strong></td>
+<td>🔴 Alta</td>
+<td>Generar claus: <code>ssh-keygen -t ed25519 -a 100</code>. Desactivar autenticació per contrasenya: <code>PasswordAuthentication no</code> a <code>/etc/ssh/sshd_config</code>. Configurar <code>PubkeyAuthentication yes</code>.</td>
+</tr>
+<tr>
+<td>VULN-03</td>
+<td><strong>Implementar Fail2Ban</strong></td>
+<td>🔴 Alta</td>
+<td><code>sudo apt install fail2ban</code>. Configurar a <code>/etc/fail2ban/jail.local</code>: <code>[sshd]</code> amb <code>maxretry = 3</code>, <code>bantime = 3600</code>, <code>findtime = 600</code>. Activar: <code>sudo systemctl enable --now fail2ban</code>.</td>
+</tr>
+<tr>
+<td>VULN-04</td>
+<td><strong>Restringir accés SSH per IP</strong></td>
+<td>🟡 Mitjana</td>
+<td>Configurar al firewall: <code>sudo ufw allow from 192.168.2.0/24 to any port 22</code>. Afegir a <code>/etc/ssh/sshd_config</code>: <code>AllowUsers user@192.168.2.*</code> o <code>Match Address 192.168.2.0/24</code>.</td>
+</tr>
+<tr>
+<td>VULN-05</td>
+<td><strong>Desactivar Avahi/mDNS</strong></td>
+<td>🟡 Mitjana</td>
+<td><code>sudo systemctl disable --now avahi-daemon</code>. Eliminar el paquet: <code>sudo apt purge avahi-daemon</code>.</td>
+</tr>
+<tr>
+<td>VULN-06</td>
+<td><strong>Implementar IDS/IPS</strong></td>
+<td>🟡 Mitjana</td>
+<td>Instal·lar Suricata o Snort per detectar intents d'explotació en temps real. Configurar regles específiques per a CVEs d'OpenSSH.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-fase-5-enumeracio-smb-enum4linux">7. Fase 5 — Enumeració SMB (enum4linux)</h2>
+<h3 id="71-servidor-primari-19216822">7.1 Servidor Primari (<code>192.168.2.2</code>)</h3>
+<p><img alt="Enumeració SMB del servidor primari amb enum4linux" src="../auditoria/smb_primari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">enum4linux -a 192.168.2.2
+</code></pre>
+<p><strong>Resultats obtinguts:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Camp</th>
+<th>Resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td>192.168.2.2</td>
+</tr>
+<tr>
+<td><strong>RID Range</strong></td>
+<td>500-550, 1000-1050</td>
+</tr>
+<tr>
+<td><strong>Username</strong></td>
+<td><em>(buit)</em></td>
+</tr>
+<tr>
+<td><strong>Password</strong></td>
+<td><em>(buit)</em></td>
+</tr>
+<tr>
+<td><strong>Known Usernames</strong></td>
+<td>administrator, guest, krbtgt, domain admins, root, bin, none</td>
+</tr>
+<tr>
+<td><strong>Workgroup/Domain</strong></td>
+<td>❌ Can't find workgroup/domain</td>
+</tr>
+<tr>
+<td><strong>Nbtstat Information</strong></td>
+<td>❌ No reply from 192.168.2.2</td>
+</tr>
+<tr>
+<td><strong>Session Check</strong></td>
+<td>❌ Server doesn't allow session using username '', password ''</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!NOTE]
+El servidor primari <strong>rebutja sessions anònimes SMB</strong> (null sessions), cosa que és una bona pràctica de seguretat. No s'han pogut enumerar recursos compartits, usuaris ni grups.</p>
+</blockquote>
+<h3 id="72-servidor-secundari-19216823">7.2 Servidor Secundari (<code>192.168.2.3</code>)</h3>
+<p><img alt="Enumeració SMB del servidor secundari amb enum4linux" src="../auditoria/smb_secundari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">enum4linux -a 192.168.2.3
+</code></pre>
+<p><strong>Resultats obtinguts:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Camp</th>
+<th>Resultat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target</strong></td>
+<td>192.168.2.3</td>
+</tr>
+<tr>
+<td><strong>RID Range</strong></td>
+<td>500-550, 1000-1050</td>
+</tr>
+<tr>
+<td><strong>Username</strong></td>
+<td><em>(buit)</em></td>
+</tr>
+<tr>
+<td><strong>Password</strong></td>
+<td><em>(buit)</em></td>
+</tr>
+<tr>
+<td><strong>Known Usernames</strong></td>
+<td>administrator, guest, krbtgt, domain admins, root, bin, none</td>
+</tr>
+<tr>
+<td><strong>Workgroup/Domain</strong></td>
+<td>❌ Can't find workgroup/domain</td>
+</tr>
+<tr>
+<td><strong>Nbtstat Information</strong></td>
+<td>❌ No reply from 192.168.2.3</td>
+</tr>
+<tr>
+<td><strong>Session Check</strong></td>
+<td>❌ Server doesn't allow session using username '', password ''</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73-analisi-de-resultats-smb">7.3 Anàlisi de Resultats SMB</h3>
+<table>
+<thead>
+<tr>
+<th>Aspecte</th>
+<th style="text-align: center;">Primari</th>
+<th style="text-align: center;">Secundari</th>
+<th>Valoració</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Null Sessions</td>
+<td style="text-align: center;">❌ Rebutjades</td>
+<td style="text-align: center;">❌ Rebutjades</td>
+<td>✅ Bona configuració</td>
+</tr>
+<tr>
+<td>NetBIOS Resposta</td>
+<td style="text-align: center;">❌ Sense resposta</td>
+<td style="text-align: center;">❌ Sense resposta</td>
+<td>✅ Servei no exposat</td>
+</tr>
+<tr>
+<td>Workgroup visible</td>
+<td style="text-align: center;">❌ No trobat</td>
+<td style="text-align: center;">❌ No trobat</td>
+<td>✅ Informació oculta</td>
+</tr>
+<tr>
+<td>Enumeració d'usuaris</td>
+<td style="text-align: center;">❌ Fallida</td>
+<td style="text-align: center;">❌ Fallida</td>
+<td>✅ Protegit</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!TIP]
+Els resultats d'enumeració SMB indiquen que <strong>ambdós servidors tenen una configuració correcta de SMB</strong>: les sessions anònimes estan desactivades i no es filtra informació sensible a través de NetBIOS. Això demostra una bona pràctica de hardening en aquest servei.</p>
+</blockquote>
+<h3 id="74-propostes-de-millora-manteniment">7.4 Propostes de Millora (Manteniment)</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acció Correctiva</th>
+<th>Prioritat</th>
+<th>Detalls Tècnics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SMB-01</td>
+<td><strong>Verificar que SMB no és necessari i desactivar-lo</strong></td>
+<td>🟢 Baixa</td>
+<td>Si SMB no s'utilitza, desactivar completament: <code>sudo systemctl disable --now smbd nmbd</code>. Bloquejar ports 139/tcp i 445/tcp al firewall.</td>
+</tr>
+<tr>
+<td>SMB-02</td>
+<td><strong>Mantenir la configuració actual</strong></td>
+<td>🟢 Baixa</td>
+<td>La denegació de null sessions és correcta. Documentar la configuració per assegurar que no es modifiqui accidentalment en futures actualitzacions.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-fase-6-auditoria-ssh">8. Fase 6 — Auditoria SSH</h2>
+<h3 id="81-servidor-primari-19216822">8.1 Servidor Primari (<code>192.168.2.2</code>)</h3>
+<p><img alt="Auditoria SSH del servidor primari" src="../auditoria/ssh_primari.png" /></p>
+<p><strong>Comanda executada:</strong></p>
+<pre><code class="language-bash">ssh-audit 192.168.2.2
+</code></pre>
+<p><strong>Informació general:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Camp</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Banner</strong></td>
+<td><code>SSH-2.0-OpenSSH_9.6p1 Ubuntu-3ubuntu13.15</code></td>
+</tr>
+<tr>
+<td><strong>Software</strong></td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td><strong>Compatibilitat</strong></td>
+<td>OpenSSH 8.5+, Dropbear SSH 2018.76+</td>
+</tr>
+<tr>
+<td><strong>Compressió</strong></td>
+<td>Activada (<code>zlib@openssh.com</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Algoritmes d'Intercanvi de Claus (KEX):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Algoritme</th>
+<th>Estat</th>
+<th>Observació</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sntrup761x25519-sha512@openssh.com</code></td>
+<td>✅ INFO</td>
+<td>Disponible des d'OpenSSH 8.5 — Post-quàntic</td>
+</tr>
+<tr>
+<td><code>curve25519-sha256</code></td>
+<td>✅ INFO</td>
+<td>Disponible des d'OpenSSH 7.4 — Segur</td>
+</tr>
+<tr>
+<td><code>curve25519-sha256@libssh.org</code></td>
+<td>✅ INFO</td>
+<td>Clau per defecte des d'OpenSSH 6.4 — Segur</td>
+</tr>
+<tr>
+<td><code>ecdh-sha2-nistp256</code></td>
+<td>❌ <strong>FAIL</strong></td>
+<td>⚠️ <strong>Corba el·líptica sospitosa de backdoor NSA</strong></td>
+</tr>
+<tr>
+<td><code>ecdh-sha2-nistp384</code></td>
+<td>❌ <strong>FAIL</strong></td>
+<td>⚠️ <strong>Corba el·líptica sospitosa de backdoor NSA</strong></td>
+</tr>
+<tr>
+<td><code>ecdh-sha2-nistp521</code></td>
+<td>❌ <strong>FAIL</strong></td>
+<td>⚠️ <strong>Corba el·líptica sospitosa de backdoor NSA</strong></td>
+</tr>
+<tr>
+<td><code>diffie-hellman-group-exchange-sha256</code> (3072-bit)</td>
+<td>✅ INFO</td>
+<td>Disponible des d'OpenSSH 4.4 — Segur</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!CAUTION]
+<strong>3 algoritmes d'intercanvi de claus ECDH NIST</strong> (<code>nistp256</code>, <code>nistp384</code>, <code>nistp521</code>) estan marcats com a <strong>FAIL</strong> perquè utilitzen corbes el·líptiques sospitoses d'haver estat manipulades per la <strong>U.S. National Security Agency (NSA)</strong>. Aquests algoritmes podrien permetre la desxifració del trànsit SSH per part d'agències governamentals.</p>
+</blockquote>
+<h3 id="82-servidor-secundari-19216823">8.2 Servidor Secundari (<code>192.168.2.3</code>)</h3>
+<p><img alt="Auditoria SSH del servidor secundari" src="../auditoria/ssh_secundari.png" /></p>
+<p><strong>Resultats idèntics</strong> als del servidor primari. Mateixos algoritmes disponibles i mateixos <code>FAIL</code> en les corbes NIST.</p>
+<h3 id="83-propostes-de-millora">8.3 Propostes de Millora</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acció Correctiva</th>
+<th>Prioritat</th>
+<th>Detalls Tècnics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH-01</td>
+<td><strong>Desactivar corbes el·líptiques NIST</strong></td>
+<td>🔴 Alta</td>
+<td>Editar <code>/etc/ssh/sshd_config</code> i afegir: <code>KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256</code>. Això elimina els algoritmes ECDH NIST compresos.</td>
+</tr>
+<tr>
+<td>SSH-02</td>
+<td><strong>Configurar algoritmes de xifrat segurs</strong></td>
+<td>🔴 Alta</td>
+<td>Afegir a <code>/etc/ssh/sshd_config</code>: <code>Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com</code>. Eliminar xifrats CBC i arcfour.</td>
+</tr>
+<tr>
+<td>SSH-03</td>
+<td><strong>Configurar MACs segurs</strong></td>
+<td>🟡 Mitjana</td>
+<td>Afegir: <code>MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com</code>. Eliminar MACs basats en SHA-1 i MD5.</td>
+</tr>
+<tr>
+<td>SSH-04</td>
+<td><strong>Desactivar compressió SSH</strong></td>
+<td>🟡 Mitjana</td>
+<td>Afegir <code>Compression no</code> a <code>/etc/ssh/sshd_config</code>. La compressió pot ser explotada amb atacs de tipus CRIME/BREACH.</td>
+</tr>
+<tr>
+<td>SSH-05</td>
+<td><strong>Configurar hardening SSH complet</strong></td>
+<td>🔴 Alta</td>
+<td>Aplicar les següents directives a <code>/etc/ssh/sshd_config</code>: <code>PermitRootLogin no</code>, <code>MaxAuthTries 3</code>, <code>LoginGraceTime 30</code>, <code>ClientAliveInterval 300</code>, <code>ClientAliveCountMax 2</code>, <code>X11Forwarding no</code>, <code>AllowTcpForwarding no</code>.</td>
+</tr>
+<tr>
+<td>SSH-06</td>
+<td><strong>Generar claus de host segures</strong></td>
+<td>🟡 Mitjana</td>
+<td>Regenerar claus de host amb algoritmes moderns: <code>sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""</code>. Eliminar claus DSA i ECDSA: <code>sudo rm /etc/ssh/ssh_host_dsa_key* /etc/ssh/ssh_host_ecdsa_key*</code>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-fase-7-reconeixement-osint-theharvester">9. Fase 7 — Reconeixement OSINT (theHarvester)</h2>
+<h3 id="91-resultats">9.1 Resultats</h3>
+<p><img alt="Reconeixement OSINT amb theHarvester sobre informatica.com" src="../auditoria/theharvester.png" /></p>
+<p><strong>Objectiu:</strong> <code>informatica.com</code> (domini associat als servidors)<br />
+<strong>Font de dades:</strong> DuckDuckGo</p>
+<p><strong>Correus electrònics trobats:</strong> 2</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Correu Electrònic</th>
+<th>Font</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>cmartorella@edge-security.com</code></td>
+<td>DuckDuckGo</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>kb_feedback@informatica.com</code></td>
+<td>DuckDuckGo</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Subdominis descoberts:</strong> 18 hosts</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Subdomini</th>
+<th>#</th>
+<th>Subdomini</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>accounts.informatica.com</code></td>
+<td>10</td>
+<td><code>now.informatica.com</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>docs.informatica.com</code></td>
+<td>11</td>
+<td><code>success.informatica.com</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>kb.informatica.com</code></td>
+<td>12</td>
+<td><code>support.informatica.com</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>knowledge.informatica.com</code></td>
+<td>13</td>
+<td><code>training.informatica.com</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>login.informatica.com</code></td>
+<td>14</td>
+<td><code>trust.informatica.com</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>marketplace.informatica.com</code></td>
+<td>15</td>
+<td><code>velocity.informatica.com</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>my.informatica.com</code></td>
+<td>16</td>
+<td><code>video.informatica.com</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>network-dev.informatica.com</code></td>
+<td>17-18</td>
+<td><em>i 8 hosts més</em></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>network.informatica.com</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!NOTE]
+El domini <code>informatica.com</code> pertany a <strong>Informatica LLC</strong>, una empresa real de gestió de dades. Això indica que els servidors auditats utilitzen un domini que coincideix amb un domini públic real, la qual cosa podria generar confusió en un entorn de producció.</p>
+</blockquote>
+<h3 id="92-vulnerabilitats-i-riscos-detectats">9.2 Vulnerabilitats i Riscos Detectats</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Risc</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OSINT-01</td>
+<td>🟡 Mitjà</td>
+<td>El domini <code>informatica.com</code> és un domini públic real — possible confusió i riscos legals</td>
+</tr>
+<tr>
+<td>OSINT-02</td>
+<td>🟡 Mitjà</td>
+<td>Correu intern <code>kb_feedback@informatica.com</code> descobert — possible vector per phishing</td>
+</tr>
+<tr>
+<td>OSINT-03</td>
+<td>🟢 Baix</td>
+<td>18 subdominis exposats públicament — mapeig complet de la infraestructura</td>
+</tr>
+</tbody>
+</table>
+<h3 id="93-propostes-de-millora">9.3 Propostes de Millora</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acció Correctiva</th>
+<th>Prioritat</th>
+<th>Detalls Tècnics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OSINT-01</td>
+<td><strong>Utilitzar un domini propi o reservat per a labs</strong></td>
+<td>🟡 Mitjana</td>
+<td>Per a entorns educatius/labs, utilitzar dominis reservats com <code>.local</code>, <code>.lab</code>, <code>.test</code> o dominis registrats propis (ex: <code>escola-lab.cat</code>). Evitar dominis de tercers per prevenir conflictes DNS i problemes legals.</td>
+</tr>
+<tr>
+<td>OSINT-02</td>
+<td><strong>Implementar proteccions anti-phishing</strong></td>
+<td>🟡 Mitjana</td>
+<td>Configurar registres SPF, DKIM i DMARC al DNS per prevenir la suplantació de correu. Implementar formació en conscienciació de seguretat als usuaris.</td>
+</tr>
+<tr>
+<td>OSINT-03</td>
+<td><strong>Minimitzar l'exposició DNS</strong></td>
+<td>🟢 Baixa</td>
+<td>Configurar registres DNS mínims. Desactivar transferències de zona no autoritzades: afegir <code>allow-transfer { none; };</code> a la configuració de BIND.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-inventari-de-vulnerabilitats-detectades">10. Inventari de Vulnerabilitats Detectades</h2>
+<h3 id="101-servidor-primari-19216822">10.1 Servidor Primari (<code>192.168.2.2</code>)</h3>
+<p>Les següents captures mostren l'inventari complet de CVEs detectades al servidor primari:</p>
+<pre><code class="language-carousel">![Vulnerabilitats detectades al servidor primari — Part 1: CVEs inicials](auditoria/vulne_primari.png)
+&lt;!-- slide --&gt;
+![Vulnerabilitats detectades al servidor primari — Part 2: CVEs addicionals](auditoria/vulne_primari2.png)
+&lt;!-- slide --&gt;
+![Vulnerabilitats detectades al servidor primari — Part 3: CVEs crítiques OpenSSH](auditoria/vulne_primari3.png)
+&lt;!-- slide --&gt;
+![Vulnerabilitats detectades al servidor primari — Part 4: CVEs altes](auditoria/vulne_primari4.png)
+&lt;!-- slide --&gt;
+![Vulnerabilitats detectades al servidor primari — Part 5: CVEs addicionals](auditoria/vulne_primari5.png)
+&lt;!-- slide --&gt;
+![Vulnerabilitats detectades al servidor primari — Part 6: CVEs finals](auditoria/vulne_primari6.png)
+</code></pre>
+<p><strong>Taula consolidada de CVEs — Servidor Primari:</strong></p>
+<table>
+<thead>
+<tr>
+<th>CVE</th>
+<th>CVSS</th>
+<th>Severitat</th>
+<th>Servei Afectat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CVE-2025-31651</td>
+<td><strong>9.8</strong></td>
+<td>🔴 Crítica</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-55754</td>
+<td><strong>9.6</strong></td>
+<td>🔴 Crítica</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-29145</td>
+<td><strong>9.1</strong></td>
+<td>🔴 Crítica</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-66614</td>
+<td><strong>9.1</strong></td>
+<td>🔴 Crítica</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-49124</td>
+<td><strong>8.4</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-35414</td>
+<td><strong>8.1</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2024-6387</td>
+<td><strong>8.1</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-35385</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2024-39894</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-34487</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-34483</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-29146</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-24880</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-24734</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-55752</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-53506</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-52520</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-49125</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-48989</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-48988</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-31650</td>
+<td><strong>7.5</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-46701</td>
+<td><strong>7.3</strong></td>
+<td>🟠 Alta</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-26465</td>
+<td><strong>6.8</strong></td>
+<td>🟡 Mitjana</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-34500</td>
+<td><strong>6.5</strong></td>
+<td>🟡 Mitjana</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-24733</td>
+<td><strong>6.5</strong></td>
+<td>🟡 Mitjana</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-55668</td>
+<td><strong>6.5</strong></td>
+<td>🟡 Mitjana</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-25854</td>
+<td><strong>6.1</strong></td>
+<td>🟡 Mitjana</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-26466</td>
+<td><strong>5.9</strong></td>
+<td>🟡 Mitjana</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-61795</td>
+<td><strong>5.3</strong></td>
+<td>🟡 Mitjana</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-32728</td>
+<td><strong>4.3</strong></td>
+<td>🟢 Baixa</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-35386</td>
+<td><strong>3.6</strong></td>
+<td>🟢 Baixa</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-61985</td>
+<td><strong>3.6</strong></td>
+<td>🟢 Baixa</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2025-61984</td>
+<td><strong>3.6</strong></td>
+<td>🟢 Baixa</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-35387</td>
+<td><strong>3.1</strong></td>
+<td>🟢 Baixa</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2026-35388</td>
+<td><strong>2.5</strong></td>
+<td>🟢 Baixa</td>
+<td>OpenSSH 9.6p1</td>
+</tr>
+<tr>
+<td>CVE-2011-1002</td>
+<td>—</td>
+<td>ℹ️ Info</td>
+<td>Avahi (mDNS)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A més, s'han detectat entrades marcades com:</strong>
+- <strong>N/A — HIGH — VULNERABLE</strong> (2 entrades)
+- <strong>N/A — HIGH — State: LIKELY VULNERABLE</strong> (2 entrades)</p>
+<h3 id="102-servidor-secundari-19216823">10.2 Servidor Secundari (<code>192.168.2.3</code>)</h3>
+<p><img alt="Vulnerabilitats detectades al servidor secundari" src="../auditoria/vulne_secundari.png" /></p>
+<p>El servidor secundari presenta <strong>les mateixes vulnerabilitats</strong> que el servidor primari, donat que executen la mateixa versió d'OpenSSH 9.6p1. La taula de CVEs és idèntica a la del servidor primari (vegeu secció 10.1).</p>
+<hr />
+<h2 id="11-matriu-de-riscos-consolidada">11. Matriu de Riscos Consolidada</h2>
+<pre><code class="language-mermaid">quadrantChart
+    title Matriu de Riscos — Probabilitat vs. Impacte
+    x-axis &quot;Baixa Probabilitat&quot; --&gt; &quot;Alta Probabilitat&quot;
+    y-axis &quot;Baix Impacte&quot; --&gt; &quot;Alt Impacte&quot;
+    quadrant-1 &quot;Critic — Accio Immediata&quot;
+    quadrant-2 &quot;Alt — Planificar&quot;
+    quadrant-3 &quot;Baix — Monitorar&quot;
+    quadrant-4 &quot;Mitja — Mitigar&quot;
+    &quot;OpenSSH CVEs&quot;: [0.95, 0.95]
+    &quot;FTP sense TLS&quot;: [0.85, 0.80]
+    &quot;Corbes NIST SSH&quot;: [0.60, 0.85]
+    &quot;Tomcat 8080&quot;: [0.70, 0.75]
+    &quot;DNS Exposat&quot;: [0.50, 0.50]
+    &quot;mDNS Avahi&quot;: [0.40, 0.30]
+    &quot;DHCP Rogue&quot;: [0.30, 0.60]
+    &quot;Banners Visibles&quot;: [0.75, 0.20]
+</code></pre>
+<h3 id="resum-per-nivell-de-risc">Resum per Nivell de Risc</h3>
+<table>
+<thead>
+<tr>
+<th>Nivell</th>
+<th style="text-align: center;">Quantitat</th>
+<th>Exemples Principals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 <strong>Crític</strong></td>
+<td style="text-align: center;">4</td>
+<td>CVEs OpenSSH CVSS ≥ 9.0, FTP sense xifratge</td>
+</tr>
+<tr>
+<td>🟠 <strong>Alt</strong></td>
+<td style="text-align: center;">15+</td>
+<td>CVEs OpenSSH CVSS 7.0-8.9, Tomcat exposat, Corbes NIST</td>
+</tr>
+<tr>
+<td>🟡 <strong>Mitjà</strong></td>
+<td style="text-align: center;">10+</td>
+<td>DNS exposat, mDNS, DHCP, domini públic</td>
+</tr>
+<tr>
+<td>🟢 <strong>Baix</strong></td>
+<td style="text-align: center;">5+</td>
+<td>Banners visibles, claus MAC duplicades</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-pla-de-remediacio-prioritzat">12. Pla de Remediació Prioritzat</h2>
+<blockquote>
+<p>[!IMPORTANT]
+Les accions es presenten per ordre de prioritat. Es recomana executar les accions crítiques dins de les <strong>primeres 24-48 hores</strong> i les accions altes dins de la <strong>primera setmana</strong>.</p>
+</blockquote>
+<h3 id="prioritat-critica-0-48-hores">Prioritat 🔴 CRÍTICA (0-48 hores)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Acció</th>
+<th style="text-align: center;">Servidors</th>
+<th>Comanda/Procediment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Actualitzar OpenSSH</strong> a la versió més recent</td>
+<td style="text-align: center;">Ambdós</td>
+<td><code>sudo apt update &amp;&amp; sudo apt install --only-upgrade openssh-server</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Desactivar FTP</strong> i migrar a SFTP</td>
+<td style="text-align: center;">Ambdós</td>
+<td><code>sudo systemctl disable --now vsftpd</code> + Configurar SFTP a sshd_config</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Desactivar corbes NIST</strong> a la configuració SSH</td>
+<td style="text-align: center;">Ambdós</td>
+<td>Editar <code>/etc/ssh/sshd_config</code> — veure secció 8.3</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Activar autenticació per claus</strong> i desactivar passwords</td>
+<td style="text-align: center;">Ambdós</td>
+<td><code>PasswordAuthentication no</code> + generar claus Ed25519</td>
+</tr>
+</tbody>
+</table>
+<h3 id="prioritat-alta-1-setmana">Prioritat 🟠 ALTA (1 setmana)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Acció</th>
+<th style="text-align: center;">Servidors</th>
+<th>Comanda/Procediment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td><strong>Implementar Fail2Ban</strong> per SSH</td>
+<td style="text-align: center;">Ambdós</td>
+<td><code>sudo apt install fail2ban</code> + configurar jail.local</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Hardening SSH complet</strong> (PermitRootLogin, MaxAuthTries, etc.)</td>
+<td style="text-align: center;">Ambdós</td>
+<td>Veure secció 8.3 — SSH-05</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Restringir Tomcat</strong> via firewall + desactivar manager</td>
+<td style="text-align: center;">Primari</td>
+<td><code>sudo ufw allow from 192.168.2.0/24 to any port 8080</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Actualitzar Apache Tomcat</strong> a l'última versió estable</td>
+<td style="text-align: center;">Primari</td>
+<td>Descarregar des d'apache.org i aplicar hardening</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Implementar firewall <code>ufw</code></strong> amb política deny-by-default</td>
+<td style="text-align: center;">Ambdós</td>
+<td><code>sudo ufw default deny incoming &amp;&amp; sudo ufw enable</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="prioritat-mitjana-1-mes">Prioritat 🟡 MITJANA (1 mes)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Acció</th>
+<th style="text-align: center;">Servidors</th>
+<th>Comanda/Procediment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td><strong>Restringir DNS (BIND)</strong> a la xarxa interna</td>
+<td style="text-align: center;">Ambdós</td>
+<td>Configurar <code>allow-query</code> i desactivar recursió</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Ocultar versió de BIND</strong></td>
+<td style="text-align: center;">Ambdós</td>
+<td><code>version "not disclosed";</code> a named.conf.options</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Desactivar Avahi/mDNS</strong></td>
+<td style="text-align: center;">Ambdós</td>
+<td><code>sudo systemctl disable --now avahi-daemon</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>Implementar segmentació de xarxa</strong> (VLANs)</td>
+<td style="text-align: center;">Infraestructura</td>
+<td>Configurar 802.1Q al switch</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>Utilitzar domini propi</strong> per al laboratori</td>
+<td style="text-align: center;">Infraestructura</td>
+<td>Migrar de <code>informatica.com</code> a <code>.lab</code> o <code>.local</code></td>
+</tr>
+<tr>
+<td>15</td>
+<td><strong>Implementar IDS/IPS</strong> (Suricata/Snort)</td>
+<td style="text-align: center;">Xarxa</td>
+<td>Instal·lar i configurar regles de detecció</td>
+</tr>
+</tbody>
+</table>
+<h3 id="prioritat-baixa-manteniment-continu">Prioritat 🟢 BAIXA (Manteniment continu)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Acció</th>
+<th style="text-align: center;">Servidors</th>
+<th>Comanda/Procediment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td><strong>Ocultar banners</strong> de tots els serveis</td>
+<td style="text-align: center;">Ambdós</td>
+<td>Configurar cada servei individualment</td>
+</tr>
+<tr>
+<td>17</td>
+<td><strong>Regenerar adreces MAC</strong> úniques per a cada VM</td>
+<td style="text-align: center;">Infraestructura</td>
+<td><code>VBoxManage modifyvm "VM" --macaddress1 auto</code></td>
+</tr>
+<tr>
+<td>18</td>
+<td><strong>Establir procés d'actualitzacions periòdiques</strong></td>
+<td style="text-align: center;">Ambdós</td>
+<td>Configurar <code>unattended-upgrades</code> per a patchs de seguretat</td>
+</tr>
+<tr>
+<td>19</td>
+<td><strong>Documentar configuració de seguretat</strong></td>
+<td style="text-align: center;">Tots</td>
+<td>Crear baseline de seguretat documentada</td>
+</tr>
+<tr>
+<td>20</td>
+<td><strong>Implementar monitoratge centralitzat</strong></td>
+<td style="text-align: center;">Tots</td>
+<td>Configurar rsyslog + ELK Stack o Graylog</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-conclusions">13. Conclusions</h2>
+<p>L'auditoria de seguretat realitzada sobre els servidors primari (<code>192.168.2.2</code>) i secundari (<code>192.168.2.3</code>) ha revelat un panorama de seguretat amb <strong>punts forts i febleses significatives</strong>:</p>
+<h3 id="aspectes-positius">✅ Aspectes Positius</h3>
+<ul>
+<li><strong>SMB correctament configurat:</strong> Sessions anònimes rebutjades en ambdós servidors</li>
+<li><strong>Serveis mínims exposats:</strong> 4-5 ports oberts (superfície d'atac moderada)</li>
+<li><strong>Protocol SSH v2 exclusiu:</strong> No s'accepta el protocol SSHv1 obsolet</li>
+<li><strong>Algoritmes post-quàntics disponibles:</strong> <code>sntrup761x25519</code> ja habilitat per a SSH</li>
+</ul>
+<h3 id="aspectes-a-millorar-urgentment">❌ Aspectes a Millorar Urgentment</h3>
+<ul>
+<li><strong>OpenSSH 9.6p1 amb 30+ CVEs conegudes</strong>, incloent 4 de severitat crítica (CVSS ≥ 9.0) i exploits públics disponibles</li>
+<li><strong>FTP actiu sense xifratge TLS</strong> — credencials transmeses en text pla</li>
+<li><strong>Corbes el·líptiques NIST</strong> habilitades a SSH — sospitoses de backdoor de la NSA</li>
+<li><strong>Apache Tomcat 10.1.36</strong> exposat sense restriccions d'accés al servidor primari</li>
+<li><strong>DNS (BIND)</strong> accessible sense restriccions de consulta</li>
+</ul>
+<h3 id="classificacio-global-de-risc">Classificació Global de Risc</h3>
+<pre><code>╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║   NIVELL DE RISC GLOBAL:  🔴 ALT                             ║
+║                                                               ║
+║   La presència de vulnerabilitats crítiques amb exploits       ║
+║   públics disponibles requereix acció correctiva immediata.    ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+</code></pre>
+<h3 id="recomanacio-final">Recomanació Final</h3>
+<blockquote>
+<p>[!CAUTION]
+<strong>Es recomana encaridament no exposar aquests servidors a xarxes no controlades</strong> fins que les accions de remediació de prioritat CRÍTICA i ALTA hagin estat completades i verificades. L'existència d'exploits públics per a les vulnerabilitats detectades implica que qualsevol atacant amb connexió a la xarxa podria comprometre els servidors en minuts.</p>
+</blockquote>
+<hr />
+<p><strong>Document generat el:</strong> 13 d'abril de 2026<br />
+<strong>Eina d'auditoria:</strong> SEC-AUDIT PRO v3.0 — Advanced Security Suite<br />
+<strong>Motor d'escaneig:</strong> Nmap 7.94SVN<br />
+<strong>Classificació:</strong> CONFIDENCIAL — Distribució restringida  </p>
+<hr />
+<p><em>Fi de l'informe</em></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4e0fa4ba.min.js"></script>
+      
+    
+  </body>
+</html>
