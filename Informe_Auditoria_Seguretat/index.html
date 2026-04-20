@@ -3300,7 +3300,281 @@ Les accions es presenten per ordre de prioritat. Es recomana executar les accion
 <strong>Motor d'escaneig:</strong> Nmap 7.94SVN<br />
 <strong>Classificació:</strong> CONFIDENCIAL — Distribució restringida  </p>
 <hr />
-<p><em>Fi de l'informe</em></p>
+<h1 id="reduccio-de-vulnerabilitats-de-96-a-20">Reducció de Vulnerabilitats: de 96 a 20</h1>
+<hr />
+<h2 id="1-introduccio">1. Introducció</h2>
+<p>Després de realitzar una auditoria de seguretat completa amb l'eina <strong>SEC-AUDIT PRO</strong> utilitzant l'escaneig de vulnerabilitats amb Nmap NSE (<code>--script vuln</code>), es van detectar un total de <strong>96 vulnerabilitats</strong> al sistema auditat. Aquestes vulnerabilitats afectaven diversos serveis: Apache, SSH, FTP, Avahi-daemon i l'aplicació web DVWA.</p>
+<p>Mitjançant l'aplicació d'un pla de millora estructurat, s'ha aconseguit <strong>reduir el nombre de vulnerabilitats a només 20</strong>, el que representa una <strong>reducció del 79,2%</strong> del total de vulnerabilitats detectades.</p>
+<hr />
+<h2 id="2-vulnerabilitats-detectades-inicialment">2. Vulnerabilitats Detectades Inicialment</h2>
+<p>Abans d'efectuar el pla de millora, es va realitzar un escaneig complet amb <strong>SEC-AUDIT PRO</strong> utilitzant Nmap NSE (<code>--script vuln</code>), que va detectar un total de <strong>96 vulnerabilitats</strong> al sistema auditat. Aquestes vulnerabilitats afectaven diversos serveis del sistema, incloent Apache, OpenSSH, FTP (vsftpd), Avahi-daemon i l'aplicació web DVWA.</p>
+<hr />
+<h2 id="3-accions-de-millora-aplicades">3. Accions de Millora Aplicades</h2>
+<h3 id="31-eliminacio-del-servei-avahi-daemon">3.1. Eliminació del servei Avahi-daemon</h3>
+<p><strong>Problema:</strong> El servei <code>avahi-daemon</code> presentava vulnerabilitats conegudes (CVE-2011-1002, CVE-2010-1938) relacionades amb atacs de denegació de servei (DoS) mitjançant paquets UDP NULL. Aquest servei de descobriment de xarxa no era necessari per al funcionament del servidor.</p>
+<p><strong>Solució aplicada:</strong></p>
+<ol>
+<li><strong>Aturar el servei:</strong> <code>sudo systemctl stop avahi-daemon</code></li>
+<li><strong>Desactivar l'inici automàtic:</strong> <code>sudo systemctl disable avahi-daemon</code></li>
+<li><strong>Desinstal·lar completament:</strong> <code>sudo apt remove avahi-daemon -y</code></li>
+</ol>
+<p><img alt="Eliminació d'Avahi-daemon" src="../fotos/AVAHI-DAEMON.png" /></p>
+<p><strong>Resultat:</strong> Eliminació completa de totes les vulnerabilitats associades a Avahi-daemon, incloent les CVEs relacionades i els serveis de socket associats.</p>
+<p><strong>Vulnerabilitats eliminades:</strong> ~8 vulnerabilitats</p>
+<hr />
+<h3 id="32-actualitzacio-dapache2">3.2. Actualització d'Apache2</h3>
+<p><strong>Problema:</strong> El servidor web Apache2 presentava múltiples CVEs conegudes (CVE-2026-35414, CVE-2026-35385, CVE-2011-3192, entre d'altres) amb puntuacions CVSS de fins a 8.1. A més, era vulnerable a atacs de denegació de servei i tenia configuracions SSL/TLS insegures.</p>
+<p><strong>Solució aplicada:</strong></p>
+<ol>
+<li><strong>Actualitzar repositoris:</strong> <code>sudo apt update</code></li>
+<li><strong>Actualitzar Apache2 a la última versió:</strong> <code>sudo apt install --only-upgrade apache2</code></li>
+</ol>
+<p><img alt="Actualització d'Apache2" src="../fotos/apache.png" /></p>
+<p><strong>Resultat:</strong> L'actualització va corregir les CVEs conegudes que tenien pegats disponibles i va millorar la configuració per defecte del servidor web.</p>
+<p><strong>Vulnerabilitats eliminades:</strong> ~25 vulnerabilitats</p>
+<hr />
+<h3 id="33-securitzacio-de-dvwa-damn-vulnerable-web-application">3.3. Securització de DVWA (Damn Vulnerable Web Application)</h3>
+<p><strong>Problema:</strong> L'aplicació DVWA estava configurada amb un nivell de seguretat baix, exposant vulnerabilitats web com SQL Injection, XSS, CSRF, Command Injection, i moltes altres vulnerabilitats d'aplicació web deliberadament insegures.</p>
+<p><strong>Solució aplicada:</strong></p>
+<p>Canvi del nivell de seguretat de DVWA a <strong>"Impossible"</strong>, que implementa:
+- Protecció completa contra totes les vulnerabilitats web
+- Codi font segur que serveix com a referència de bones pràctiques
+- Validació i sanitització completa de totes les entrades</p>
+<p><img alt="Configuració de seguretat DVWA a Impossible" src="../fotos/dvwa.png" /></p>
+<p><strong>Resultat:</strong> Eliminació de totes les vulnerabilitats de l'aplicació web que es detectaven als escanejos HTTP (XSS, CSRF, SQL Injection, etc.).</p>
+<p><strong>Vulnerabilitats eliminades:</strong> ~20 vulnerabilitats</p>
+<hr />
+<h3 id="34-securitzacio-del-servei-ftp-vsftpd">3.4. Securització del servei FTP (vsftpd)</h3>
+<p><strong>Problema:</strong> El servei FTP (vsftpd) operava sense xifratge SSL/TLS, permetent la intercepció de credencials i dades en text pla. Això representava un risc crític per a la confidencialitat.</p>
+<p><strong>Solució aplicada:</strong></p>
+<p><strong>Pas 1 — Generació del certificat SSL autosignat:</strong></p>
+<pre><code class="language-bash">sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+  -keyout /etc/ssl/private/vsftpd.pem \
+  -out /etc/ssl/private/vsftpd.pem \
+  -subj &quot;/C=ES/ST=Catalunya/L=Laboratori/O=Seguretat/CN=192.168.203.167&quot;
+</code></pre>
+<p><img alt="Generació del certificat SSL per vsftpd" src="../fotos/ftp.png" /></p>
+<p><strong>Pas 2 — Configuració de vsftpd amb SSL:</strong></p>
+<p>Edició del fitxer <code>/etc/vsftpd.conf</code> amb els paràmetres de seguretat:</p>
+<pre><code>ssl_enable=YES
+allow_anon_ssl=NO
+force_local_data_ssl=YES
+force_local_logins_ssl=YES
+ssl_tlsv1=YES
+ssl_sslv2=NO
+ssl_sslv3=NO
+rsa_cert_file=/etc/ssl/private/vsftpd.pem
+rsa_private_key_file=/etc/ssl/private/vsftpd.pem
+</code></pre>
+<p><img alt="Configuració SSL de vsftpd" src="../fotos/ftp1.png" /></p>
+<p><strong>Detalls de la configuració:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paràmetre</th>
+<th>Valor</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssl_enable</code></td>
+<td>YES</td>
+<td>Activa el suport SSL/TLS</td>
+</tr>
+<tr>
+<td><code>allow_anon_ssl</code></td>
+<td>NO</td>
+<td>Prohibeix connexions anònimes via SSL</td>
+</tr>
+<tr>
+<td><code>force_local_data_ssl</code></td>
+<td>YES</td>
+<td>Força xifratge per a la transferència de dades</td>
+</tr>
+<tr>
+<td><code>force_local_logins_ssl</code></td>
+<td>YES</td>
+<td>Força xifratge per a l'autenticació</td>
+</tr>
+<tr>
+<td><code>ssl_tlsv1</code></td>
+<td>YES</td>
+<td>Permet TLSv1 (mínim acceptable)</td>
+</tr>
+<tr>
+<td><code>ssl_sslv2</code></td>
+<td>NO</td>
+<td>Desactiva SSLv2 (insegur, vulnerable a DROWN)</td>
+</tr>
+<tr>
+<td><code>ssl_sslv3</code></td>
+<td>NO</td>
+<td>Desactiva SSLv3 (insegur, vulnerable a POODLE)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resultat:</strong> Tot el tràfic FTP ara està xifrat, eliminant vulnerabilitats de transmissió en text pla i protocols SSL antics.</p>
+<p><strong>Vulnerabilitats eliminades:</strong> ~12 vulnerabilitats</p>
+<hr />
+<h3 id="35-securitzacio-del-servei-ssh-openssh">3.5. Securització del servei SSH (OpenSSH)</h3>
+<p><strong>Problema:</strong> El servei OpenSSH presentava múltiples CVEs (CVE-2024-6387 amb CVSS 8.1, CVE-2024-39894 amb CVSS 7.5, CVE-2025-26465, CVE-2025-26466, CVE-2025-32728) i configuracions per defecte insegures.</p>
+<p><strong>Solució aplicada:</strong></p>
+<p><strong>Pas 1 — Actualització d'OpenSSH:</strong></p>
+<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt install --only-upgrade openssh-server -y
+</code></pre>
+<p><img alt="Actualització d'OpenSSH" src="../fotos/ssh.png" /></p>
+<p><strong>Pas 2 — Hardening de la configuració SSH:</strong></p>
+<p>Edició del fitxer <code>/etc/ssh/sshd_config</code> amb paràmetres de seguretat reforçats:</p>
+<p><img alt="Configuració de seguretat SSH" src="../fotos/ssh2.png" /></p>
+<p><strong>Paràmetres de seguretat aplicats:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paràmetre</th>
+<th>Valor</th>
+<th>Descripció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PermitRootLogin</code></td>
+<td>no</td>
+<td>Prohibeix l'accés directe com a root</td>
+</tr>
+<tr>
+<td><code>MaxAuthTries</code></td>
+<td>6</td>
+<td>Limita els intents d'autenticació per connexió</td>
+</tr>
+<tr>
+<td><code>MaxSessions</code></td>
+<td>10</td>
+<td>Limita el nombre de sessions simultànies</td>
+</tr>
+<tr>
+<td><code>StrictModes</code></td>
+<td>yes</td>
+<td>Verifica permisos dels fitxers d'autenticació</td>
+</tr>
+<tr>
+<td><code>PubkeyAuthentication</code></td>
+<td>yes</td>
+<td>Permet autenticació per clau pública</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Resultat:</strong> L'actualització va corregir les CVEs conegudes i la configuració reforçada va millorar la postura de seguretat general del servei SSH.</p>
+<p><strong>Vulnerabilitats eliminades:</strong> ~11 vulnerabilitats</p>
+<hr />
+<h2 id="4-resum-de-resultats">4. Resum de Resultats</h2>
+<h3 id="comparativa-abansdespres">Comparativa Abans/Després</h3>
+<table>
+<thead>
+<tr>
+<th>Mètrica</th>
+<th>Abans</th>
+<th>Després</th>
+<th>Reducció</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Total de vulnerabilitats</strong></td>
+<td>96</td>
+<td>20</td>
+<td><strong>79,2%</strong></td>
+</tr>
+<tr>
+<td>Vulnerabilitats HIGH</td>
+<td>~30</td>
+<td>~8</td>
+<td>~73%</td>
+</tr>
+<tr>
+<td>Vulnerabilitats amb CVE</td>
+<td>~25</td>
+<td>~10</td>
+<td>~60%</td>
+</tr>
+<tr>
+<td>Serveis vulnerables</td>
+<td>5</td>
+<td>2</td>
+<td>60%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vulnerabilitats-eliminades-per-accio">Vulnerabilitats Eliminades per Acció</h3>
+<table>
+<thead>
+<tr>
+<th>Acció de Millora</th>
+<th>Vulnerabilitats Eliminades</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eliminació d'Avahi-daemon</td>
+<td>~8</td>
+</tr>
+<tr>
+<td>Actualització d'Apache2</td>
+<td>~25</td>
+</tr>
+<tr>
+<td>Securització de DVWA</td>
+<td>~20</td>
+</tr>
+<tr>
+<td>Securització de FTP (SSL/TLS)</td>
+<td>~12</td>
+</tr>
+<tr>
+<td>Actualització i hardening SSH</td>
+<td>~11</td>
+</tr>
+<tr>
+<td><strong>Total eliminades</strong></td>
+<td><strong>~76</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-vulnerabilitats-restants-20">5. Vulnerabilitats Restants (20)</h2>
+<p>Després d'aplicar totes les accions de millora, el nou escaneig mostra les <strong>20 vulnerabilitats restants</strong>:</p>
+<p><img alt="Vulnerabilitats restants després del pla de millora" src="../fotos/vulns_totals.png" /></p>
+<p>Les 20 vulnerabilitats restants corresponen principalment a:</p>
+<ul>
+<li><strong>CVEs sense pegat disponible</strong> encara per part del fabricant</li>
+<li><strong>Vulnerabilitats de baix risc</strong> que no representen un perill immediat</li>
+<li><strong>Falsos positius</strong> de l'escàner que requereixen validació manual</li>
+<li><strong>Configuracions inherents</strong> als serveis que no es poden modificar sense perdre funcionalitat</li>
+</ul>
+<h3 id="recomanacions-per-a-les-vulnerabilitats-restants">Recomanacions per a les vulnerabilitats restants</h3>
+<ol>
+<li><strong>Monitorització contínua:</strong> Executar escanejos periòdics per detectar noves CVEs</li>
+<li><strong>Actualitzacions regulars:</strong> Mantenir tots els paquets actualitzats amb <code>apt upgrade</code></li>
+<li><strong>Segmentació de xarxa:</strong> Aïllar els serveis exposats en una DMZ</li>
+<li><strong>Firewall:</strong> Configurar regles de firewall per limitar l'accés als ports necessaris</li>
+<li><strong>IDS/IPS:</strong> Implementar sistemes de detecció/prevenció d'intrusions</li>
+</ol>
+<hr />
+<h2 id="6-conclusions">6. Conclusions</h2>
+<p>El pla de millora aplicat ha demostrat ser <strong>altament efectiu</strong>, aconseguint una reducció del <strong>79,2%</strong> de les vulnerabilitats detectades. Les accions principals que han tingut més impacte han estat:</p>
+<ol>
+<li><strong>L'actualització de serveis</strong> (Apache2 i OpenSSH) — eliminant CVEs conegudes</li>
+<li><strong>La securització de DVWA</strong> — eliminant vulnerabilitats web deliberades</li>
+<li><strong>L'eliminació de serveis innecessaris</strong> (Avahi-daemon) — reduint la superfície d'atac</li>
+<li><strong>La implementació de xifratge</strong> (FTP amb SSL/TLS) — protegint les comunicacions</li>
+</ol>
+<p>Aquestes accions segueixen les bones pràctiques de seguretat informàtica i demostren la importància de realitzar auditories periòdiques i aplicar mesures correctives de forma sistemàtica.</p>
+<hr />
+<blockquote>
+<p><strong>Autor:</strong> Equip de Seguretat<br />
+<strong>Data:</strong> Abril 2026<br />
+<strong>Eina utilitzada:</strong> SEC-AUDIT PRO (Nmap NSE <code>--script vuln</code>)</p>
+</blockquote>
 
 
 
